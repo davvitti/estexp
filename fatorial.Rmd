@@ -11,7 +11,7 @@ Os tratamentos serão as combinações dos níveis dos fatores
 
 Exemplo 1: Avaliação do efeito da adubação NPK sobre uma determinada cultura
 
-	$$\left.\begin{array}{l}
+$$\left.\begin{array}{l}
 	\mbox{N com 2 níveis}\\ \nonumber
 	\mbox{P com 2 níveis}\\ \nonumber
 	\mbox{K com 2 níveis} \nonumber
@@ -21,62 +21,17 @@ Exemplo 1: Avaliação do efeito da adubação NPK sobre uma determinada cultura
 	
 Lê-se: fatorial dois por dois por dois ou fatorial dois ao cubo.
 
-
-
-
-
-\ {Esquema fatorial: Introdução}
-\begin{block}{Exemplo 1: Avaliação do efeito da adubação NPK sobre uma determinada cultura}
-	$$\left.\begin{array}{l}
-	\mbox{N com 2 níveis}\\ \nonumber
-	\mbox{P com 2 níveis}\\ \nonumber
-	\mbox{K com 2 níveis} \nonumber
-	\end{array} 
-	\right\} = 2\times 2 \times 2 = 2^3 = \mbox{8 tratamentos}$$
-
-{1cm}	
-	
 Tratamentos:
-\begin{center}
-\begin{tabular}{cccc}
-	$N_0P_0K_0$ & $N_0P_0K_1$ & $N_0P_1K_0$ & $N_0P_1K_1$ \\
-    $N_1P_0K_0$ & $N_1P_0K_1$ & $N_1P_1K_0$ & $N_1P_1K_1$ \\
-\end{tabular}
-\end{center}
-\end{block}
-	
-	
-	
 
+$N_0P_0K_0$ & $N_0P_0K_1$ & $N_0P_1K_0$ & $N_0P_1K_1$ \\ $N_1P_0K_0$ & $N_1P_0K_1$ & $N_1P_1K_0$ & $N_1P_1K_1$ \\
 
-
-{Esquema fatorial: Introdução}
-{Exemplo 2: Avaliação da Temperatura e da Umidade sobre o tempo de consevação de um produto}
+Exemplo 2: Avaliação da Temperatura e da Umidade sobre o tempo de consevação de um produto
 
 
 $$3 \times 2 = \mbox{6 tratamentos}$$
 
-
-		
-
-		
-		Lê-se: fatorial três por dois.
-	\end{block}
+Lê-se: fatorial três por dois.
 	
-
-
-
-\ {Esquema fatorial: Introdução}
-	\begin{block}{Exemplo 2: Avaliação da Temperatura e da Umidade sobre o tempo de conservação de um produto}
-		
-		
-		\begin{figure}[H]
-			\centering
-			\includegraphics[scale=0.5]{Figuras/fatorial32.jpg}
-		\end{figure}
-		$$3 \times 2 = \mbox{6 Tratamentos}$$
-		
-
 \begin{center}
 \begin{tabular}{cccc}  \hline
 &	\multicolumn{2}{c}{Umidade} & \\ \cline{2-3}
@@ -86,129 +41,41 @@ $T_2$ & $T_2U_1$ & $T_2U_2$ \\
 $T_3$ & $T_3U_1$ & $T_3U_2$ \\ \hline
 \end{tabular}
 \end{center}
-	\end{block}
-
-
-
-\ {Esquema fatorial: Introdução}
-	\begin{block}{Planejamento:}
-
-O planejamento pode seguir qualquer um dos delineamentos vistos anteriormente:
-\begin{itemize}
-	\item Delineamento Inteiramente Casualizado
-\end{itemize}
-\begin{center}
-    \includegraphics[scale = 0.4]{Aulas/Figuras/Fatorial_dic.jpeg}
-\end{center}
-
-\end{block}
-
-
-
-\ {Esquema fatorial: Introdução}
-	\begin{block}{Planejamento:}
-
-O planejamento pode seguir qualquer um dos delineamentos vistos anteriormente:
-\begin{itemize}
-	\item Delineamento Casualizado em Blocos
-\end{itemize}
-\begin{center}
-    \includegraphics[scale = 0.4]{Aulas/Figuras/Fatorial_dbc.jpeg}
-\end{center}
-
-\end{block}
-
-
-
-\ {Esquema fatorial: Introdução}
-	\begin{block}{Planejamento:}
-
-O planejamento pode seguir qualquer um dos delineamentos vistos anteriormente:
-\begin{itemize}
-	\item Delineamento Quadrado Latino
-\end{itemize}
-\begin{center}
-    \includegraphics[scale = 0.4]{Aulas/Figuras/Fatorial_dql.jpeg}
-\end{center}
-
-\end{block}
-
-
-
-\ {Esquema fatorial: Introdução}
-	\begin{block}{Planejamento:}
-
-O planejamento pode seguir qualquer um dos delineamentos vistos anteriormente:
-\begin{itemize}
-	\item Delineamento Inteiramente Casualizado
-	\item Delineamento Casualizado em Blocos
-	\item Delineamento Quadrado Latino
-	\item ...
-\end{itemize}
-
-\end{block}
-{1cm}
-{\bf Observação:} As combinações dos níveis dos fatores serão casualizadas às parcelas, de acordo com o delineamento experimental selecionado.
-
-
-
-\ {Esquema fatorial: Introdução}
-	\begin{block}{Vantagens e Desvantagens dos esquemas fatoriais de tratamentos}
-		
-{\bf {0, .5,1}{Vantagens:}} Permitem estudar os efeitos simples e principais dos fatores, bem como o efeito da interação envolvendo os mesmos.
-
-{.5cm}
-
-{\bf {0, .5,1}{Desvantagens:}} O número de tratamentos pode ser elevado devido ao número de fatores e/ou ao número de níveis dos fatores.
-
-{0.5cm}
-
-{\bf Exemplos:}
-
-$2\times 2 = 2^2 \Rightarrow$ 4 tratamentos\\
-$3\times 3 = 3^2 \Rightarrow$ 9 tratamentos\\
-$5\times 4 \Rightarrow$ 20 tratamentos\\
-$4\times 3 \times 3 \Rightarrow$ 36 tratamentos\\
-
-	\end{block}
 	
 
 
+O planejamento pode seguir qualquer um dos delineamentos vistos anteriormente:
+
+Dic
+
+Delineamento Casualizado em Blocos
+
+Delineamento Quadrado Latino
+
+As combinações dos níveis dos fatores serão casualizadas às parcelas, de acordo com o delineamento experimental selecionado.
 
 
-\ {Esquema fatorial: Introdução}
-	\begin{block}{Fatoriais $2\times 2$ ou $2^2$}
-		
-\begin{center}
-Dois fatores com dois níveis cada
-\end{center}
 
-		
-			\begin{figure}[H]
-				\centering
-				\includegraphics[scale=0.4]{Figuras/fatorial22.jpg}
-			\end{figure}	
-		
-	\end{block}
+Vantagens: Permitem estudar os efeitos simples e principais dos fatores, bem como o efeito da interação envolvendo os mesmos.
+
+Desvantagens: O número de tratamentos pode ser elevado devido ao número de fatores e/ou ao número de níveis dos fatores.
+
+
+$2\times 2 = 2^2 \Rightarrow$ 4 tratamentos
+
+$3\times 3 = 3^2 \Rightarrow$ 9 tratamentos
+
+$5\times 4 \Rightarrow$ 20 tratamentos
+
+$4\times 3 \times 3 \Rightarrow$ 36 tratamentos
+
 	
+Esquema fatorial: Exemplo - Fatorial $2\times2$
 
+Suponha dois fatores, cada um com dois níveis. O fator $A$, com os níveis $A_0$ e $A_1$ e o fator $B$, com os níveis $B_0$ e $B_1$.	
 
-
-\ {Esquema fatorial: Exemplo - Fatorial $2\times2$}
-
- Suponha dois fatores, cada um com dois níveis. O fator $A$, com os níveis $A_0$ e $A_1$ e o fator $B$, com os níveis $B_0$ e $B_1$.	
-
-\begin{block}{Análise exploratória gráfica: exemplo 1}
+{Análise exploratória gráfica: exemplo 1
 	
-	\begin{multicols}{2}
-		
-
-		\begin{figure}[H]
-			\centering
-			\includegraphics[scale=0.4]{Figuras/Fatorial_fig1.pdf}
-		\end{figure}
-	
-	\newpage
 	
 \begin{center}
 \begin{tabular}{cccc}  \hline
@@ -224,17 +91,11 @@ Médias & 20 & 20  & 20  \\ \hline
 			\end{center}
 	$$30-10 = 20$$
 
-	\end{multicols}
-	
-\end{block}
-
-
-
-\ {Esquema fatorial: Exemplo - Fatorial $2\times2$}
+Esquema fatorial: Exemplo - Fatorial $2\times2$
 
 Suponha dois fatores, cada um com dois níveis. O fator $A$, com os níveis $A_0$ e $A_1$ e o fator $B$, com os níveis $B_0$ e $B_1$.	
 
-\begin{block}{Análise exploratória gráfica: exemplo 2}
+{Análise exploratória gráfica: exemplo 2}
 	
 	\begin{multicols}{2}
 		
@@ -262,7 +123,7 @@ Médias & 20 & 20  & 20  \\ \hline
 		
 	\end{multicols}
 	
-\end{block}
+
 
 
 
@@ -270,7 +131,7 @@ Médias & 20 & 20  & 20  \\ \hline
 
 Suponha dois fatores, cada um com dois níveis. O fator $A$, com os níveis $A_0$ e $A_1$ e o fator $B$, com os níveis $B_0$ e $B_1$.	
 
-\begin{block}{Análise exploratória gráfica: exemplo 3}
+{Análise exploratória gráfica: exemplo 3}
 	
 	\begin{multicols}{2}
 		
@@ -298,14 +159,14 @@ Médias & 10 & 10  & 10  \\ \hline
 		
 	\end{multicols}
 	
-\end{block}
+
 
 
 
 
 \ {Esquema fatorial: Exemplo - Fatorial $2\times2$}
 
-\begin{block}{Análise exploratória gráfica: exemplo 4}
+{Análise exploratória gráfica: exemplo 4}
 	
 	\begin{multicols}{2}
 		
@@ -343,7 +204,7 @@ $$\frac{{blue}{10}-{red}{10}}{2} = \frac{0}{2} = 0$$
 \end{center}
 }
 	
-\end{block}
+
 
 
 
@@ -351,7 +212,7 @@ $$\frac{{blue}{10}-{red}{10}}{2} = \frac{0}{2} = 0$$
 
 \ {Esquema fatorial: Exemplo - Fatorial $2\times2$}
 
-\begin{block}{Análise exploratória gráfica: exemplo 5}
+{Análise exploratória gráfica: exemplo 5}
 	
 	\begin{multicols}{2}
 		
@@ -397,13 +258,13 @@ Médias & 10 & 25  & 17,5  \\ \hline
 	\end{center}
 	}
 	
-\end{block}
+
 
 
 
 \ {Esquema fatorial: Exemplo - Fatorial $2\times2$}
 
-\begin{block}{Análise exploratória gráfica: exemplo 6}
+{Análise exploratória gráfica: exemplo 6}
 	
 	\begin{multicols}{2}
 		
@@ -452,7 +313,7 @@ Médias & 20 & 20  & 20  \\ \hline
 	\end{center}
 	}
 	
-\end{block}
+
 
 
 
@@ -955,9 +816,9 @@ $I_0C_0$ &	$I_0C_1$ &	$I_1C_0$ & $I_1C_1$ \\ \hline
 \end{tabular}
 \end{center}
 
-\begin{block}{Soma de quadrados do Total}
+{Soma de quadrados do Total}
 $$\displaystyle{SQ_{\text{Total}} = \sum_i\sum_k\sum_j y_{ikj}^2 - \frac{(\sum_i\sum_k\sum_j y_{ikj})^2}{abr}}$$
-\end{block}
+
 
 $$SQ_{\text{Total}} = 25^2 + 32^2 + 27^2 + \ldots + 59^2 - \frac{480^2}{12} = 2196$$
 
@@ -979,9 +840,9 @@ Totais & 198$^{(6)}$ & 282$^{(6)}$ & {red}{480$^{(12)}$}  \\ \hline
 \end{tabular}
 \end{center}
 
-\begin{block}{Soma de quadrados de Irrigação}
+{Soma de quadrados de Irrigação}
 $$\displaystyle{SQ_{\text{Irrigação}} = \frac{1}{br} \sum_i y_{i\cdot\cdot}^2 - \frac{y_{\cdot\cdot\cdot}^2}{abr}}$$
-\end{block}
+
 
 $$SQ_{\text{Irrigação}} = \frac{1}{6}({red}{180}^2 + {red}{300}^2) - \frac{{red}{480}^2}{12} = 1200$$
 
@@ -1001,9 +862,9 @@ Totais & {red}{198}$^{(6)}$ & {red}{282}$^{(6)}$ & {red}{480}$^{(12)}$  \\ \hlin
 \end{tabular}
 \end{center}
 
-\begin{block}{Soma de quadrados de Calagem}
+{Soma de quadrados de Calagem}
 $$\displaystyle{SQ_{\text{Calagem}} = \frac{1}{ar} \sum_k y_{\cdot k\cdot}^2 - \frac{y_{\cdot\cdot\cdot}^2}{abr}}$$
-\end{block}
+
 
 $$SQ_{\text{Calagem}} = \frac{1}{6}({red}{198}^2 + {red}{282}^2) - \frac{{red}{480}^2}{12} = 588$$
 
@@ -1023,9 +884,9 @@ Totais & 198$^{(6)}$ & 282$^{(6)}$ & {red}{480}$^{(12)}$  \\ \hline
 \end{tabular}
 \end{center}
 
-\begin{block}{Soma de quadrados da combinação Irrigação,Calagem (Tratamentos)}
+{Soma de quadrados da combinação Irrigação,Calagem (Tratamentos)}
 $$\displaystyle{SQ_{\text{I,C}} = \frac{1}{r} \sum_i\sum_k y_{ik\cdot}^2 - \frac{y_{\cdot\cdot\cdot}^2}{abr}}$$
-\end{block}
+
 
 $$SQ_{\text{I,C}} = \frac{1}{3}({red}{84}^2 + {red}{96}^2 + {red}{114}^2 + {red}{186}^2) - \frac{{red}{480}^2}{12} = 2088$$
 
@@ -1045,9 +906,9 @@ Totais & 198$^{(6)}$ & 282$^{(6)}$ & 480$^{(12)}$  \\ \hline
 \end{tabular}
 \end{center}
 
-\begin{block}{Soma de quadrados da Interação Irrigação$\#$Calagem}
+{Soma de quadrados da Interação Irrigação$\#$Calagem}
 $$\displaystyle{SQ_{\text{I\# C}} = SQ_{\text{I,C}} - SQ_{\text{I}} - SQ_{\text{C}}}$$
-\end{block}
+
 
 $$SQ_{\text{I\#C}} = 2088 - 1200 - 588 = 300$$
 

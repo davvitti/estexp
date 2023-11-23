@@ -1,0 +1,1632 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta charset="utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+
+
+
+<title>Delineamento Inteiramente Casualizado</title>
+
+<script src="site_libs/header-attrs-2.24/header-attrs.js"></script>
+<script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/cosmo.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<style>h1 {font-size: 34px;}
+       h1.title {font-size: 38px;}
+       h2 {font-size: 30px;}
+       h3 {font-size: 24px;}
+       h4 {font-size: 18px;}
+       h5 {font-size: 16px;}
+       h6 {font-size: 12px;}
+       code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
+       pre:not([class]) { background-color: white }</style>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+<link href="site_libs/highlightjs-9.12.0/textmate.css" rel="stylesheet" />
+<script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
+<link href="site_libs/pagedtable-1.1/css/pagedtable.css" rel="stylesheet" />
+<script src="site_libs/pagedtable-1.1/js/pagedtable.js"></script>
+
+<style type="text/css">
+  code{white-space: pre-wrap;}
+  span.smallcaps{font-variant: small-caps;}
+  span.underline{text-decoration: underline;}
+  div.column{display: inline-block; vertical-align: top; width: 50%;}
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  ul.task-list{list-style: none;}
+    </style>
+
+<style type="text/css">code{white-space: pre;}</style>
+<script type="text/javascript">
+if (window.hljs) {
+  hljs.configure({languages: []});
+  hljs.initHighlightingOnLoad();
+  if (document.readyState && document.readyState === "complete") {
+    window.setTimeout(function() { hljs.initHighlighting(); }, 0);
+  }
+}
+</script>
+
+
+
+
+
+
+
+
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+img {
+  max-width:100%;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+.html-widget {
+  margin-bottom: 20px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+summary {
+  display: list-item;
+}
+details > summary > p:only-child {
+  display: inline;
+}
+pre code {
+  padding: 0;
+}
+</style>
+
+
+<style type="text/css">
+.dropdown-submenu {
+  position: relative;
+}
+.dropdown-submenu>.dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: -6px;
+  margin-left: -1px;
+  border-radius: 0 6px 6px 6px;
+}
+.dropdown-submenu:hover>.dropdown-menu {
+  display: block;
+}
+.dropdown-submenu>a:after {
+  display: block;
+  content: " ";
+  float: right;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 5px 0 5px 5px;
+  border-left-color: #cccccc;
+  margin-top: 5px;
+  margin-right: -10px;
+}
+.dropdown-submenu:hover>a:after {
+  border-left-color: #adb5bd;
+}
+.dropdown-submenu.pull-left {
+  float: none;
+}
+.dropdown-submenu.pull-left>.dropdown-menu {
+  left: -100%;
+  margin-left: 10px;
+  border-radius: 6px 0 6px 6px;
+}
+</style>
+
+<script type="text/javascript">
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark the anchor link active (and if it's in a dropdown, also mark that active)
+  var dropdown = menuAnchor.closest('li.dropdown');
+  if (window.bootstrap) { // Bootstrap 4+
+    menuAnchor.addClass('active');
+    dropdown.find('> .dropdown-toggle').addClass('active');
+  } else { // Bootstrap 3
+    menuAnchor.parent().addClass('active');
+    dropdown.addClass('active');
+  }
+
+  // Navbar adjustments
+  var navHeight = $(".navbar").first().height() + 15;
+  var style = document.createElement('style');
+  var pt = "padding-top: " + navHeight + "px; ";
+  var mt = "margin-top: -" + navHeight + "px; ";
+  var css = "";
+  // offset scroll position for anchor links (for fixed navbar)
+  for (var i = 1; i <= 6; i++) {
+    css += ".section h" + i + "{ " + pt + mt + "}\n";
+  }
+  style.innerHTML = "body {" + pt + "padding-bottom: 40px; }\n" + css;
+  document.head.appendChild(style);
+});
+</script>
+
+<!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before, .tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "\e259";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "\e258";
+  font-family: 'Glyphicons Halflings';
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+  background-color: transparent;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
+<!-- code folding -->
+
+
+
+
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
+
+
+
+
+<div class="navbar navbar-inverse  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-bs-toggle="collapse" data-target="#navbar" data-bs-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html">My Website</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li>
+  <a href="index.html">Home</a>
+</li>
+<li>
+  <a href="about.html">About</a>
+</li>
+<li>
+  <a href="dic.html">Delineamento inteiramente casualizado</a>
+</li>
+<li>
+  <a href="dbc.html">Delineamento blocos casualizados</a>
+</li>
+<li>
+  <a href="dql.html">Delineamento quadrado latino</a>
+</li>
+<li>
+  <a href="comparacao.html">Comparação de médias</a>
+</li>
+<li>
+  <a href="regressaopoli.html">Regressão polinomial</a>
+</li>
+<li>
+  <a href="fatorial.html">Esquema fatorial</a>
+</li>
+<li>
+  <a href="parcelas.html">Parcelas subdivididas</a>
+</li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+
+<div id="header">
+
+
+
+<h1 class="title toc-ignore">Delineamento Inteiramente Casualizado</h1>
+
+</div>
+
+
+<div id="delineamento-inteiramente-casualizado" class="section level1">
+<h1>Delineamento inteiramente casualizado</h1>
+<div id="fundamentos" class="section level2">
+<h2>Fundamentos</h2>
+<p>O delineamento inteiramente casualizado (DIC) é o mais simples dos
+delineamentos, pois considera apenas dois dos princípios básicos da
+experimentação: a repetição e a casualização. Neste, os tratamentos são
+aleatoriamente atribuídos ao material experimental, sem o esforço de se
+restringir os tratamentos a alguma porção de área, material ou espaço.
+Ainda como característica, como não há uso do controle local o número de
+repetições por tratamento pode variar.É geralmente utilizado quando a
+variação do material experimental é relativamente pequena, o que
+geralmente ocorre em laboratórios e casas de vegetação.</p>
+<p>Como vantagens de sua utilização temos que é um experimento de fácil
+planejamento e que permite o número máximo de graus de liberdade do
+Resíduo. Em termos de análise é a mais simples quando comparado aos
+demais delineamentos experimentais e não apresentará confundimento caso
+os tratamentos tenham números diferentes de repetições. Entretanto, como
+desvantagens temos que o delineamento inteiramente casualizado é
+adequado aos experimentos com baixo número de tratamentos e material
+experimental homogêneo, o que nem sempre se consegue. Quando um grande
+número de tratamentos é utilizado, há um crescimento no material
+experimental, que pode inflacionar a variação experimental. Nesses casos
+o Delineamento Inteiramente Casualizado não é indicado.</p>
+</div>
+<div id="obtendo-um-croqui-para-um-dic" class="section level2">
+<h2>Obtendo um croqui para um DIC</h2>
+<p>Para obtermos um croqui para um experimento com <span
+class="math inline">\(I\)</span> tratamentos em um DIC, sendo o <span
+class="math inline">\(i\)</span>-ésimo tratamento repetido <span
+class="math inline">\(n_i\)</span> vezes e o número total de parcelas
+<span class="math inline">\(n=\sum_{i=1}^I n_i\)</span> (1)</p>
+<ol style="list-style-type: lower-roman">
+<li>Enumerar as parcelas 1, 2, . . . , <span
+class="math inline">\(n\)</span></li>
+<li>Criar o delineamento sistemático, ou seja, alocar o tratamento 1 às
+parcelas 1, 2, . . . , <span class="math inline">\(n_1\)</span> alocar o
+tratamento 2 às parcelas <span class="math inline">\(n_1\)</span> + 1,
+<span class="math inline">\(n_1\)</span> + 2, . . . , <span
+class="math inline">\(n_1\)</span> + <span
+class="math inline">\(n_2\)</span> e assim até as repetições do
+tratamento <span class="math inline">\(I\)</span>.</li>
+<li>Escolha uma permutação de 1, 2, . . . , <span
+class="math inline">\(n\)</span> e aplique ao delineamento.</li>
+</ol>
+<div id="exemplo" class="section level3">
+<h3>Exemplo</h3>
+<p>Suponha que desejamos comparar a produtividade de três variedades de
+soja, com três, quatro e três repetições respectivamente. O plano de
+casualização para o delineamento sistemático é dado por:</p>
+<table>
+<thead>
+<tr class="header">
+<th>Ordem Padrão</th>
+<th>1</th>
+<th>2</th>
+<th>3</th>
+<th>4</th>
+<th>5</th>
+<th>6</th>
+<th>7</th>
+<th>8</th>
+<th>9</th>
+<th>10</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Variedade</td>
+<td>A</td>
+<td>A</td>
+<td>A</td>
+<td>B</td>
+<td>B</td>
+<td>B</td>
+<td>B</td>
+<td>C</td>
+<td>C</td>
+<td>C</td>
+</tr>
+</tbody>
+</table>
+<p>Uma permutação:</p>
+<table>
+<thead>
+<tr class="header">
+<th>Parcelas</th>
+<th>7</th>
+<th>1</th>
+<th>8</th>
+<th>10</th>
+<th>3</th>
+<th>2</th>
+<th>4</th>
+<th>6</th>
+<th>9</th>
+<th>5</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Ordem Padrão</td>
+<td>1</td>
+<td>2</td>
+<td>3</td>
+<td>4</td>
+<td>5</td>
+<td>6</td>
+<td>7</td>
+<td>8</td>
+<td>9</td>
+<td>10</td>
+</tr>
+</tbody>
+</table>
+<p>E o plano de casualização é dado por:</p>
+<table>
+<thead>
+<tr class="header">
+<th>Parcela</th>
+<th>1</th>
+<th>2</th>
+<th>3</th>
+<th>4</th>
+<th>5</th>
+<th>6</th>
+<th>7</th>
+<th>8</th>
+<th>9</th>
+<th>10</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Variedade</td>
+<td>B</td>
+<td>A</td>
+<td>C</td>
+<td>C</td>
+<td>A</td>
+<td>A</td>
+<td>B</td>
+<td>B</td>
+<td>C</td>
+<td>A</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div id="análise-dos-dados" class="section level2">
+<h2>Análise dos dados</h2>
+<p>Entende-se como objetivo inicial de um experimento a verificação dos
+efeitos de tratamentos. Aqui será utilizada a Análise de Variância
+(ANOVA) para tal verificação. A ANOVA é utilizada na comparação de
+médias de dois ou mais tratamentos ou teste para a variância dos
+tratamentos, por meio do teste F (Fisher). Trata-se de uma extensão do
+teste t de Student, permitindo que o pesquisador compare qualquer número
+de médias, quando o efeito de tratamentos é fixo.</p>
+<div id="modelo-estatistico" class="section level3">
+<h3>Modelo estatistico</h3>
+<p>O modelo estatístico para a análise dos dados oriundos de um DIC com
+um único fator de tratamentos é dado pela Equação 2.</p>
+<p><span class="math display">\[\begin{equation}
+y_{ij} = \mu + \tau_i + e_{ij} = \mu_i + e_{ij}  
+(\#eq:teste)
+
+\end{equation}\]</span></p>
+<p>em que:</p>
+<ul>
+<li><p><span class="math inline">\(y_{ij}\)</span> é o valor observado
+na jésima repetição do iésimo tratamento, com:</p>
+<ul>
+<li><span class="math inline">\(i = 1, ... , I\)</span> e</li>
+<li><span class="math inline">\(j = 1, ... , n_i\)</span></li>
+</ul></li>
+<li><p><span class="math inline">\(\mu\)</span> é uma constante inerente
+a todas as observações, geralmente a média geral,</p></li>
+<li><p><span class="math inline">\(\tau_i\)</span> é o efeito do iésimo
+tratamento,</p></li>
+<li><p><span class="math display">\[e_{ij}\]</span> é o erro
+experimental, tal que <span class="math inline">\(e_{ij}
+\overset{iid}{\sim} N(0,\sigma^2)\)</span>.</p></li>
+</ul>
+<p>Realizando-se a ANOVA, testamos as hipóteses:</p>
+<p><span class="math inline">\(H_0 : \tau_{1} = \tau_{2} = ... =
+\tau_{I} = 0\)</span></p>
+<p><span class="math inline">\(H_1 = H_a\)</span> : <span
+class="math inline">\(\tau_{i} \neq 0\)</span> para algum <span
+class="math inline">\(i\)</span>.</p>
+<p>Havendo uma reparametrização do modelo apresentado na @ref(eq:teste),
+tal que <span class="math inline">\(\mu + \tau_i = \alpha_i\)</span> em
+que <span class="math inline">\(\alpha_i\)</span> é a média do iésimo
+tratamento, é:{#eq3}</p>
+<p><span class="math display">\[y_{ij} = \alpha_i +
+e_{ij}  \text(3)\]</span></p>
+<p>As hipóteses de interesse passam a ser:</p>
+<p><span class="math inline">\(H_0 : \alpha_1 = \alpha_2 = ... =
+\alpha_I = \mu\)</span></p>
+<p><span class="math inline">\(H_1 = Ha\)</span>: pelo um contraste de
+médias difere de zero.</p>
+<p>Neste momento assumiremos que as pressuposições de normalidade e
+independência dos erros, bem a homogeneidade de suas variâncias
+garantidas. Assim, assumimos que eij corresponde a uma realização da
+variável <span class="math inline">\(E_{ij}\)</span> , tal que <span
+class="math inline">\(e_{ij} \overset{iid}{\sim} N(0,\sigma^2)\)</span>
+e os demais termos no <a href="#eq3">modelo 1</a> são fixos. Cabe
+sailentar que o modelo citado é o modelo maximal, ou seja, aquele modelo
+mais complicado a ser considerado na análise. Desse modo, a esperança da
+variável aleatória <span class="math inline">\(Y_{ij}\)</span> será</p>
+<p><span class="math display">\[E(Y_{ij}) = E(\mu + \tau_i + E_{ij} ) =
+\mu + \tau_i + 0 = \mu + \tau_i (4)\]</span></p>
+</div>
+<div id="análise-de-variância" class="section level3">
+<h3>Análise de variância</h3>
+<p>A proposta da ANOVA consiste em decompor a variância total dos dados
+em parte atribuída aos efeitos de tratamentos e parte ao acaso.</p>
+<p>Tabela 1 {#tab1}: Esquema da análise de variância considerando-se um
+delineamento inteiramente casualizado, com <span
+class="math inline">\(I\)</span> tratamentos, sendo cada um repetido
+<span class="math inline">\(n_i\)</span> vezes e <span
+class="math inline">\(n = \sum_i n_i\)</span></p>
+<p>Tabela 1: Demonstração sobre fontes de variação e graus de
+liberdade</p>
+<table>
+<thead>
+<tr class="header">
+<th>Fontes de Variação</th>
+<th>graus de liberdade</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Total</td>
+<td><span class="math inline">\(n\text{-}1\)</span></td>
+</tr>
+<tr class="even">
+<td>Tratamentos</td>
+<td><span class="math inline">\(I\text{-}1\)</span></td>
+</tr>
+<tr class="odd">
+<td>Resíduo</td>
+<td><span class="math inline">\(n\text{-}I\)</span></td>
+</tr>
+</tbody>
+</table>
+<p>Sabemos que a variância dos dados é dada por:</p>
+<p><span class="math display">\[\text{Variância} = \sum _{ij}
+\frac{(yij−\bar{y})^2}{(n−1)} (\text{expressão 1})\]</span></p>
+<p><span class="math display">\[\text{variância} =
+\displaystyle{\frac{\text{SQ}}{\text{gl}}}(\text{expressão
+2})\]</span></p>
+<p><span class="math display">\[\text{QM}_{\text{Resíduo}} =
+\displaystyle{\frac{\text{SQ}_\text{Resíduo}}{\text{gl}_\text{Resíduo}}}\]</span></p>
+<p><span class="math display">\[\text{F} =
+\displaystyle{\frac{\text{QM}_{\text{Trat}}}{\text{QM}_{\text{Resíduo}}}}\]</span>
+Retomando as hipóteses:</p>
+<p><span class="math inline">\(H_0 : \mu_1 = \mu_2 = ... = \mu_I =
+0\)</span></p>
+<p><span class="math inline">\(H_1 = Ha\)</span>: pelo um contraste de
+médias difere de zero.Denotamos por Soma de Quadrados do Total (SQ
+Total) o numerador da <a href="#exp3">expressão 2</a>. Observe que a
+decomposição mencionada anteriormente será:</p>
+<p><span
+class="math display">\[\displaystyle{\sum_{i=1}^I\sum_{j=1}^Jy_{ij}^2\text-\frac{\left(\sum_{i=1}^I\sum_{j=1}^Jy_{ij}\right)^2}{I\times
+J}}(\text{expressão 3})\]</span></p>
+<p>em que SQ Tratamentos e SQ Resíduo correspondem às Soma de Quadrados
+de Tratamentos e Soma de Quadrados de Resíduo, respectivamente. As
+expressões apresentadas em 4 e 5, podem ser reescritas conforme
+segue.</p>
+<p><span class="math display">\[\displaystyle{\frac{1}{J}\sum_{i=1}^I
+T_i^2 \text-
+\frac{\left(\sum_{i=1}^I\sum_{j=1}^Jy_{ij}\right)^2}{I\times
+J}}(\text{expressão 4})\]</span></p>
+<p>A SQ Resíduo (6) pode ser obtida por diferença, ou seja, SQ Resíduo =
+SQ Total - SQ Tratamentos.</p>
+<p>Para encontrarmos a estatística apropriada para o teste F temos que
+obter as Esperanças dos Quadrados Médios relacionados a cada fonte de
+variação na ANOVA. Os quadrados médios, denotados usualmente por QM, são
+definidos pelo quociente entre a soma de quadrados e o respectivo número
+de graus de liberdade relacionados a uma fonte de varição, isto é:</p>
+<p><span class="math display">\[\text{QM}_{\text{Trat}} =
+\displaystyle{\frac{\text{SQ}_\text{Trat}}{\text{gl}_\text{Trat}}}\]</span></p>
+<p>Rejeita-se <span class="math inline">\(H_0\)</span> se <span
+class="math inline">\(F_{cal} \geq F_{tab_{(\alpha, I-1,
+I(J-1))}}\)</span>, em que <span class="math inline">\(\alpha\)</span> é
+o nível de significância, <span class="math inline">\(I-1\)</span> é o
+número de graus de liberdade do numerador e <span
+class="math inline">\(I(J-1)\)</span> é o número de graus de liberdade
+do denominador.</p>
+<p><a href="https://docs.ufpr.br/~vayego/pedeefes/tab_sned.pdf">Tabela
+F</a></p>
+</div>
+<div id="coeficiente-de-variação" class="section level3">
+<h3>Coeficiente de variação</h3>
+<p>número de repetições pode estar associado ao número de graus de
+liberdade do resíduo ; <span
+class="math display">\[\text{gl}_{\text{Res}} \geq 12\]</span></p>
+<p>O CV é adimensional, pode-se comparar a dispersão de variáveis com
+diferentes unidades de medida.</p>
+<p><span class="math display">\[\displaystyle{\text{CV}_{\%} =
+100\frac{\hat{\sigma}}{\hat{\mu}} =
+100\frac{\sqrt{\text{QM}_{\text{Res}}}}{\bar{y}}}\]</span></p>
+<ul>
+<li><p>CV <span class="math inline">\(&lt;\)</span> 10% : baixo</p></li>
+<li><p>10% <span class="math inline">\(&lt;\)</span> CV <span
+class="math inline">\(&gt;\)</span> 20% :médio</p></li>
+<li><p>20% <span class="math inline">\(&lt;\)</span> CV <span
+class="math inline">\(&gt;\)</span> 30% :alto</p></li>
+<li><p>CV <span class="math inline">\(&gt;\)</span> 30% : muito
+alto</p></li>
+</ul>
+</div>
+</div>
+<div id="exemplo-1" class="section level2">
+<h2>Exemplo</h2>
+<p>Considere os dados abaixo referentes à produtividade de milho
+(kg/100m<span class="math inline">\(^2\)</span>) de quatro diferentes
+variedades, em um experimento instalado segundo o delineamento
+inteiramente casualizado, com cinco repetições.</p>
+<p>Tabela 2: produtividade de milho (kg/100m<span
+class="math inline">\(^2\)</span>) de quatro diferentes variedades</p>
+<table>
+<thead>
+<tr class="header">
+<th>(Variedades)</th>
+<th>1</th>
+<th>2</th>
+<th>3</th>
+<th>4</th>
+<th>5</th>
+<th>total</th>
+<th>média</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><span class="math inline">\(A\)</span></td>
+<td>25</td>
+<td>26</td>
+<td>20</td>
+<td>23</td>
+<td>21</td>
+<td>115</td>
+<td>23,00</td>
+</tr>
+<tr class="even">
+<td><span class="math inline">\(B\)</span></td>
+<td>31</td>
+<td>25</td>
+<td>28</td>
+<td>27</td>
+<td>24</td>
+<td>135</td>
+<td>27,00</td>
+</tr>
+<tr class="odd">
+<td><span class="math inline">\(C\)</span></td>
+<td>22</td>
+<td>26</td>
+<td>28</td>
+<td>25</td>
+<td>29</td>
+<td>130</td>
+<td>26,00</td>
+</tr>
+<tr class="even">
+<td><span class="math inline">\(D\)</span></td>
+<td>33</td>
+<td>29</td>
+<td>31</td>
+<td>34</td>
+<td>28</td>
+<td>155</td>
+<td>31,00</td>
+</tr>
+</tbody>
+</table>
+<p>Tabela 3: nomenclatura de dados</p>
+<table>
+<thead>
+<tr class="header">
+<th>(Variedades)</th>
+<th>1</th>
+<th>2</th>
+<th>3</th>
+<th>4</th>
+<th>5</th>
+<th>total</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>V1</td>
+<td>y11</td>
+<td>y12</td>
+<td>y13</td>
+<td>y14</td>
+<td>y15</td>
+<td>y1· = T1</td>
+</tr>
+<tr class="even">
+<td>V2</td>
+<td>y21</td>
+<td>y22</td>
+<td>y23</td>
+<td>y24</td>
+<td>y25</td>
+<td>y2· = T2</td>
+</tr>
+<tr class="odd">
+<td>V3</td>
+<td>y31</td>
+<td>y32</td>
+<td>y33</td>
+<td>y34</td>
+<td>y35</td>
+<td>y3· = T3</td>
+</tr>
+<tr class="even">
+<td>V4</td>
+<td>y41</td>
+<td>y42</td>
+<td>y43</td>
+<td>y44</td>
+<td>y45</td>
+<td>y4· = T4</td>
+</tr>
+</tbody>
+</table>
+<p>Análise descritiva:</p>
+<p>Tabela 4: Análise descritivas dos dados</p>
+<table>
+<thead>
+<tr class="header">
+<th>Análise</th>
+<th>A</th>
+<th>B</th>
+<th>C</th>
+<th>D</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Soma</td>
+<td>115,00</td>
+<td>135,00</td>
+<td>130,00</td>
+<td>155,00</td>
+</tr>
+<tr class="even">
+<td>Média</td>
+<td>23,00</td>
+<td>27,00</td>
+<td>26,00</td>
+<td>31,00</td>
+</tr>
+<tr class="odd">
+<td>Variância</td>
+<td>6,50</td>
+<td>7,50</td>
+<td>7,50</td>
+<td>6,50</td>
+</tr>
+<tr class="even">
+<td>Desvio-padrão</td>
+<td>2,55</td>
+<td>2,74</td>
+<td>2,74</td>
+<td>2,55</td>
+</tr>
+</tbody>
+</table>
+<p>Soma de Quadrados total</p>
+<p><span class="math display">\[\text{SQ}_{\text{Total}} =
+\displaystyle{\sum_{i=1}^4\sum_{j=1}^5y_{ij}^2 \text{-}
+\frac{\left(\sum_{i=1}^4\sum_{j=1}^5y_{ij}\right)^2}{4\times5}}\]</span></p>
+<p><span class="math display">\[ = \displaystyle{25^2 + 26^2 + \ldots +
+28^2 \text{-} \frac{535^2}{20}}
+= 275,75\]</span></p>
+<p>Soma de Quadrados de tratamentos</p>
+<p><span class="math display">\[\text{SQ}_{\text{Trat}} =
+\displaystyle{\frac{1}{5}\sum_{i=1}^4 T_i^2 \text{-}
+\frac{\left(\sum_{i=1}^4\sum_{j=1}^5y_{ij}\right)^2}{4\times5}}\]</span></p>
+<p><span class="math display">\[= \displaystyle{\frac{1}{5}\left(115^2 +
+135^2 + 130^2 + 155^2\right) - \frac{535^2}{20}}= 163,75\]</span></p>
+<p>Soma de Quadrados do Resíduo</p>
+<p><span class="math display">\[\text{SQ}_\text{Resíduo} =
+\text{SQ}_{\text{Total}} \text{-} \text{SQ}_{\text{Trat}}\]</span> <span
+class="math display">\[= 275,75 - 163,75 = 112,00\]</span></p>
+<p>Quadrado médio tratamentos</p>
+<p><span class="math display">\[\text{QM}_{\text{Trat}} =
+\displaystyle{\frac{\text{SQ}_{\text{Trat}}}{\text{gl}_{\text{Trat}}}}
+= \displaystyle{\frac{163,75}{3}} = 54,5833\]</span></p>
+<p>Quadrado médio do resíduo</p>
+<p><span class="math display">\[\text{QM}_{\text{Resíduo}} =
+\displaystyle{\frac{\text{SQ}_{\text{Resíduo}}}{\text{gl}_{\text{Resíduo}}}}=\displaystyle{\frac{112,00}{16}}=
+7,0000\]</span></p>
+<p>F calculado</p>
+<p><span class="math display">\[\text{F} =
+\displaystyle{\frac{\text{QM}_{\text{Trat}}}{\text{QM}_{\text{Resíduo}}}}=\displaystyle{\frac{54,5833}{7,0000}}=
+7,80\]</span></p>
+<p>Tabela 5: ANOVA</p>
+<table>
+<colgroup>
+<col width="15%" />
+<col width="26%" />
+<col width="25%" />
+<col width="20%" />
+<col width="6%" />
+<col width="5%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Fontes</th>
+<th>Graus de liberdade</th>
+<th>Soma de Quadrados</th>
+<th>Quadrado Médio</th>
+<th>Fcal</th>
+<th>Ftab</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Tratamentos</td>
+<td>3</td>
+<td>163,75</td>
+<td>54,5833</td>
+<td>7,80</td>
+<td></td>
+</tr>
+<tr class="even">
+<td>resıduo</td>
+<td>16</td>
+<td>112,00</td>
+<td>7,0000</td>
+<td></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>Total</td>
+<td>19</td>
+<td>275,75</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p>F tabelado:</p>
+<pre class="r"><code>&gt; # Defina o nível de significância desejado (por exemplo, 0.05 para um nível de 5%)
+&gt; nivel_de_significancia &lt;- 0.05
+&gt; 
+&gt; # Defina os graus de liberdade do numerador (df1) e do denominador (df2)
+&gt; df1 &lt;- 3  # Graus de liberdade do numerador
+&gt; df2 &lt;- 16 # Graus de liberdade do denominador
+&gt; 
+&gt; # Encontre o valor crítico da distribuição F para o nível de significância especificado
+&gt; valor_critico &lt;- qf(1 - nivel_de_significancia, df1, df2)
+&gt; 
+&gt; # Imprima o valor crítico
+&gt; cat(&quot;Valor crítico da distribuição F:&quot;, valor_critico, &quot;\n&quot;)</code></pre>
+<pre><code>Valor crítico da distribuição F: 3,238872 </code></pre>
+<p>Como <span class="math inline">\(\text{F} = 7. 80 &gt; 3. 24 =
+\text{FTab}\)</span> (<span class="math inline">\(\alpha = 0. 05, 3,
+16\)</span>), há evidências para rejeitarmos <span
+class="math inline">\(H_0\)</span> ao nível de 5% de significância.
+Desse modo, não podemos afirmar que todas as médias são iguais.</p>
+</div>
+<div id="aplicação-no-r-studio" class="section level2">
+<h2>Aplicação no R studio</h2>
+<div id="planejamento-e-croqui" class="section level3">
+<h3>Planejamento e Croqui</h3>
+<pre class="r"><code>&gt; #&#39; # Planejamento de um experimento
+&gt; set.seed(1234)
+&gt; sample(rep(c(&quot;A&quot;, &quot;B&quot;, &quot;C&quot;, &quot;D&quot;), 5))</code></pre>
+<pre><code> [1] &quot;D&quot; &quot;C&quot; &quot;C&quot; &quot;C&quot; &quot;D&quot; &quot;D&quot; &quot;D&quot; &quot;D&quot; &quot;A&quot; &quot;C&quot; &quot;C&quot; &quot;B&quot; &quot;A&quot; &quot;B&quot; &quot;B&quot; &quot;B&quot; &quot;B&quot; &quot;A&quot; &quot;A&quot;
+[20] &quot;A&quot;</code></pre>
+<pre class="r"><code>&gt; #&#39; ## Usando a biblioteca agricolae
+&gt; 
+&gt; # Instalando
+&gt; # install.packages(&quot;agricolae&quot;, 
+&gt; #                  dependencies = TRUE)
+&gt; # Habilitando as funções
+&gt; library(agricolae)
+&gt; trt = LETTERS[1:4]
+&gt; delineamento &lt;- design.crd(trt,
++                            r = 5,
++                            serie = 0)
+&gt; delineamento</code></pre>
+<pre><code>$parameters
+$parameters$design
+[1] &quot;crd&quot;
+
+$parameters$trt
+[1] &quot;A&quot; &quot;B&quot; &quot;C&quot; &quot;D&quot;
+
+$parameters$r
+[1] 5 5 5 5
+
+$parameters$serie
+[1] 0
+
+$parameters$seed
+[1] 1214835651
+
+$parameters$kinds
+[1] &quot;Super-Duper&quot;
+
+$parameters[[7]]
+[1] TRUE
+
+
+$book
+   plots r trt
+1      1 1   D
+2      2 1   A
+3      3 2   D
+4      4 1   C
+5      5 2   A
+6      6 3   A
+7      7 2   C
+8      8 3   C
+9      9 1   B
+10    10 4   A
+11    11 3   D
+12    12 5   A
+13    13 4   C
+14    14 2   B
+15    15 4   D
+16    16 3   B
+17    17 4   B
+18    18 5   C
+19    19 5   B
+20    20 5   D</code></pre>
+<pre class="r"><code>&gt; # Graficamente
+&gt; 
+&gt; # install.packages(&quot;agricolaeplotr&quot;, 
+&gt; #                  dependencies = TRUE)
+&gt; library(agricolaeplotr)
+&gt; plot_design_crd(delineamento,
++                 ncols = 4,
++                 nrows = 5)</code></pre>
+<p><img src="dic_files/figure-html/unnamed-chunk-4-1.png" width="672" /></p>
+<pre class="r"><code>&gt; # Para montar um croqui precisamos de um gride, definido por linhas e colunas
+&gt; delineamento$book$Linha &lt;- rep(1:5, each = 4)
+&gt; delineamento$book$Coluna &lt;- rep(1:4, times = 5)
+&gt; 
+&gt; delineamento$book</code></pre>
+<div data-pagedtable="false">
+<script data-pagedtable-source type="application/json">
+{"columns":[{"label":[""],"name":["_rn_"],"type":[""],"align":["left"]},{"label":["plots"],"name":[1],"type":["dbl"],"align":["right"]},{"label":["r"],"name":[2],"type":["int"],"align":["right"]},{"label":["trt"],"name":[3],"type":["chr"],"align":["left"]},{"label":["Linha"],"name":[4],"type":["int"],"align":["right"]},{"label":["Coluna"],"name":[5],"type":["int"],"align":["right"]}],"data":[{"1":"1","2":"1","3":"D","4":"1","5":"1","_rn_":"1"},{"1":"2","2":"1","3":"A","4":"1","5":"2","_rn_":"2"},{"1":"3","2":"2","3":"D","4":"1","5":"3","_rn_":"3"},{"1":"4","2":"1","3":"C","4":"1","5":"4","_rn_":"4"},{"1":"5","2":"2","3":"A","4":"2","5":"1","_rn_":"5"},{"1":"6","2":"3","3":"A","4":"2","5":"2","_rn_":"6"},{"1":"7","2":"2","3":"C","4":"2","5":"3","_rn_":"7"},{"1":"8","2":"3","3":"C","4":"2","5":"4","_rn_":"8"},{"1":"9","2":"1","3":"B","4":"3","5":"1","_rn_":"9"},{"1":"10","2":"4","3":"A","4":"3","5":"2","_rn_":"10"},{"1":"11","2":"3","3":"D","4":"3","5":"3","_rn_":"11"},{"1":"12","2":"5","3":"A","4":"3","5":"4","_rn_":"12"},{"1":"13","2":"4","3":"C","4":"4","5":"1","_rn_":"13"},{"1":"14","2":"2","3":"B","4":"4","5":"2","_rn_":"14"},{"1":"15","2":"4","3":"D","4":"4","5":"3","_rn_":"15"},{"1":"16","2":"3","3":"B","4":"4","5":"4","_rn_":"16"},{"1":"17","2":"4","3":"B","4":"5","5":"1","_rn_":"17"},{"1":"18","2":"5","3":"C","4":"5","5":"2","_rn_":"18"},{"1":"19","2":"5","3":"B","4":"5","5":"3","_rn_":"19"},{"1":"20","2":"5","3":"D","4":"5","5":"4","_rn_":"20"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+</div>
+<div id="importando-dados-de-excel-.xlsx" class="section level3">
+<h3>Importando dados de excel .xlsx</h3>
+<pre class="r"><code>&gt; #Deve-se importar os arquivos .xlsx para o Rstudio
+&gt; library(readxl)
+&gt; dados1 &lt;- read_xlsx(&quot;dados/aula2.2.xlsx&quot;)
+&gt; 
+&gt; knitr::kable(dados1)</code></pre>
+<table>
+<thead>
+<tr class="header">
+<th align="left">trat</th>
+<th align="right">y</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">A</td>
+<td align="right">25</td>
+</tr>
+<tr class="even">
+<td align="left">A</td>
+<td align="right">26</td>
+</tr>
+<tr class="odd">
+<td align="left">A</td>
+<td align="right">20</td>
+</tr>
+<tr class="even">
+<td align="left">A</td>
+<td align="right">23</td>
+</tr>
+<tr class="odd">
+<td align="left">A</td>
+<td align="right">21</td>
+</tr>
+<tr class="even">
+<td align="left">B</td>
+<td align="right">31</td>
+</tr>
+<tr class="odd">
+<td align="left">B</td>
+<td align="right">25</td>
+</tr>
+<tr class="even">
+<td align="left">B</td>
+<td align="right">28</td>
+</tr>
+<tr class="odd">
+<td align="left">B</td>
+<td align="right">27</td>
+</tr>
+<tr class="even">
+<td align="left">B</td>
+<td align="right">24</td>
+</tr>
+<tr class="odd">
+<td align="left">C</td>
+<td align="right">22</td>
+</tr>
+<tr class="even">
+<td align="left">C</td>
+<td align="right">26</td>
+</tr>
+<tr class="odd">
+<td align="left">C</td>
+<td align="right">28</td>
+</tr>
+<tr class="even">
+<td align="left">C</td>
+<td align="right">25</td>
+</tr>
+<tr class="odd">
+<td align="left">C</td>
+<td align="right">29</td>
+</tr>
+<tr class="even">
+<td align="left">D</td>
+<td align="right">33</td>
+</tr>
+<tr class="odd">
+<td align="left">D</td>
+<td align="right">29</td>
+</tr>
+<tr class="even">
+<td align="left">D</td>
+<td align="right">31</td>
+</tr>
+<tr class="odd">
+<td align="left">D</td>
+<td align="right">34</td>
+</tr>
+<tr class="even">
+<td align="left">D</td>
+<td align="right">28</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="análise-descritiva-dos-dados" class="section level3">
+<h3>Análise descritiva dos dados</h3>
+<pre class="r"><code>&gt; library(ggplot2)
+&gt; ggplot(dados1, 
++        aes(x = trat, 
++            y = y)) +
++   geom_point() +
++   geom_point(stat = &quot;summary&quot;,
++              fun = mean,
++              col = &quot;red&quot;) +
++   annotate(&quot;point&quot;, 
++            x = dados1$trat, 
++            y = 26.75, 
++            colour = &quot;blue&quot;) +
++   xlab(&quot;tratamentos&quot;) +
++   ylab(&quot;produtividade&quot;)</code></pre>
+<p><img src="dic_files/figure-html/unnamed-chunk-6-1.png" width="672" /></p>
+<pre class="r"><code>&gt; ggplot(dados1,
++        aes(x = trat,
++            y = y)) +
++   geom_boxplot()</code></pre>
+<p><img src="dic_files/figure-html/unnamed-chunk-6-2.png" width="672" /></p>
+<pre class="r"><code>&gt; #&#39; ## Estatísticas descritivas
+&gt; n &lt;- with(dados1, tapply(y,trat, length))
+&gt; soma &lt;- with(dados1, tapply(y,trat,sum))
+&gt; media &lt;- with(dados1, tapply(y,trat,mean))
+&gt; variancia &lt;- with(dados1, tapply(y,trat,var))
+&gt; desv.padr &lt;- with(dados1, tapply(y,trat,sd))
+&gt; dist.int &lt;- with(dados1, tapply(y,trat,IQR))</code></pre>
+<pre class="r"><code>&gt; #&#39; Criando uma função que calcula a amplitude
+&gt; f1 &lt;- function(x) max(x)-min(x)
+&gt; amplitude &lt;- with(dados1, tapply(y,trat,f1))
+&gt; 
+&gt; resumo &lt;- rbind(n, soma, media, variancia,
++                 desv.padr, amplitude,dist.int)
+&gt; rownames(resumo) &lt;- c(&quot;n&quot;, &quot;Soma&quot;, &quot;Média&quot;, 
++                       &quot;Variância&quot;, &quot;Desvio-padrão&quot;, 
++                       &quot;Amplitude&quot;, &quot;Amplitude Interquartílica&quot;)
+&gt; round(resumo,3)</code></pre>
+<pre><code>                               A       B       C      D
+n                           5,00   5,000   5,000   5,00
+Soma                      115,00 135,000 130,000 155,00
+Média                      23,00  27,000  26,000  31,00
+Variância                   6,50   7,500   7,500   6,50
+Desvio-padrão               2,55   2,739   2,739   2,55
+Amplitude                   6,00   7,000   7,000   6,00
+Amplitude Interquartílica   4,00   3,000   3,000   4,00</code></pre>
+</div>
+<div id="análise-da-variância-anova" class="section level3">
+<h3>Análise da variância (ANOVA)</h3>
+<pre class="r"><code>&gt; #&#39; ## Análise de variância  
+&gt; #&#39; 
+&gt; #&#39; $H_0$: $\mu_1 = \mu_2 = \mu_3 = \mu_4$ *versus* 
+&gt; #&#39; $H_1:$ Pelo menos duas médias de tratamentos diferem entre si.
+&gt; #&#39; 
+&gt; modelo &lt;- aov(y ~ trat, dados1)
+&gt; anova(modelo)</code></pre>
+<div data-pagedtable="false">
+<script data-pagedtable-source type="application/json">
+{"columns":[{"label":[""],"name":["_rn_"],"type":[""],"align":["left"]},{"label":["Df"],"name":[1],"type":["int"],"align":["right"]},{"label":["Sum Sq"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["Mean Sq"],"name":[3],"type":["dbl"],"align":["right"]},{"label":["F value"],"name":[4],"type":["dbl"],"align":["right"]},{"label":["Pr(>F)"],"name":[5],"type":["dbl"],"align":["right"]}],"data":[{"1":"3","2":"163,75","3":"54,58333","4":"7,797619","5":"0,001975594","_rn_":"trat"},{"1":"16","2":"112,00","3":"7,00000","4":"NA","5":"NA","_rn_":"Residuals"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+</div>
+</div>
+<div id="exercicíos" class="section level2">
+<h2>Exercicíos</h2>
+<ol style="list-style-type: decimal">
+<li>Os dados apresentados na Tabela 1 são referentes ao peso de espigas
+de milho, em kg/10m², em cada parcela (10 m²). São apresentados os dados
+de 5 genótipos avaliados em um delineamento inteiramente casualizado
+(DIC) com 4 repetições.</li>
+</ol>
+<table>
+<thead>
+<tr class="header">
+<th>Genótipos</th>
+<th>I</th>
+<th>II</th>
+<th>III</th>
+<th>IV</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>A</td>
+<td>5,95</td>
+<td>6,21</td>
+<td>5,40</td>
+<td>5,18</td>
+</tr>
+<tr class="even">
+<td>B</td>
+<td>5,07</td>
+<td>6,71</td>
+<td>5,46</td>
+<td>4,98</td>
+</tr>
+<tr class="odd">
+<td>C</td>
+<td>4,82</td>
+<td>5,11</td>
+<td>4,68</td>
+<td>4,52</td>
+</tr>
+<tr class="even">
+<td>D</td>
+<td>3,87</td>
+<td>4,16</td>
+<td>4,11</td>
+<td>4,84</td>
+</tr>
+<tr class="odd">
+<td>E</td>
+<td>5,53</td>
+<td>5,82</td>
+<td>4,29</td>
+<td>4,70</td>
+</tr>
+</tbody>
+</table>
+<p>Considere os dados apresentados na Tabela.</p>
+<ol style="list-style-type: lower-alpha">
+<li><p>Faça um possível croqui de instalação para um novo experimento
+com o mesmo número de tratamentos (genótipos) e de repetições;</p></li>
+<li><p>Faça a análise exploratória dos dados de peso de
+espigas;</p></li>
+<li><p>Faça a análise de variância e interprete o resultado do teste F
+considerando o nível de significância 5%;</p></li>
+</ol>
+<ol start="2" style="list-style-type: decimal">
+<li>Em um experimento de competição de dez cultivares de arroz para
+avaliar a produtividade, instalado em um delineamento inteiramente
+casualizado, os resultados (parciais) para a ANOVA foram os
+seguintes:</li>
+</ol>
+<table>
+<thead>
+<tr class="header">
+<th>Fonte</th>
+<th>GL</th>
+<th>SQ</th>
+<th>QM</th>
+<th>F Cal</th>
+<th>F Tab</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>cultivar</td>
+<td>x</td>
+<td>17564523</td>
+<td>x</td>
+<td>9.31</td>
+<td>2.39</td>
+</tr>
+<tr class="even">
+<td>Resíduo</td>
+<td>x</td>
+<td>x</td>
+<td>x</td>
+<td>x</td>
+<td>x</td>
+</tr>
+<tr class="odd">
+<td>Total</td>
+<td>29</td>
+<td>x</td>
+<td>x</td>
+<td>x</td>
+<td>x</td>
+</tr>
+</tbody>
+</table>
+<ol style="list-style-type: lower-alpha">
+<li><p>Complete o quadro da ANOVA</p></li>
+<li><p>Com base no resultado da ANOVA escreva as hipóteses e a
+conclusão</p></li>
+</ol>
+<ol start="3" style="list-style-type: decimal">
+<li>Em um experimento realizado no detapartamento de zootecnia da Esalq
+foram encontras as seguintes concentrações de glicose no sangue ( mg/
+100ml ) de 5 raças de bovinos sendo 8 amostras por raça. Os resultados
+foram:</li>
+</ol>
+<table>
+<thead>
+<tr class="header">
+<th>Raças</th>
+<th>1</th>
+<th>2</th>
+<th>3</th>
+<th>4</th>
+<th>5</th>
+<th>6</th>
+<th>7</th>
+<th>8</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Nelore</td>
+<td>124</td>
+<td>111</td>
+<td>117</td>
+<td>110</td>
+<td>142</td>
+<td>116</td>
+<td>121</td>
+<td>142</td>
+</tr>
+<tr class="even">
+<td>Gir</td>
+<td>101</td>
+<td>98</td>
+<td>121</td>
+<td>117</td>
+<td>106</td>
+<td>118</td>
+<td>108</td>
+<td>123</td>
+</tr>
+<tr class="odd">
+<td>Girolando</td>
+<td>118</td>
+<td>127</td>
+<td>121</td>
+<td>121</td>
+<td>127</td>
+<td>120</td>
+<td>129</td>
+<td>138</td>
+</tr>
+<tr class="even">
+<td>Holandês</td>
+<td>125</td>
+<td>129</td>
+<td>148</td>
+<td>119</td>
+<td>139</td>
+<td>110</td>
+<td>122</td>
+<td>141</td>
+</tr>
+<tr class="odd">
+<td>Senepol</td>
+<td>101</td>
+<td>103</td>
+<td>112</td>
+<td>107</td>
+<td>119</td>
+<td>106</td>
+<td>122</td>
+<td>118</td>
+</tr>
+</tbody>
+</table>
+<ol style="list-style-type: lower-alpha">
+<li><p>Faça uma análise descritiva dos dados.</p></li>
+<li><p>Faça o quadro da ANOVA e responda qual hipótese seguir.</p></li>
+<li><p>Como seria um possível planejamento para esse
+experimento?</p></li>
+</ol>
+<div id="resolução-dos-exercícios" class="section level3">
+<h3>Resolução dos exercícios</h3>
+<ol style="list-style-type: decimal">
+<li><ol style="list-style-type: lower-alpha">
+<li></li>
+</ol></li>
+</ol>
+<pre class="r"><code>&gt; library(agricolae)
+&gt; trt = LETTERS[1:5]
+&gt; delineamento1 &lt;- design.crd(trt,
++                             r = 4,
++                             serie = 0)
+&gt; delineamento1</code></pre>
+<pre><code>$parameters
+$parameters$design
+[1] &quot;crd&quot;
+
+$parameters$trt
+[1] &quot;A&quot; &quot;B&quot; &quot;C&quot; &quot;D&quot; &quot;E&quot;
+
+$parameters$r
+[1] 4 4 4 4 4
+
+$parameters$serie
+[1] 0
+
+$parameters$seed
+[1] 1427631851
+
+$parameters$kinds
+[1] &quot;Super-Duper&quot;
+
+$parameters[[7]]
+[1] TRUE
+
+
+$book
+   plots r trt
+1      1 1   C
+2      2 1   A
+3      3 2   A
+4      4 1   D
+5      5 1   E
+6      6 2   C
+7      7 3   C
+8      8 2   D
+9      9 3   A
+10    10 1   B
+11    11 2   B
+12    12 3   D
+13    13 3   B
+14    14 4   D
+15    15 2   E
+16    16 4   B
+17    17 4   C
+18    18 3   E
+19    19 4   A
+20    20 4   E</code></pre>
+<pre class="r"><code>&gt; library(agricolaeplotr)
+&gt; plot_design_crd(delineamento1,
++                 ncols = 5,
++                 nrows = 4)</code></pre>
+<p><img src="dic_files/figure-html/unnamed-chunk-10-1.png" width="672" /></p>
+<pre class="r"><code>&gt; # Para montar um croqui precisamos de um gride, definido por linhas e colunas
+&gt; delineamento1$book$Linha &lt;- rep(1:4, each = 5)
+&gt; delineamento1$book$Coluna &lt;- rep(1:5, times = 4)
+&gt; 
+&gt; delineamento1$book</code></pre>
+<div data-pagedtable="false">
+<script data-pagedtable-source type="application/json">
+{"columns":[{"label":[""],"name":["_rn_"],"type":[""],"align":["left"]},{"label":["plots"],"name":[1],"type":["dbl"],"align":["right"]},{"label":["r"],"name":[2],"type":["int"],"align":["right"]},{"label":["trt"],"name":[3],"type":["chr"],"align":["left"]},{"label":["Linha"],"name":[4],"type":["int"],"align":["right"]},{"label":["Coluna"],"name":[5],"type":["int"],"align":["right"]}],"data":[{"1":"1","2":"1","3":"C","4":"1","5":"1","_rn_":"1"},{"1":"2","2":"1","3":"A","4":"1","5":"2","_rn_":"2"},{"1":"3","2":"2","3":"A","4":"1","5":"3","_rn_":"3"},{"1":"4","2":"1","3":"D","4":"1","5":"4","_rn_":"4"},{"1":"5","2":"1","3":"E","4":"1","5":"5","_rn_":"5"},{"1":"6","2":"2","3":"C","4":"2","5":"1","_rn_":"6"},{"1":"7","2":"3","3":"C","4":"2","5":"2","_rn_":"7"},{"1":"8","2":"2","3":"D","4":"2","5":"3","_rn_":"8"},{"1":"9","2":"3","3":"A","4":"2","5":"4","_rn_":"9"},{"1":"10","2":"1","3":"B","4":"2","5":"5","_rn_":"10"},{"1":"11","2":"2","3":"B","4":"3","5":"1","_rn_":"11"},{"1":"12","2":"3","3":"D","4":"3","5":"2","_rn_":"12"},{"1":"13","2":"3","3":"B","4":"3","5":"3","_rn_":"13"},{"1":"14","2":"4","3":"D","4":"3","5":"4","_rn_":"14"},{"1":"15","2":"2","3":"E","4":"3","5":"5","_rn_":"15"},{"1":"16","2":"4","3":"B","4":"4","5":"1","_rn_":"16"},{"1":"17","2":"4","3":"C","4":"4","5":"2","_rn_":"17"},{"1":"18","2":"3","3":"E","4":"4","5":"3","_rn_":"18"},{"1":"19","2":"4","3":"A","4":"4","5":"4","_rn_":"19"},{"1":"20","2":"4","3":"E","4":"4","5":"5","_rn_":"20"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+<ol start="2" style="list-style-type: lower-alpha">
+<li></li>
+</ol>
+<pre class="r"><code>&gt;  dadosmilho &lt;- data.frame(
++  Genotipo = factor(rep(1:5,
++  each = 4)),
++  prodmilho = c(5.95, 6.21, 5.40, 5.18,
++                5.07, 6.71, 5.46, 4.98,
++                4.82, 5.11, 4.68, 4.52,
++                3.87, 4.16, 4.11, 4.84,
++                5.53, 5.82, 4.29, 4.70))</code></pre>
+<pre class="r"><code>&gt; #&#39; ## Estatísticas descritivas
+&gt; n1 &lt;- with(dadosmilho, tapply(prodmilho, Genotipo, length))
+&gt; soma1 &lt;- with(dadosmilho, tapply(prodmilho, Genotipo, sum))
+&gt; media1 &lt;- with(dadosmilho, tapply(prodmilho, Genotipo, mean))
+&gt; variancia1 &lt;- with(dadosmilho, tapply(prodmilho, Genotipo, var))
+&gt; desv.padr1 &lt;- with(dadosmilho, tapply(prodmilho, Genotipo, sd))
+&gt; dist.int1 &lt;- with(dadosmilho, tapply(prodmilho, Genotipo, IQR))</code></pre>
+<pre class="r"><code>&gt; #&#39; Criando uma função que calcula a amplitude
+&gt; f2 &lt;- function(x) max(x)-min(x)
+&gt; amplitude1 &lt;- with(dadosmilho, tapply(prodmilho,Genotipo, f2))
+&gt; 
+&gt; resumo1 &lt;- rbind(n1, soma1, media1, variancia1,
++                 desv.padr1, amplitude1,dist.int1)
+&gt; rownames(resumo1) &lt;- c(&quot;n&quot;, &quot;Soma&quot;, &quot;Média&quot;, 
++                       &quot;Variância&quot;, &quot;Desvio-padrão&quot;, 
++                       &quot;Amplitude&quot;, &quot;Amplitude Interquartílica&quot;)
+&gt; round(resumo1,3)</code></pre>
+<pre><code>                               1      2      3      4      5
+n                          4,000  4,000  4,000  4,000  4,000
+Soma                      22,740 22,220 19,130 16,980 20,340
+Média                      5,685  5,555  4,782  4,245  5,085
+Variância                  0,227  0,636  0,063  0,173  0,506
+Desvio-padrão              0,477  0,798  0,250  0,416  0,711
+Amplitude                  1,030  1,730  0,590  0,970  1,530
+Amplitude Interquartílica  0,670  0,725  0,253  0,280  1,005</code></pre>
+<ol start="3" style="list-style-type: lower-alpha">
+<li></li>
+</ol>
+<pre class="r"><code>&gt; modelo1 &lt;- aov(prodmilho ~ Genotipo, dadosmilho)
+&gt; anova(modelo1)</code></pre>
+<div data-pagedtable="false">
+<script data-pagedtable-source type="application/json">
+{"columns":[{"label":[""],"name":["_rn_"],"type":[""],"align":["left"]},{"label":["Df"],"name":[1],"type":["int"],"align":["right"]},{"label":["Sum Sq"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["Mean Sq"],"name":[3],"type":["dbl"],"align":["right"]},{"label":["F value"],"name":[4],"type":["dbl"],"align":["right"]},{"label":["Pr(>F)"],"name":[5],"type":["dbl"],"align":["right"]}],"data":[{"1":"4","2":"5,507820","3":"1,3769550","4":"4,287198","5":"0,0164428","_rn_":"Genotipo"},{"1":"15","2":"4,817675","3":"0,3211783","4":"NA","5":"NA","_rn_":"Residuals"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+<p>Como o P valor= 0,0164 é menor que 0.05, há evidências para
+rejeitarmos <span class="math inline">\(H_0\)</span> ao nível de 5% de
+significância. Desse modo, não podemos afirmar que todas as médias são
+iguais.</p>
+<ol start="2" style="list-style-type: decimal">
+<li><ol style="list-style-type: lower-alpha">
+<li></li>
+</ol></li>
+</ol>
+<table>
+<thead>
+<tr class="header">
+<th>Fonte</th>
+<th>GL</th>
+<th>SQ</th>
+<th>QM</th>
+<th>F Cal</th>
+<th>F Tab</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>cultivar</td>
+<td>x</td>
+<td>17564523</td>
+<td>x</td>
+<td>9.31</td>
+<td>2.39</td>
+</tr>
+<tr class="even">
+<td>Resíduo</td>
+<td>x</td>
+<td>x</td>
+<td>x</td>
+<td>x</td>
+<td>x</td>
+</tr>
+<tr class="odd">
+<td>Total</td>
+<td>29</td>
+<td>x</td>
+<td>x</td>
+<td>x</td>
+<td>x</td>
+</tr>
+</tbody>
+</table>
+<p>O estudo foi realizado com 10 cultivares, logo no número de graus de
+liberdade de tratamentos é 9. Com isso encontramos o número de graus de
+liberdade do resíduo que é o total menos tratamentos.</p>
+<p>A partir da Soma de quadrados de tratamento e dos graus de liberdade
+dos tratamentos podemos encontrar o valor do quadrado médio de
+tratamentos.</p>
+<p>A partir do quadrado medio de tratamentos e do F calculado podemos
+encontrar o quadrado médio do residuo e encontrar a soma de quadrados do
+resíduo.</p>
+<table>
+<thead>
+<tr class="header">
+<th>Fonte</th>
+<th>GL</th>
+<th>SQ</th>
+<th>QM</th>
+<th>F Cal</th>
+<th>F Tab</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>cultivar</td>
+<td>9</td>
+<td>17564523</td>
+<td>1951613.66</td>
+<td>9.31</td>
+<td>2.39</td>
+</tr>
+<tr class="even">
+<td>Resíduo</td>
+<td>20</td>
+<td>4192510.56</td>
+<td>209625.52</td>
+<td></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>Total</td>
+<td>29</td>
+<td>21757033.5</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<ol start="2" style="list-style-type: lower-alpha">
+<li>Como <span class="math inline">\(\text{F} = 9.31 &gt; 2.39 =
+\text{FTab}\)</span> (<span class="math inline">\(\alpha = 0. 05, 9,
+20\)</span>), há evidências para rejeitarmos <span
+class="math inline">\(H_0\)</span> ao nível de 5% de significância.
+Desse modo, não podemos afirmar que todas as médias são iguais.</li>
+</ol>
+<ol start="3" style="list-style-type: decimal">
+<li><ol style="list-style-type: lower-alpha">
+<li></li>
+</ol></li>
+</ol>
+<pre class="r"><code>&gt;  dadosbovinos &lt;- data.frame(
++  racas = factor(rep(1:5, 
++  each = 8)),
++  sangue = c(124, 111, 117, 110, 142, 116, 121, 142,
++             101,  98, 121, 117, 106, 118, 108, 123, 
++             118, 127, 121, 121, 127, 120, 129, 138, 
++             125, 129, 148, 119, 139, 110, 122, 141,
++             101, 103, 112, 107, 119, 106, 122, 118
++ ))</code></pre>
+<pre class="r"><code>&gt; #&#39; ## Estatísticas descritivas
+&gt; n2 &lt;- with(dadosbovinos, tapply(sangue, racas, length))
+&gt; soma2 &lt;- with(dadosbovinos, tapply(sangue, racas, sum))
+&gt; media2 &lt;- with(dadosbovinos, tapply(sangue, racas, mean))
+&gt; variancia2 &lt;- with(dadosbovinos, tapply(sangue, racas, var))
+&gt; desv.padr2 &lt;- with(dadosbovinos, tapply(sangue, racas, sd))
+&gt; dist.int2 &lt;- with(dadosbovinos, tapply(sangue, racas, IQR))</code></pre>
+<pre class="r"><code>&gt; #&#39; Criando uma função que calcula a amplitude
+&gt; f3 &lt;- function(x) max(x)-min(x)
+&gt; amplitude2 &lt;- with(dadosbovinos, tapply(sangue, racas, f3))
+&gt; 
+&gt; resumo2 &lt;- rbind(n2, soma2, media2, variancia2,
++                 desv.padr2, amplitude2,dist.int2)
+&gt; rownames(resumo2) &lt;- c(&quot;n&quot;, &quot;Soma&quot;, &quot;Média&quot;, 
++                       &quot;Variância&quot;, &quot;Desvio-padrão&quot;, 
++                       &quot;Amplitude&quot;, &quot;Amplitude Interquartílica&quot;)
+&gt; round(resumo2,3)</code></pre>
+<pre><code>                                1       2        3        4       5
+n                           8,000   8,000    8,000    8,000   8,000
+Soma                      983,000 892,000 1001,000 1033,000 888,000
+Média                     122,875 111,500  125,125  129,125 111,000
+Variância                 160,696  90,000   42,696  161,554  62,857
+Desvio-padrão              12,677   9,487    6,534   12,710   7,928
+Amplitude                  32,000  25,000   20,000   38,000  21,000
+Amplitude Interquartílica  13,750  14,000    6,750   18,250  13,000</code></pre>
+<ol start="2" style="list-style-type: lower-alpha">
+<li></li>
+</ol>
+<pre class="r"><code>&gt; modelo2 &lt;- aov(sangue ~ racas, dadosbovinos)
+&gt; anova(modelo2)</code></pre>
+<div data-pagedtable="false">
+<script data-pagedtable-source type="application/json">
+{"columns":[{"label":[""],"name":["_rn_"],"type":[""],"align":["left"]},{"label":["Df"],"name":[1],"type":["int"],"align":["right"]},{"label":["Sum Sq"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["Mean Sq"],"name":[3],"type":["dbl"],"align":["right"]},{"label":["F value"],"name":[4],"type":["dbl"],"align":["right"]},{"label":["Pr(>F)"],"name":[5],"type":["dbl"],"align":["right"]}],"data":[{"1":"4","2":"2168,150","3":"542,0375","4":"5,234007","5":"0,002063164","_rn_":"racas"},{"1":"35","2":"3624,625","3":"103,5607","4":"NA","5":"NA","_rn_":"Residuals"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+<p>Como o p valor0,0021 é menor que 0.05, há evidências para rejeitarmos
+<span class="math inline">\(H_0\)</span> ao nível de 5% de
+significância. Desse modo, não podemos afirmar que todas as médias são
+iguais.</p>
+<ol start="3" style="list-style-type: lower-alpha">
+<li>Dicas: Lembrar dos princípios da estatística experimental.</li>
+</ol>
+</div>
+</div>
+</div>
+
+
+
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.odd').parent('tbody').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open');
+  });
+});
+</script>
+
+<!-- code folding -->
+
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>

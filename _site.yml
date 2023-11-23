@@ -1,6 +1,8 @@
+output_dir: "docs"
 name: "my-website"
 navbar:
   title: "My Website"
+  type: inverse
   left:
     - text: "Home"
       href: index.html
