@@ -1,0 +1,1324 @@
+---
+title: "esquema fatorial"
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+Análise de dois ou mais fatores de tratamento em um mesmo experimento
+Os tratamentos serão as combinações dos níveis dos fatores
+
+Exemplo 1: Avaliação do efeito da adubação NPK sobre uma determinada cultura
+
+	$$\left.\begin{array}{l}
+	\mbox{N com 2 níveis}\\ \nonumber
+	\mbox{P com 2 níveis}\\ \nonumber
+	\mbox{K com 2 níveis} \nonumber
+	\end{array} 
+	\right\} = 2\times 2 \times 2 = 2^3 = \mbox{8 tratamentos}$$
+	
+	
+Lê-se: fatorial dois por dois por dois ou fatorial dois ao cubo.
+
+
+
+
+
+\ {Esquema fatorial: Introdução}
+\begin{block}{Exemplo 1: Avaliação do efeito da adubação NPK sobre uma determinada cultura}
+	$$\left.\begin{array}{l}
+	\mbox{N com 2 níveis}\\ \nonumber
+	\mbox{P com 2 níveis}\\ \nonumber
+	\mbox{K com 2 níveis} \nonumber
+	\end{array} 
+	\right\} = 2\times 2 \times 2 = 2^3 = \mbox{8 tratamentos}$$
+
+{1cm}	
+	
+Tratamentos:
+\begin{center}
+\begin{tabular}{cccc}
+	$N_0P_0K_0$ & $N_0P_0K_1$ & $N_0P_1K_0$ & $N_0P_1K_1$ \\
+    $N_1P_0K_0$ & $N_1P_0K_1$ & $N_1P_1K_0$ & $N_1P_1K_1$ \\
+\end{tabular}
+\end{center}
+\end{block}
+	
+	
+	
+
+
+
+{Esquema fatorial: Introdução}
+{Exemplo 2: Avaliação da Temperatura e da Umidade sobre o tempo de consevação de um produto}
+
+
+$$3 \times 2 = \mbox{6 tratamentos}$$
+
+
+		
+
+		
+		Lê-se: fatorial três por dois.
+	\end{block}
+	
+
+
+
+\ {Esquema fatorial: Introdução}
+	\begin{block}{Exemplo 2: Avaliação da Temperatura e da Umidade sobre o tempo de conservação de um produto}
+		
+		
+		\begin{figure}[H]
+			\centering
+			\includegraphics[scale=0.5]{Figuras/fatorial32.jpg}
+		\end{figure}
+		$$3 \times 2 = \mbox{6 Tratamentos}$$
+		
+
+\begin{center}
+\begin{tabular}{cccc}  \hline
+&	\multicolumn{2}{c}{Umidade} & \\ \cline{2-3}
+Temperatura & $U_1$ & $U_2$ \\ \hline     
+$T_1$ & $T_1U_1$ & $T_1U_2$  \\ 
+$T_2$ & $T_2U_1$ & $T_2U_2$ \\
+$T_3$ & $T_3U_1$ & $T_3U_2$ \\ \hline
+\end{tabular}
+\end{center}
+	\end{block}
+
+
+
+\ {Esquema fatorial: Introdução}
+	\begin{block}{Planejamento:}
+
+O planejamento pode seguir qualquer um dos delineamentos vistos anteriormente:
+\begin{itemize}
+	\item Delineamento Inteiramente Casualizado
+\end{itemize}
+\begin{center}
+    \includegraphics[scale = 0.4]{Aulas/Figuras/Fatorial_dic.jpeg}
+\end{center}
+
+\end{block}
+
+
+
+\ {Esquema fatorial: Introdução}
+	\begin{block}{Planejamento:}
+
+O planejamento pode seguir qualquer um dos delineamentos vistos anteriormente:
+\begin{itemize}
+	\item Delineamento Casualizado em Blocos
+\end{itemize}
+\begin{center}
+    \includegraphics[scale = 0.4]{Aulas/Figuras/Fatorial_dbc.jpeg}
+\end{center}
+
+\end{block}
+
+
+
+\ {Esquema fatorial: Introdução}
+	\begin{block}{Planejamento:}
+
+O planejamento pode seguir qualquer um dos delineamentos vistos anteriormente:
+\begin{itemize}
+	\item Delineamento Quadrado Latino
+\end{itemize}
+\begin{center}
+    \includegraphics[scale = 0.4]{Aulas/Figuras/Fatorial_dql.jpeg}
+\end{center}
+
+\end{block}
+
+
+
+\ {Esquema fatorial: Introdução}
+	\begin{block}{Planejamento:}
+
+O planejamento pode seguir qualquer um dos delineamentos vistos anteriormente:
+\begin{itemize}
+	\item Delineamento Inteiramente Casualizado
+	\item Delineamento Casualizado em Blocos
+	\item Delineamento Quadrado Latino
+	\item ...
+\end{itemize}
+
+\end{block}
+{1cm}
+{\bf Observação:} As combinações dos níveis dos fatores serão casualizadas às parcelas, de acordo com o delineamento experimental selecionado.
+
+
+
+\ {Esquema fatorial: Introdução}
+	\begin{block}{Vantagens e Desvantagens dos esquemas fatoriais de tratamentos}
+		
+{\bf {0, .5,1}{Vantagens:}} Permitem estudar os efeitos simples e principais dos fatores, bem como o efeito da interação envolvendo os mesmos.
+
+{.5cm}
+
+{\bf {0, .5,1}{Desvantagens:}} O número de tratamentos pode ser elevado devido ao número de fatores e/ou ao número de níveis dos fatores.
+
+{0.5cm}
+
+{\bf Exemplos:}
+
+$2\times 2 = 2^2 \Rightarrow$ 4 tratamentos\\
+$3\times 3 = 3^2 \Rightarrow$ 9 tratamentos\\
+$5\times 4 \Rightarrow$ 20 tratamentos\\
+$4\times 3 \times 3 \Rightarrow$ 36 tratamentos\\
+
+	\end{block}
+	
+
+
+
+
+\ {Esquema fatorial: Introdução}
+	\begin{block}{Fatoriais $2\times 2$ ou $2^2$}
+		
+\begin{center}
+Dois fatores com dois níveis cada
+\end{center}
+
+		
+			\begin{figure}[H]
+				\centering
+				\includegraphics[scale=0.4]{Figuras/fatorial22.jpg}
+			\end{figure}	
+		
+	\end{block}
+	
+
+
+
+\ {Esquema fatorial: Exemplo - Fatorial $2\times2$}
+
+ Suponha dois fatores, cada um com dois níveis. O fator $A$, com os níveis $A_0$ e $A_1$ e o fator $B$, com os níveis $B_0$ e $B_1$.	
+
+\begin{block}{Análise exploratória gráfica: exemplo 1}
+	
+	\begin{multicols}{2}
+		
+
+		\begin{figure}[H]
+			\centering
+			\includegraphics[scale=0.4]{Figuras/Fatorial_fig1.pdf}
+		\end{figure}
+	
+	\newpage
+	
+\begin{center}
+\begin{tabular}{cccc}  \hline
+&	\multicolumn{2}{c}{Fator B} & \\ \cline{2-3}
+Fator A & $B_0$ & $B_1$ & Médias \\ \hline     
+$A_0$ & 12 & 8 & \color{red}{10}  \\ $A_1$ & 28 & 32 & \color{red}{30}  \\ 
+\hline
+Médias & 20 & 20  & 20  \\ \hline
+\end{tabular}
+\end{center}
+			\begin{center}
+			Efeito principal do fator $A$
+			\end{center}
+	$$30-10 = 20$$
+
+	\end{multicols}
+	
+\end{block}
+
+
+
+\ {Esquema fatorial: Exemplo - Fatorial $2\times2$}
+
+Suponha dois fatores, cada um com dois níveis. O fator $A$, com os níveis $A_0$ e $A_1$ e o fator $B$, com os níveis $B_0$ e $B_1$.	
+
+\begin{block}{Análise exploratória gráfica: exemplo 2}
+	
+	\begin{multicols}{2}
+		
+		
+		\begin{figure}[H]
+			\centering
+			\includegraphics[scale=0.4]{Figuras/Fatorial_fig2.pdf}
+		\end{figure}
+		
+		\newpage
+		
+\begin{center}
+\begin{tabular}{cccc}  \hline
+&	\multicolumn{2}{c}{Fator B} & \\ \cline{2-3}
+Fator A & $B_0$ & $B_1$ & Médias \\ \hline     
+$A_0$ & 28 & 32 & \color{red}{30}  \\ 
+$A_1$ & 12 & 8 & \color{red}{10}  \\ \hline
+Médias & 20 & 20  & 20  \\ \hline
+\end{tabular}
+\end{center}
+	\begin{center}
+		Efeito principal do fator $A$
+		\end{center}
+		$$10-30 = -20$$
+		
+	\end{multicols}
+	
+\end{block}
+
+
+
+\ {Esquema fatorial: Exemplo - Fatorial $2\times2$}
+
+Suponha dois fatores, cada um com dois níveis. O fator $A$, com os níveis $A_0$ e $A_1$ e o fator $B$, com os níveis $B_0$ e $B_1$.	
+
+\begin{block}{Análise exploratória gráfica: exemplo 3}
+	
+	\begin{multicols}{2}
+		
+		
+		\begin{figure}[H]
+			\centering
+			\includegraphics[scale=0.4]{Figuras/Fatorial_fig3.pdf}
+		\end{figure}
+		
+		\newpage
+		
+\begin{center}
+\begin{tabular}{cccc}  \hline
+&	\multicolumn{2}{c}{Fator B} & \\ \cline{2-3}
+Fator A & $B_0$ & $B_1$ & Médias \\ \hline     
+$A_0$ & 8 & 12 & \color{red}{10}  \\ 
+$A_1$ & 12 & 8 & \color{red}{10}  \\ \hline
+Médias & 10 & 10  & 10  \\ \hline
+\end{tabular}
+\end{center}
+		\begin{center}
+			Efeito principal do fator $A$
+		\end{center}
+		$$10-10 = 0$$
+		
+	\end{multicols}
+	
+\end{block}
+
+
+
+
+\ {Esquema fatorial: Exemplo - Fatorial $2\times2$}
+
+\begin{block}{Análise exploratória gráfica: exemplo 4}
+	
+	\begin{multicols}{2}
+		
+		
+		\begin{figure}[H]
+			\centering
+			\includegraphics[scale=0.35]{Figuras/Fatorial_fig4.pdf}	\end{figure}
+{red}{Linhas paralelas $\Rightarrow$ provável ausência de interação!}				\newpage
+
+{\footnotesize
+\begin{center}
+\begin{tabular}{cccc}  \hline
+&	\multicolumn{2}{c}{Fator B} & \\ \cline{2-3}
+Fator A & $B_0$ & $B_1$ & Médias \\ \hline     
+$A_0$ & \color{red}{10} & \color{blue}{20} & 15  \\ 
+$A_1$ & \color{red}{20} & \color{blue}{30} & 25  \\ \hline
+Médias & 15 & 25  & 20  \\ \hline
+\end{tabular}
+\end{center}
+	\begin{itemize}
+		\item  Efeito simples de $A$ para $B = B_0$	$${red}{20}-{red}{10} = {red}{10}$$
+		\item  Efeito simples de $A$ para $B = B_1$
+	$${blue}{30}-{blue}{20} = {blue}{10}$$
+	\end{itemize}
+}
+\end{multicols}
+
+
+{\footnotesize
+\begin{center}
+
+Efeito da interação entre os fatores $A$ e $B$
+$$\frac{{blue}{10}-{red}{10}}{2} = \frac{0}{2} = 0$$
+
+\end{center}
+}
+	
+\end{block}
+
+
+
+
+
+\ {Esquema fatorial: Exemplo - Fatorial $2\times2$}
+
+\begin{block}{Análise exploratória gráfica: exemplo 5}
+	
+	\begin{multicols}{2}
+		
+		
+		\begin{figure}[H]
+			\centering
+			\includegraphics[scale=0.35]{Figuras/Fatorial_fig5.pdf}
+		\end{figure}
+		\begin{center}
+		    {red}{O efeito simples de $A$ depende do nível de $B$!}
+		\end{center}
+		
+		\newpage
+{\footnotesize		
+\begin{center}
+\begin{tabular}{cccc}  \hline
+&	\multicolumn{2}{c}{Fator B} & \\ \cline{2-3}
+Fator A & $B_0$ & $B_1$ & Médias \\ \hline     
+$A_0$ & \color{red}{10} & \color{blue}{20} & 15  \\ 
+$A_1$ & \color{red}{10} & \color{blue}{30} & 20  \\ \hline
+Médias & 10 & 25  & 17,5  \\ \hline
+\end{tabular}
+\end{center}
+		
+		\begin{itemize}
+			\item Efeito simples de $A$ para $B = B_0$
+			$${red}{10}-{red}{10} = {red}{0}	$$
+			\item Efeito simples de $A$ para $B = B_1$
+			$${blue}{30}-{blue}{20} = {blue}{10}$$
+		\end{itemize}
+		}
+		
+	\end{multicols}
+{\footnotesize
+	\begin{center}
+	
+%{.5cm}
+
+		Efeito da interação entre os fatores $A$ e $B$
+		$$\frac{{blue}{10}-{red}{0}}{2} = \frac{10}{2} = 5$$
+		
+		
+	\end{center}
+	}
+	
+\end{block}
+
+
+
+\ {Esquema fatorial: Exemplo - Fatorial $2\times2$}
+
+\begin{block}{Análise exploratória gráfica: exemplo 6}
+	
+	\begin{multicols}{2}
+		
+		
+		\begin{figure}[H]
+			\centering
+			\includegraphics[scale=0.35]{Figuras/Fatorial_fig6.pdf}
+		\end{figure}
+		\begin{center}
+		    {red}{O efeito simples de $A$ depende do nível de $B$!}
+		\end{center}
+		
+		\newpage
+		
+		{\footnotesize
+		\begin{center}
+\begin{tabular}{cccc}  \hline
+&	\multicolumn{2}{c}{Fator B} & \\ \cline{2-3}
+Fator A & $B_0$ & $B_1$ & Médias \\ \hline     
+$A_0$ & \color{red}{10} & \color{blue}{30} & 20  \\ 
+$A_1$ & \color{red}{30} & \color{blue}{10} & 20  \\ \hline
+Médias & 20 & 20  & 20  \\ \hline
+\end{tabular}
+\end{center}
+		
+		
+		\begin{itemize}
+			\item Efeito simples de $A$ para $B = B_0$
+			$${red}{30}-{red}{10} = {red}{20}	$$
+			\item Efeito simples de $A$ para $B = B_1$
+			$${blue}{10}-{blue}{30} = {blue}{-20}$$
+		\end{itemize}
+		}
+		
+	\end{multicols}
+	{\footnotesize
+	
+	\begin{center}
+		
+%		{.5cm}
+		
+		Efeito da interação entre os fatores $A$ e $B$
+		$$\frac{{blue}{-20}-{red}{20}}{2} = \frac{-40}{2} = -20$$
+		
+		
+	\end{center}
+	}
+	
+\end{block}
+
+
+
+
+\ {Esquema fatorial: Modelo estatístico}
+
+O modelo estatístico, considerando-se um experimento seguindo o delineamento inteiramente casualizado com $r$ repetições, dois fatores de tratamento, $A$ com $a$ níveis e $B$ com $b$, é dado por:
+
+$$y_{ikj} = \mu + \alpha_i + \gamma_k + (\alpha\gamma)_{ik} + e_{ikj},$$
+\noindent em que \\
+$y_{ikj}$ é o valor observado no $i$-ésimo nível do fator $A$ e $k$-ésimo nível do fator $B$ na $j$-ésima repetição; \\
+$\mu$ é uma constante, comum a todas as observações; \\
+$\alpha_i$ é o efeito do $i-$ésimo nível do fator $A$; \\
+$\gamma_k$ é o efeito do $k-$ésimo nível do fator $B$;\\
+$(\alpha\gamma)_{ik}$ é o efeito da interação entre  entre o $i-$ésimo nível do fator $A$ e o $k-$ésimo nível do fator $B$\\
+$e_{ikj}$ é o efeito do acaso.
+
+
+
+\ {Esquema fatorial: Estimadores dos parâmetros pelo método dos mínimos quadrados}
+
+Dado o modelo
+$$y_{ikj} = \mu + \alpha_i + \gamma_k + (\alpha\gamma)_{ik} + e_{ikj},$$
+
+as restrições usuais são:
+$$\sum_{i=1}^{a}\hat{\alpha}_i = 0$$
+$$\sum_{k=1}^{b}\hat{\gamma}_k = 0$$
+$$\sum_{i=1}^{a}\hat{(\alpha\gamma)}_{ik} = \sum_{k=1}^{b}\hat{(\alpha\gamma)}_{ik} = \sum_{i=1}^{a}\sum_{k=1}^{b}\hat{(\alpha\gamma)}_{ik} = 0$$
+
+
+
+
+
+\ {Esquema fatorial: Soluções pelo método dos mínimos quadrados}
+
+\begin{center}
+    \begin{tabular}{ccccccc} \hline
+     &  & \multicolumn{4}{c}{Fator B} & \\ \cline{3-6}
+     &  & $B_1$ & $B_2$ & $\ldots$ & $B_b$  & \\ \hline 
+     & $A_1$ & $\bar{Y}_{11}$ & $\bar{Y}_{12}$ & $\ldots$ & $\bar{Y}_{1b}$ & $\bar{Y}_{A_1}$ \\
+     & $A_2$ & $\bar{Y}_{21}$ & $\bar{Y}_{22}$ & $\ldots$ & $\bar{Y}_{2b}$ & $\bar{Y}_{A_2}$ \\
+     & $\ldots$ & $\ldots$ & $\ldots$ & $\ldots$ & $\ldots$ & $\ldots$ \\
+     \multirow{-4}{*}{\begin{sideways} Fator A \end{sideways}} & $A_a$ & $\bar{Y}_{a1}$ & $\bar{Y}_{a2}$ & $\ldots$ & $\bar{Y}_{ab}$ & $\bar{Y}_{A_a}$ \\ \hline
+     & & $\bar{Y}_{B_1}$ & $\bar{Y}_{B_2}$ & $\ldots$ & $\bar{Y}_{B_b}$ & $\bar{Y}$ \\ \hline
+    \end{tabular}
+\end{center}
+
+As soluções de mínimos quadrados, considerando-se as restrições, são:
+
+$$\hat{\mu} = \bar{Y},$$
+$$\hat{\alpha}_i = \bar{Y}_i - \bar{Y},$$
+$$\hat{\gamma}_k = \bar{Y}_k - \bar{Y} \text{ e }$$
+$$\hat{(\alpha\gamma)}_{ik} = \bar{Y}_{ik} - \bar{Y}_i - \bar{Y}_k + \bar{Y}.$$
+
+
+
+
+
+\ {Esquema fatorial: Esquema da ANOVA}
+
+Para um experimento seguindo o delineamento inteiramente casualizado com $r$ repetições, dois fatores de tratamento, $A$ com $a$ níveis e $B$ com $b$, o esquema da tabela ANOVA que considera apenas os $ab$ Tratamentos é dado por:
+
+\begin{center}
+	\begin{tabular}{lc} \hline
+		Fontes de variação & graus de liberdade \\ \hline
+		Tratamentos & $ab-1$ \\
+		Resíduo & $ab(r-1)$\\ \hline
+		Total & $abr - 1$ \\ \hline
+	\end{tabular}
+\end{center}
+
+
+\ {Esquema fatorial: Esquema da ANOVA}
+
+Para um experimento seguindo o delineamento inteiramente casualizado com $r$ repetições, dois fatores de tratamento, $A$ com $a$ níveis e $B$ com $b$, o esquema da tabela ANOVA que considera a decomposição do número de graus de liberdade de Tratamentos para avaliar efeitos principais e de interação é dado por:
+
+\begin{center}
+	\begin{tabular}{lc} \hline
+		Fontes de variação & graus de liberdade \\ \hline
+		Fator $A$ & $a-1$ \\
+		Fator $B$ & $b-1$ \\
+		Interação $A\# B$ & $(a-1)(b-1)$ \\ \hdashline
+		(Tratamentos) & $(ab-1)$  \\ \hdashline
+		Resíduo & $ab(r-1)$\\ \hline
+		Total & $abr - 1$ \\ \hline
+	\end{tabular}
+\end{center}
+
+
+
+\ {Esquema fatorial: Esquema da ANOVA}
+
+Hipóteses:\\
+{red}{
+	$H_0:$ Não há efeito da interação \\
+	$H_1:$ Há efeito da interação.}
+
+\begin{center}
+	\begin{tabular}{lc} \hline
+		Fontes de variação & graus de liberdade \\ \hline
+		Fator $A$ & $a-1$ \\
+		Fator $B$ & $b-1$ \\
+		{red}{Interação $A\# B$} & {red}{$(a-1)(b-1)$} \\ \hdashline
+		(Tratamentos) & $(ab-1)$  \\ \hdashline
+		Resíduo & $ab(r-1)$\\ \hline
+		Total & $abr - 1$ \\ \hline
+	\end{tabular}
+\end{center}
+
+
+\ {Esquema fatorial: Esquema da ANOVA}
+
+{red}{\bf Observações:}
+\begin{itemize}
+	\item Quando o efeito da interação for não significativo, ou seja, os fatores podem ser considerados independentes, deve-se observar a significância dos efeitos principais.
+	\item Quando o efeito da interação for significativo não se devem olhar os efeitos principais, mas sim os efeitos simples, ou seja, avaliar o efeito do fator A dentro de cada nível do fator B e/ou o efeito do fator B dentro de cada nível do fator A.
+\end{itemize}
+
+
+
+
+
+\ {Esquema fatorial: Esquema da ANOVA}
+
+Hipóteses:\\
+{red}{
+$H_0: \mu_{A_1} = \mu_{A_2} = \ldots= \mu_{A_a} = \mu$ \\
+$H_1:$ Pelo menos duas médias diferem entre si.}
+
+{\footnotesize
+\begin{columns}
+
+\begin{column}{0.5\textwidth}
+\begin{center}
+	\begin{tabular}{lc} \hline
+		Fontes de variação & graus de liberdade \\ \hline
+		{red}{Fator $A$} & {red}{$a-1$} \\
+		Fator $B$ & $b-1$ \\
+		Interação $A\# B$ & $(a-1)(b-1)$ \\ \hdashline
+		(Tratamentos) & $(ab-1)$  \\ \hdashline
+		Resíduo & $ab(r-1)$\\ \hline
+		Total & $abr - 1$ \\ \hline
+	\end{tabular}
+\end{center}
+\end{column}
+
+
+\begin{column}{0.5\textwidth}
+\begin{center}
+    \begin{tabular}{ccccccc} \hline
+     &  & \multicolumn{4}{c}{Fator B} & \\ \cline{3-6}
+     &  & $B_1$ & $B_2$ & $\ldots$ & $B_b$  & \\ \hline 
+     & $A_1$ & $\mu_{11}$ & $\mu_{12}$ & $\ldots$ & $\mu_{1b}$ & {red}{$\mu_{A_1}$} \\
+     & $A_2$ & $\mu_{21}$ & $\mu_{22}$ & $\ldots$ & $\mu_{2b}$ & {red}{$\mu_{A_2}$} \\
+     & $\ldots$ & $\ldots$ & $\ldots$ & $\ldots$ & $\ldots$ & {red}{$\ldots$} \\
+     \multirow{-4}{*}{\begin{sideways} Fator A \end{sideways}} & $A_a$ & $\mu_{a1}$ & $\mu_{a2}$ & $\ldots$ & $\mu_{ab}$ & {red}{$\mu_{A_a}$} \\ \hline
+     & & $\mu_{B_1}$ & $\mu_{B_2}$ & $\ldots$ & $\mu_{B_b}$ & {red}{$\mu$} \\ \hline
+    \end{tabular}
+\end{center}
+\end{column}
+
+\end{columns}
+}
+
+
+
+\ {Esquema fatorial: Esquema da ANOVA}
+
+Hipóteses:\\
+{red}{
+	$H_0: \mu_{B_1} = \mu_{B_2} = \ldots= \mu_{B_b} = \mu$ \\
+	$H_1:$ Pelo menos duas médias diferem entre si.}
+
+
+{\footnotesize
+\begin{columns}
+
+\begin{column}{0.5\textwidth}
+\begin{center}
+	\begin{tabular}{lc} \hline
+		Fontes de variação & graus de liberdade \\ \hline
+		{Fator $A$} & {$a-1$} \\
+		{red}{Fator $B$} & {red}{$b-1$} \\
+		Interação $A\# B$ & $(a-1)(b-1)$ \\ \hdashline
+		(Tratamentos) & $(ab-1)$  \\ \hdashline
+		Resíduo & $ab(r-1)$\\ \hline
+		Total & $abr - 1$ \\ \hline
+	\end{tabular}
+\end{center}
+\end{column}
+
+
+\begin{column}{0.5\textwidth}
+\begin{center}
+    \begin{tabular}{ccccccc} \hline
+     &  & \multicolumn{4}{c}{Fator B} & \\ \cline{3-6}
+     &  & $B_1$ & $B_2$ & $\ldots$ & $B_b$  & \\ \hline 
+     & $A_1$ & $\mu_{11}$ & $\mu_{12}$ & $\ldots$ & $\mu_{1b}$ & {$\mu_{A_1}$} \\
+     & $A_2$ & $\mu_{21}$ & $\mu_{22}$ & $\ldots$ & $\mu_{2b}$ & {$\mu_{A_2}$} \\
+     & $\ldots$ & $\ldots$ & $\ldots$ & $\ldots$ & $\ldots$ & {$\ldots$} \\
+     \multirow{-4}{*}{\begin{sideways} Fator A \end{sideways}} & $A_a$ & $\mu_{a1}$ & $\mu_{a2}$ & $\ldots$ & $\mu_{ab}$ & {$\mu_{A_a}$} \\ \hline
+     & & {red}{$\mu_{B_1}$} & {red}{$\mu_{B_2}$} & {red}{$\ldots$} & {red}{$\mu_{B_b}$} & {red}{$\mu$} \\ \hline
+    \end{tabular}
+\end{center}
+\end{column}
+
+\end{columns}
+}
+
+
+
+
+\ {Esquema fatorial: ANOVA}
+
+\begin{itemize}
+	\item Efeito de $B$ dentro de cada nível de $A$ ($A + B[A]$)
+\end{itemize}	
+{\footnotesize
+
+\begin{columns}
+\begin{column}{0.5\textwidth}
+	\begin{center}
+		\begin{tabular}{ll} \hline
+			Fonte de variação & gl \\ \hline 
+%			Parcelas & $abr-1$ \\
+			\hspace{.3cm} Fator $A$ & \hspace{.3cm}$a-1$ \\
+			\hspace{.3cm} {red}{Fator $B$ dentro de $A_1$} & \hspace{.3cm} {red}{$b-1$} \\
+			\hspace{.3cm} {blue}{Fator $B$ dentro de $A_2$} & \hspace{.3cm} {blue}{$b-1$} \\
+			\hspace{.3cm} $\ldots$ & \hspace{.3cm}$\ldots$ \\
+			\hspace{.3cm} {green}{Fator $B$ dentro de $A_a$} & \hspace{.3cm} {green}{$b-1$} \\
+			\hspace{.3cm} Resíduo & \hspace{.3cm} $ab(r-1)$ \\ \hline
+		\end{tabular}
+	\end{center}
+	\end{column}
+	
+	
+\begin{column}{0.5\textwidth}
+\begin{center}
+    \begin{tabular}{ccccccc} \hline
+     &  & \multicolumn{4}{c}{Fator B} & \\ \cline{3-6}
+     &  & $B_1$ & $B_2$ & $\ldots$ & $B_b$  & \\ \hline 
+     & $A_1$ & {red}{$\mu_{11}$} & {red}{$\mu_{12}$} & {red}{$\ldots$} & {red}{$\mu_{1b}$} & {$\mu_{A_1}$} \\
+     & $A_2$ & {blue}{$\mu_{21}$} & {blue}{$\mu_{22}$} & {blue}{$\ldots$} & {blue}{$\mu_{2b}$} & {$\mu_{A_2}$} \\
+     & $\ldots$ & $\ldots$ & $\ldots$ & $\ldots$ & $\ldots$ & {$\ldots$} \\
+     \multirow{-4}{*}{\begin{sideways} Fator A \end{sideways}} & $A_a$ & {green}{$\mu_{a1}$} & {green}{$\mu_{a2}$} & {green}{$\ldots$} & {green}{$\mu_{ab}$} & {$\mu_{A_a}$} \\ \hline
+     & & {$\mu_{B_1}$} & {$\mu_{B_2}$} & {$\ldots$} & {$\mu_{B_b}$} & {$\mu$} \\ \hline
+    \end{tabular}
+\end{center}
+\end{column}
+\end{columns}
+}
+
+
+
+\ {Esquema fatorial: ANOVA}
+
+\begin{itemize}
+\item Efeito de $A$ dentro de cada nível de $B$ ($B + A[B]$)
+\end{itemize}
+
+{\footnotesize
+\begin{columns}
+
+\begin{column}{0.5\textwidth}
+\begin{center}
+	\begin{tabular}{ll} \hline
+		Fonte de variação & gl \\ \hline 
+		%Parcelas & $abr-1$ \\
+		\hspace{.3cm} Fator $B$ & \hspace{.3cm}$b-1$ \\
+		\hspace{.3cm} {red}{Fator $A$ dentro de $B_1$} & \hspace{.3cm} {red}{$a-1$} \\
+		\hspace{.3cm} {blue}{Fator $A$ dentro de $B_2$} & \hspace{.3cm} {blue}{$a-1$} \\
+		\hspace{.3cm} $\ldots$ & \hspace{.3cm}$\ldots$ \\
+		\hspace{.3cm} {green}{Fator $A$ dentro de $B_b$} & \hspace{.3cm} {green}{$a-1$} \\
+		\hspace{.3cm} Resíduo & \hspace{.3cm} $ab(r-1)$ \\ \hline
+	\end{tabular}
+\end{center}
+\end{column}
+
+
+\begin{column}{0.5\textwidth}
+\begin{center}
+    \begin{tabular}{ccccccc} \hline
+     &  & \multicolumn{4}{c}{Fator B} & \\ \cline{3-6}
+     &  & $B_1$ & $B_2$ & $\ldots$ & $B_b$  & \\ \hline 
+     & $A_1$ & {red}{$\mu_{11}$} & {blue}{$\mu_{12}$} & $\ldots$ & {green}{$\mu_{1b}$} & {$\mu_{A_1}$} \\
+     & $A_2$ & {red}{$\mu_{21}$} & {blue}{$\mu_{22}$} & $\ldots$ & {green}{$\mu_{2b}$} & {$\mu_{A_2}$} \\
+     & $\ldots$ & {red}{$\ldots$} & {blue}{$\ldots$} & $\ldots$ & {green}{$\ldots$} & {$\ldots$} \\
+     \multirow{-4}{*}{\begin{sideways} Fator A \end{sideways}} & $A_a$ & {red}{$\mu_{a1}$} & {blue}{$\mu_{a2}$} & $\ldots$ & {green}{$\mu_{ab}$} & {$\mu_{A_a}$} \\ \hline
+     & & {$\mu_{B_1}$} & {$\mu_{B_2}$} & {$\ldots$} & {$\mu_{B_b}$} & {$\mu$} \\ \hline
+    \end{tabular}
+\end{center}
+\end{column}
+
+\end{columns}
+}
+
+
+
+
+
+\ {Exemplo - Fatorial $2\times2$}
+Os dados da Tabela 1 foram obtidos em um experimento fatorial $2\times2$ segundo o delineamento inteiramente casualizado com três repetições, para analisar o efeito da calagem e da irrigação sobre o peso de plantas.
+
+\begin{center}
+	\begin{tabular}{lcccc} 
+		\multicolumn{5}{l}{Tabela1: Peso de plantas cultivadas} \\ 
+		\multicolumn{5}{l}{segundo o tratamento}\\ \hline
+		& $I_0C_0$ &	$I_0C_1$ &	$I_1C_0$ & $I_1C_1$ \\ \hline
+		& 25 &	35 &	41 &	60 \\
+		& 32 &	28 &	35 &	67 \\
+		& 27 &  33 &	38 &	59 \\ \hline
+		Totais &84 & 96 & 114 & 282\\
+		\hline
+	\end{tabular}
+\end{center}
+
+
+\ {Exemplo - Fatorial $2\times2$}	
+
+{\footnotesize
+
+\begin{columns}
+\begin{column}{0.5\textwidth}
+
+Quadro auxiliar de totais dos níveis dos fatores
+\begin{center}
+\begin{tabular}{cccc}  \hline
+	&	\multicolumn{2}{c}{Calagem} & \\ \cline{2-3}
+	Irrigação & $C_0$ & $C_1$ & Totais \\ \hline     
+	$I_0$ & 84$^{(3)}$ & 96$^{(3)}$ & 180$^{(6)}$  \\ 
+	$I_1$ & 114$^{(3)}$ & 186$^{(3)}$ & 300$^{(6)}$  \\ \hline
+	Totais & 198$^{(6)}$ & 282$^{(6)}$ & 480$^{(12)}$  \\ \hline
+	\multicolumn{4}{l}{Fonte: Vieira, Sônia (2006)}
+\end{tabular}
+\end{center}
+\end{column}
+
+\begin{column}{0.5\textwidth}
+Quadro auxiliar de médias dos níveis dos fatores
+\begin{center}
+\begin{tabular}{cccc}  \hline
+	&	\multicolumn{2}{c}{Calagem} & \\ \cline{2-3}
+	Irrigação & $C_0$ & $C_1$ & Médias \\ \hline     
+	$I_0$ & 28 & 32 & 30  \\ 
+	$I_1$ & 38 & 62 & 50  \\ \hline
+	Médias & 33 & 47 & 40  \\ \hline
+	\multicolumn{4}{l}{Fonte: Vieira, Sônia (2006)}
+\end{tabular}
+\end{center}
+\end{column}
+
+
+\end{columns}
+}
+
+
+
+
+
+
+\ {Exemplo - Fatorial $2\times2$}
+
+{red}{Efeito principal de Irrigação}
+
+\begin{multicols}{2}
+
+Quadro auxiliar de médias dos níveis dos fatores
+\begin{center}
+\begin{tabular}{cccc}  \hline
+	&	\multicolumn{2}{c}{Calagem} & \\ \cline{2-3}
+	Irrigação & $C_0$ & $C_1$ & Médias \\ \hline     
+	$I_0$ & 28 & 32 & {red}{30}  \\ 
+	$I_1$ & 38 & 62 & {red}{50}  \\ \hline
+	Médias & 33 & 47 & 40  \\ \hline
+	\multicolumn{4}{l}{Fonte: Vieira, Sônia (2006)}
+\end{tabular}
+\end{center}
+\newpage
+\begin{figure}[H]
+\centering
+\includegraphics[scale=0.4]{Figuras/SV_fig1.pdf}
+\end{figure}
+\end{multicols}
+
+
+{red}{$$50-30 = 20$$}
+
+
+
+
+\ {Exemplo - Fatorial $2\times2$}
+
+{red}{Efeito principal de Calagem}
+
+\begin{multicols}{2}
+
+Quadro auxiliar de médias dos níveis dos fatores
+\begin{center}
+\begin{tabular}{cccc}  \hline
+&	\multicolumn{2}{c}{Calagem} & \\ \cline{2-3}
+Irrigação & $C_0$ & $C_1$ & Médias \\ \hline     
+$I_0$ & 28 & 32 & 30  \\ 
+$I_1$ & 38 & 62 & 50  \\ \hline
+Médias & {red}{33} & {red}{47} & 40  \\ \hline
+\multicolumn{4}{l}{Fonte: Vieira, Sônia (2006)}
+\end{tabular}
+\end{center}
+\newpage
+\begin{figure}[H]
+\centering
+\includegraphics[scale=0.4]{Figuras/SV_fig2.pdf}
+\end{figure}
+\end{multicols}
+
+
+{red}{$$47-33 = 14$$}
+
+
+
+
+\ {Exemplo - Fatorial $2\times2$}
+
+{red}{Efeito simples e de interação}
+
+\begin{multicols}{2}
+
+Quadro auxiliar de médias dos níveis dos fatores
+\begin{center}
+\begin{tabular}{cccc}  \hline
+&	\multicolumn{2}{c}{Calagem} & \\ \cline{2-3}
+Irrigação & $C_0$ & $C_1$ & Médias \\ \hline     
+$I_0$ & {red}{28} & {blue}{32} & 30  \\ 
+$I_1$ & {red}{38} & {blue}{62} & 50  \\ \hline
+Médias & 33 & 47 & 40  \\ \hline
+\multicolumn{4}{l}{Fonte: Vieira, Sônia (2006)}
+\end{tabular}
+\end{center}
+\newpage
+\begin{figure}[H]
+\centering
+\includegraphics[scale=0.4]{Figuras/SV_fig3.pdf}
+\end{figure}
+\end{multicols}
+
+
+Efeito de Irrigação dentro de $C_0$: {red}{$38-28 = 10$}
+
+Efeito de Irrigação dentro de $C_1$: {blue}{$62-32 = 30$}
+
+Efeito da Interação: {$\displaystyle{\frac{{blue}{30}-{red}{10}}{2} = 10}$}
+
+
+
+\ {Exemplo - Fatorial $2\times2$}
+
+{red}{Efeito simples e de interação}
+
+\begin{multicols}{2}
+
+Quadro auxiliar de médias dos níveis dos fatores
+\begin{center}
+\begin{tabular}{cccc}  \hline
+&	\multicolumn{2}{c}{Calagem} & \\ \cline{2-3}
+Irrigação & $C_0$ & $C_1$ & Médias \\ \hline     
+$I_0$ & {red}{28} & {red}{32} & 30  \\ 
+$I_1$ & {blue}{38} & {blue}{62} & 50  \\ \hline
+Médias & 33 & 47 & 40  \\ \hline
+\multicolumn{4}{l}{Fonte: Vieira, Sônia (2006)}
+\end{tabular}
+\end{center}
+\newpage
+\begin{figure}[H]
+\centering
+\includegraphics[scale=0.4]{Figuras/SV_fig4.pdf}
+\end{figure}
+\end{multicols}
+
+
+Efeito de Calagem dentro de $I_0$: {red}{$32-28 = 4$}
+
+Efeito de Calagem dentro de $I_1$: {blue}{$62-38 = 24$}
+
+Efeito da Interação: {$\displaystyle{\frac{{blue}{24}-{red}{4}}{2} = 10}$}
+
+
+
+
+
+\ {Exemplo - Fatorial $2\times2$}	
+
+\begin{center}
+\begin{tabular}{cccc} 
+\multicolumn{4}{l}{Tabela1: Peso de plantas cul-} \\ 
+\multicolumn{4}{l}{tivadas segundo o tratamento}\\ \hline
+$I_0C_0$ &	$I_0C_1$ &	$I_1C_0$ & $I_1C_1$ \\ \hline
+25 &	35 &	41 &	60 \\
+32 &	28 &	35 &	67 \\
+27 &  33 &	38 &	59 \\ \hline
+84 & 96 & 114 & 186 \\ \hline
+\end{tabular}
+\end{center}
+
+\begin{block}{Soma de quadrados do Total}
+$$\displaystyle{SQ_{\text{Total}} = \sum_i\sum_k\sum_j y_{ikj}^2 - \frac{(\sum_i\sum_k\sum_j y_{ikj})^2}{abr}}$$
+\end{block}
+
+$$SQ_{\text{Total}} = 25^2 + 32^2 + 27^2 + \ldots + 59^2 - \frac{480^2}{12} = 2196$$
+
+
+
+
+
+\ {Exemplo - Fatorial $2\times2$}	
+
+Quadro auxiliar de totais dos níveis dos fatores
+\begin{center}
+\begin{tabular}{cccc}  \hline
+&	\multicolumn{2}{c}{Calagem} & \\ \cline{2-3}
+Irrigação & $C_0$ & $C_1$ & Totais \\ \hline     
+$I_0$ & 84$^{(3)}$ & 96$^{(3)}$ & {red}{180$^{(6)}$}  \\ 
+$I_1$ & 114$^{(3)}$ & 186$^{(3)}$ & {red}{300$^{(6)}$}  \\ \hline
+Totais & 198$^{(6)}$ & 282$^{(6)}$ & {red}{480$^{(12)}$}  \\ \hline
+\multicolumn{4}{l}{Fonte: Vieira, Sônia (2006)}
+\end{tabular}
+\end{center}
+
+\begin{block}{Soma de quadrados de Irrigação}
+$$\displaystyle{SQ_{\text{Irrigação}} = \frac{1}{br} \sum_i y_{i\cdot\cdot}^2 - \frac{y_{\cdot\cdot\cdot}^2}{abr}}$$
+\end{block}
+
+$$SQ_{\text{Irrigação}} = \frac{1}{6}({red}{180}^2 + {red}{300}^2) - \frac{{red}{480}^2}{12} = 1200$$
+
+
+
+\ {Exemplo - Fatorial $2\times2$}	
+
+Quadro auxiliar de totais dos níveis dos fatores
+\begin{center}
+\begin{tabular}{cccc}  \hline
+&	\multicolumn{2}{c}{Calagem} & \\ \cline{2-3}
+Irrigação & $C_0$ & $C_1$ & Totais \\ \hline     
+$I_0$ & 84$^{(3)}$ & 96$^{(3)}$ & 180$^{(6)}$  \\ 
+$I_1$ & 114$^{(3)}$ & 186$^{(3)}$ & 300$^{(6)}$  \\ \hline
+Totais & {red}{198}$^{(6)}$ & {red}{282}$^{(6)}$ & {red}{480}$^{(12)}$  \\ \hline
+\multicolumn{4}{l}{Fonte: Vieira, Sônia (2006)}
+\end{tabular}
+\end{center}
+
+\begin{block}{Soma de quadrados de Calagem}
+$$\displaystyle{SQ_{\text{Calagem}} = \frac{1}{ar} \sum_k y_{\cdot k\cdot}^2 - \frac{y_{\cdot\cdot\cdot}^2}{abr}}$$
+\end{block}
+
+$$SQ_{\text{Calagem}} = \frac{1}{6}({red}{198}^2 + {red}{282}^2) - \frac{{red}{480}^2}{12} = 588$$
+
+
+
+\ {Exemplo - Fatorial $2\times2$}	
+
+Quadro auxiliar de totais dos níveis dos fatores
+\begin{center}
+\begin{tabular}{cccc}  \hline
+&	\multicolumn{2}{c}{Calagem} & \\ \cline{2-3}
+Irrigação & $C_0$ & $C_1$ & Totais \\ \hline     
+$I_0$ & {red}{84}$^{(3)}$ & {red}{96}$^{(3)}$ & 180$^{(6)}$  \\ 
+$I_1$ & {red}{114}$^{(3)}$ & {red}{186}$^{(3)}$ & 300$^{(6)}$  \\ \hline
+Totais & 198$^{(6)}$ & 282$^{(6)}$ & {red}{480}$^{(12)}$  \\ \hline
+\multicolumn{4}{l}{Fonte: Vieira, Sônia (2006)}
+\end{tabular}
+\end{center}
+
+\begin{block}{Soma de quadrados da combinação Irrigação,Calagem (Tratamentos)}
+$$\displaystyle{SQ_{\text{I,C}} = \frac{1}{r} \sum_i\sum_k y_{ik\cdot}^2 - \frac{y_{\cdot\cdot\cdot}^2}{abr}}$$
+\end{block}
+
+$$SQ_{\text{I,C}} = \frac{1}{3}({red}{84}^2 + {red}{96}^2 + {red}{114}^2 + {red}{186}^2) - \frac{{red}{480}^2}{12} = 2088$$
+
+
+
+\ {Exemplo - Fatorial $2\times2$}	
+
+Quadro auxiliar de totais dos níveis dos fatores
+\begin{center}
+\begin{tabular}{cccc}  \hline
+&	\multicolumn{2}{c}{Calagem} & \\ \cline{2-3}
+Irrigação & $C_0$ & $C_1$ & Totais \\ \hline     
+$I_0$ & 84$^{(3)}$ & 96$^{(3)}$ & 180$^{(6)}$  \\ 
+$I_1$ & 114$^{(3)}$ & 186$^{(3)}$ & 300$^{(6)}$  \\ \hline
+Totais & 198$^{(6)}$ & 282$^{(6)}$ & 480$^{(12)}$  \\ \hline
+\multicolumn{4}{l}{Fonte: Vieira, Sônia (2006)}
+\end{tabular}
+\end{center}
+
+\begin{block}{Soma de quadrados da Interação Irrigação$\#$Calagem}
+$$\displaystyle{SQ_{\text{I\# C}} = SQ_{\text{I,C}} - SQ_{\text{I}} - SQ_{\text{C}}}$$
+\end{block}
+
+$$SQ_{\text{I\#C}} = 2088 - 1200 - 588 = 300$$
+
+
+
+
+\ {Exemplo - Fatorial $2\times2$}	
+{red}{
+$H_0:$ Não há efeito da interação \\
+$H_1:$ Há efeito da interação.}
+
+\begin{center}
+\begin{tabular}{lllll} \hline
+Fontes de variação & gl & SQ & QM & F\\ \hline
+%Parcelas & 11 & 2196 & &\\
+Irrigação &  1 &  1200 &  1200 & 88,89 \\
+Calagem &  1 &  588 & 588 & 43,56\\
+{red}{Interação} &  {red}{1} &   {red}{300} &  {red}{300} & {red}{22,22}\\ 
+Resíduo     &  8 &  108 &  13,5\\ \hline
+\end{tabular}
+\end{center}
+
+$$F_{\text{tab}(5\%,1,8)} = 5,32$$
+
+
+Como $\displaystyle{F = \frac{300}{13,5} = 22,22 > 5,32 = F_{tab}}$, ao nível de 5\% de significância, rejeita-se $H_0$. Logo, há evidências para afirmar que há efeito da interação entre Irrigação e Calagem, não sendo os mesmos independentes.
+
+
+
+\{Exemplo - Fatorial $2\times2$}
+{\bf Efeito de Irrigação dentro de cada nível de Calagem}
+
+\begin{center}
+\begin{tabular}{cccc}  \hline
+&	\multicolumn{2}{c}{Calagem} & \\ \cline{2-3}
+Irrigação & {red}{$C_0$} & {blue}{$C_1$} & Totais \\ \hline     
+$I_0$ & {red}{84$^{(3)}$} & {blue}{96$^{(3)}$} & 180$^{(6)}$  \\ 
+$I_1$ & {red}{114$^{(3)}$} & {blue}{186$^{(3)}$} & 300$^{(6)}$  \\ \hline
+Totais & {red}{198$^{(6)}$} & {blue}{282$^{(6)}$} & 480$^{(12)}$  \\ \hline
+\multicolumn{4}{l}{Fonte: Vieira, Sônia (2006)}
+\end{tabular}
+\end{center}
+
+$$SQ_{\text{Irrigação dentro de $C_0$}} = \frac{1}{r}\sum_i y_{i1\cdot}^2 - \frac{y_{\cdot 1 \cdot}^2}{ar}$$
+$${red}{SQ_{\text{Irrigação dentro de $C_0$}} = \frac{1}{3}(84^2 + 114^2) - \frac{198^2}{6} = 150}$$
+
+
+
+
+
+\{Exemplo - Fatorial $2\times2$}
+{\bf Efeito de Irrigação dentro de cada nível de Calagem}
+
+\begin{center}
+\begin{tabular}{cccc}  \hline
+&	\multicolumn{2}{c}{Calagem} & \\ \cline{2-3}
+Irrigação & {red}{$C_0$} & {blue}{$C_1$} & Totais \\ \hline     
+$I_0$ & {red}{84$^{(3)}$} & {blue}{96$^{(3)}$} & 180$^{(6)}$  \\ 
+$I_1$ & {red}{114$^{(3)}$} & {blue}{186$^{(3)}$} & 300$^{(6)}$  \\ \hline
+Totais & {red}{198$^{(6)}$} & {blue}{282$^{(6)}$} & 480$^{(12)}$  \\ \hline
+\multicolumn{4}{l}{Fonte: Vieira, Sônia (2006)}
+\end{tabular}
+\end{center}
+
+$$SQ_{\text{Irrigação dentro de $C_1$}} = \frac{1}{r}\sum_i y_{i2\cdot}^2 - \frac{y_{\cdot 2 \cdot}^2}{ar}$$
+$${blue}{SQ_{\text{Irrigação dentro de $C_1$}} = \frac{1}{3}(96^2 + 186^2) - \frac{282^2}{6} = 1350}$$
+
+
+
+
+
+\{Exemplo - Fatorial $2\times2$}
+{\bf Efeito de Irrigação dentro de cada nível de Calagem}
+
+{\footnotesize
+
+\begin{center}
+\begin{tabular}{lllrr} \hline
+Fontes de variação & gl & SQ & QM & F\\ \hline
+%Parcelas & 11 & 2196 & &\\
+ Calagem &  1 &  588 &   & \\
+ {red}{Irrigação dentro de $C_0$} &  {red}{1} &  {red}{150} &  {red}{150} & {red}{11,11}\\
+ {blue}{Irrigação dentro de $C_1$} &  {blue}{1} &  {blue}{1350} &  {blue}{1350} & {blue}{100,00}\\
+ Resíduo     &  8 &  108 &  13,5\\ \hline
+\end{tabular}
+\end{center}
+
+
+
+\begin{columns}
+\begin{column}{0.4\textwidth}
+
+\begin{center}
+    
+
+{red}{
+$H_0: \mu_{I_0C_0} = \mu_{I_1C_0}$ \\
+$H_a: \mu_{I_0C_0} \neq \mu_{I_1C_0}$ }
+
+{0.5cm}
+
+{blue}{
+$H_0: \mu_{I_0C_1} = \mu_{I_1C_1}$ \\
+$H_a: \mu_{I_0C_1} \neq \mu_{I_1C_1}$ }
+\end{center}
+
+{0.5cm}
+
+$$F_{\text{tab}(5\%,1,8)} = 5,32$$
+\end{column}
+
+\begin{column}{0.6\textwidth}
+\begin{figure}[H]
+\centering
+\includegraphics[scale=0.4]{Figuras/SV_fig3.pdf}
+\end{figure}
+\end{column}
+
+\end{columns}
+
+}
+
+
+
+\{Exemplo - Fatorial $2\times2$}
+{\bf Efeito de Irrigação dentro de cada nível de Calagem}
+
+{red}{
+$H_0: \mu_{I_0C_0} = \mu_{I_1C_0}$ \\
+$H_a: \mu_{I_0C_0} \neq \mu_{I_1C_0}$ }
+
+\begin{center}
+\begin{tabular}{lllrr} \hline
+Fontes de variação & gl & SQ & QM & F\\ \hline
+%Parcelas & 11 & 2196 & &\\
+ Calagem &  1 &  588 &   & \\
+ {red}{Irrigação dentro de $C_0$} &  {red}{1} &  {red}{150} &  {red}{150} & {red}{11,11}\\
+ {blue}{Irrigação dentro de $C_1$} &  {blue}{1} &  {blue}{1350} &  {blue}{1350} & {blue}{100,00}\\
+ Resíduo     &  8 &  108 &  13,5\\ \hline
+\end{tabular}
+\end{center}
+
+$$F_{\text{tab}(5\%,1,8)} = 5,32$$
+
+Como $\displaystyle{F = \frac{150}{13,5} = 11,11 > 5,32 = F_{tab}}$, ao nível de 5\% de significância rejeita-se $H_0$. Assim as médias de peso de plantas na ausência e na presença de irrigação são diferentes, quando avaliadas na ausência de Calcário.
+
+
+
+\{Exemplo - Fatorial $2\times2$}
+{\bf Efeito de Irrigação dentro de cada nível de Calagem}
+
+{blue}{
+$H_0: \mu_{I_0C_1} = \mu_{I_1C_1}$ \\
+$H_a: \mu_{I_0C_1} \neq \mu_{I_1C_1}$ }
+
+\begin{center}
+\begin{tabular}{lllrr} \hline
+Fontes de variação & gl & SQ & QM & F\\ \hline
+%Parcelas & 11 & 2196 & &\\
+ Calagem &  1 &  588 &   & \\
+ {red}{Irrigação dentro de $C_0$} &  {red}{1} &  {red}{150} & {red}{150} & {red}{11,11}\\
+ {blue}{Irrigação dentro de $C_1$} &  {blue}{1} &  {blue}{1350} &  {blue}{1350} & {blue}{100,00}\\
+ Resíduo     &  8 &  108 &  13,5\\ \hline
+\end{tabular}
+\end{center}
+
+$$F_{\text{tab}(5\%,1,8)} = 5,32$$
+
+Como $\displaystyle{F = \frac{1350}{13,5} = 100,00 > 5,32 = F_{tab}}$, ao nível de 5\% de significância rejeita-se $H_0$. Assim as médias de peso de plantas na ausência e na presença de irrigação são diferentes, quando avaliadas na presença de Calcário.
+
+
+
+
+\{Exemplo - Fatorial $2\times2$}
+{\bf Efeito de Calagem dentro de cada nível de Irrigação}
+
+\begin{center}
+\begin{tabular}{cccc}  \hline
+&	\multicolumn{2}{c}{Calagem} & \\ \cline{2-3}
+Irrigação & $C_0$ & $C_1$ & Totais \\ \hline     
+{red}{$I_0$} & {red}{84$^{(3)}$} & {red}{96$^{(3)}$} & {red}{180$^{(6)}$}  \\ 
+{blue}{$I_1$} & {blue}{114$^{(3)}$} & {blue}{186$^{(3)}$} & {blue}{300$^{(6)}$}  \\ \hline
+Totais & 198$^{(6)}$ & 282$^{(6)}$ & 480$^{(12)}$  \\ \hline
+\multicolumn{4}{l}{Fonte: Vieira, Sônia (2006)}
+\end{tabular}
+\end{center}
+
+$$SQ_{\text{Calagem dentro de $I_0$}} = \frac{1}{r}\sum_k y_{1k\cdot}^2 - \frac{y_{1 \cdot\cdot}^2}{br}$$
+$${red}{SQ_{\text{Calagem dentro de $I_0$}} = \frac{1}{3}(84^2 + 96^2) - \frac{180^2}{6} = 24}$$
+
+
+
+\{Exemplo - Fatorial $2\times2$}
+{\bf Efeito de Calagem dentro de cada nível de Irrigação}
+
+\begin{center}
+\begin{tabular}{cccc}  \hline
+&	\multicolumn{2}{c}{Calagem} & \\ \cline{2-3}
+Irrigação & $C_0$ & $C_1$ & Totais \\ \hline     
+{red}{$I_0$} & {red}{84$^{(3)}$} & {red}{96$^{(3)}$} & {red}{180$^{(6)}$}  \\ 
+{blue}{$I_1$} & {blue}{114$^{(3)}$} & {blue}{186$^{(3)}$} & {blue}{300$^{(6)}$}  \\ \hline
+Totais & 198$^{(6)}$ & 282$^{(6)}$ & 480$^{(12)}$  \\ \hline
+\multicolumn{4}{l}{Fonte: Vieira, Sônia (2006)}
+\end{tabular}
+\end{center}
+
+$$SQ_{\text{Calagem dentro de $I_1$}} = \frac{1}{r}\sum_k y_{2k\cdot}^2 - \frac{y_{2 \cdot\cdot}^2}{br}$$
+$${blue}{SQ_{\text{Calagem dentro de $I_1$}} = \frac{1}{3}(114^2 + 186^2) - \frac{300^2}{6} = 864}$$
+
+
+
+
+\{Exemplo - Fatorial $2\times2$}
+{\bf Efeito de Calagem dentro de cada nível de Irrigação}
+
+{red}{
+$H_0: \mu_{I_0C_0} = \mu_{I_0C_1}$ \\
+$H_a: \mu_{I_0C_0} \neq \mu_{I_0C_1}$ }
+
+\begin{center}
+\begin{tabular}{lllrr} \hline
+Fontes de variação & gl & SQ & QM & F\\ \hline
+%Parcelas & 11 & 2196 & &\\
+ Irrigação &  1 &  1200 &   & \\
+ {red}{Calagem dentro de $I_0$} &  {red}{1} &  {red}{24} &  {red}{24} & {red}{1,78}\\
+ {blue}{Calagem dentro de $I_1$} &  {blue}{1} &  {blue}{864} &  {blue}{864} & {blue}{64,00}\\
+ Resíduo     &  8 &  108 &  13,5\\ \hline
+\end{tabular}
+\end{center}
+
+$$F_{\text{tab}(5\%,1,8)} = 5,32$$
+
+Como $\discplaystyle{F = \frac{24}{13,5} = 1,78 < 5,32 = F_{tab}}$, ao nível de 5\% de significância não se rejeita $H_0$. Assim as médias de peso de plantas na ausência e na presença de calcário não são diferentes, quando avaliadas na ausência de Irrigação.
+
+
+
+\{Exemplo - Fatorial $2\times2$}
+{\bf Efeito de Calagem dentro de cada nível de Irrigação}
+
+{blue}{
+$H_0: \mu_{I_1C_0} = \mu_{I_1C_1}$ \\
+$H_a: \mu_{I_1C_0} \neq \mu_{I_1C_1}$ }
+
+\begin{center}
+\begin{tabular}{lllrr} \hline
+Fontes de variação & gl & SQ & QM & F\\ \hline
+%Parcelas & 11 & 2196 & &\\
+ Irrigação &  1 &  1200 &   & \\
+ {red}{Calagem dentro de $I_0$} &  {red}{1} &  {red}{24} &  {red}{24} & {red}{1,78}\\
+ {blue}{Calagem dentro de $I_1$} &  {blue}{1} &  {blue}{864} &  {blue}{864} & {blue}{64,00}\\
+ Resíduo     &  8 &  108 &  13,5\\ \hline
+\end{tabular}
+\end{center}
+
+$$F_{\text{tab}(5\%,1,8)} = 5,32$$
+
+Como $\discplaystyle{F = \frac{864}{13,5} = 64,00 > 5,32 = F_{tab}}$, ao nível de 5\% de significância rejeita-se $H_0$. Assim as médias de peso de plantas na ausência e na presença de calcário  são diferentes, quando avaliadas na presença de Irrigação.
+
+
+
+
+\{Exemplo - Fatorial $2\times2$}
+\begin{center}
+\begin{tabular}{ccc}  \hline
+&	\multicolumn{2}{c}{Calagem} \\ \cline{2-3}
+Irrigação & $C_0$ & $C_1$  \\ \hline     
+$I_0$ & 28 {red}{a} {red}{B} & 32 {red}{a} {blue}{B}  \\ 
+$I_1$ & 38 {blue}{b} {red}{A} & 62 {blue}{a} {blue}{A} \\ \hline
+\end{tabular}
+\end{center}
+
+Letras minúsculas representam a comparação das médias de Calagem dentro de cada nível de Irrigação e letras maiúsculas representam a comparação das médias de Irrigação dentro de cada nível de Calagem.
+
+

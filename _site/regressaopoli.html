@@ -1,0 +1,853 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta charset="utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+
+
+
+<title>Regressão polinomial</title>
+
+<script src="site_libs/header-attrs-2.24/header-attrs.js"></script>
+<script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/cosmo.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<style>h1 {font-size: 34px;}
+       h1.title {font-size: 38px;}
+       h2 {font-size: 30px;}
+       h3 {font-size: 24px;}
+       h4 {font-size: 18px;}
+       h5 {font-size: 16px;}
+       h6 {font-size: 12px;}
+       code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
+       pre:not([class]) { background-color: white }</style>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+<link href="site_libs/highlightjs-9.12.0/textmate.css" rel="stylesheet" />
+<script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
+
+<style type="text/css">
+  code{white-space: pre-wrap;}
+  span.smallcaps{font-variant: small-caps;}
+  span.underline{text-decoration: underline;}
+  div.column{display: inline-block; vertical-align: top; width: 50%;}
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  ul.task-list{list-style: none;}
+    </style>
+
+<style type="text/css">code{white-space: pre;}</style>
+<script type="text/javascript">
+if (window.hljs) {
+  hljs.configure({languages: []});
+  hljs.initHighlightingOnLoad();
+  if (document.readyState && document.readyState === "complete") {
+    window.setTimeout(function() { hljs.initHighlighting(); }, 0);
+  }
+}
+</script>
+
+
+
+
+
+
+
+
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+img {
+  max-width:100%;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+.html-widget {
+  margin-bottom: 20px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+summary {
+  display: list-item;
+}
+details > summary > p:only-child {
+  display: inline;
+}
+pre code {
+  padding: 0;
+}
+</style>
+
+
+<style type="text/css">
+.dropdown-submenu {
+  position: relative;
+}
+.dropdown-submenu>.dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: -6px;
+  margin-left: -1px;
+  border-radius: 0 6px 6px 6px;
+}
+.dropdown-submenu:hover>.dropdown-menu {
+  display: block;
+}
+.dropdown-submenu>a:after {
+  display: block;
+  content: " ";
+  float: right;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 5px 0 5px 5px;
+  border-left-color: #cccccc;
+  margin-top: 5px;
+  margin-right: -10px;
+}
+.dropdown-submenu:hover>a:after {
+  border-left-color: #adb5bd;
+}
+.dropdown-submenu.pull-left {
+  float: none;
+}
+.dropdown-submenu.pull-left>.dropdown-menu {
+  left: -100%;
+  margin-left: 10px;
+  border-radius: 6px 0 6px 6px;
+}
+</style>
+
+<script type="text/javascript">
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark the anchor link active (and if it's in a dropdown, also mark that active)
+  var dropdown = menuAnchor.closest('li.dropdown');
+  if (window.bootstrap) { // Bootstrap 4+
+    menuAnchor.addClass('active');
+    dropdown.find('> .dropdown-toggle').addClass('active');
+  } else { // Bootstrap 3
+    menuAnchor.parent().addClass('active');
+    dropdown.addClass('active');
+  }
+
+  // Navbar adjustments
+  var navHeight = $(".navbar").first().height() + 15;
+  var style = document.createElement('style');
+  var pt = "padding-top: " + navHeight + "px; ";
+  var mt = "margin-top: -" + navHeight + "px; ";
+  var css = "";
+  // offset scroll position for anchor links (for fixed navbar)
+  for (var i = 1; i <= 6; i++) {
+    css += ".section h" + i + "{ " + pt + mt + "}\n";
+  }
+  style.innerHTML = "body {" + pt + "padding-bottom: 40px; }\n" + css;
+  document.head.appendChild(style);
+});
+</script>
+
+<!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before, .tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "\e259";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "\e258";
+  font-family: 'Glyphicons Halflings';
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+  background-color: transparent;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
+<!-- code folding -->
+
+
+
+
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
+
+
+
+
+<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-bs-toggle="collapse" data-target="#navbar" data-bs-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html">My Website</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li>
+  <a href="index.html">Home</a>
+</li>
+<li>
+  <a href="about.html">About</a>
+</li>
+<li>
+  <a href="dic.html">Delineamento inteiramente casualizado</a>
+</li>
+<li>
+  <a href="dbc.html">Delineamento blocos casualizados</a>
+</li>
+<li>
+  <a href="dql.html">Delineamento quadrado latino</a>
+</li>
+<li>
+  <a href="comparacao.html">Comparação de médias</a>
+</li>
+<li>
+  <a href="regressaopoli.html">Regressão polinomial</a>
+</li>
+<li>
+  <a href="fatorial.html">Esquema fatorial</a>
+</li>
+<li>
+  <a href="parcelas.html">Parcelas subdivididas</a>
+</li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+
+<div id="header">
+
+
+
+<h1 class="title toc-ignore">Regressão polinomial</h1>
+
+</div>
+
+
+<p>{r, echo=FALSE} options(OutDec = “,”)</p>
+<div id="regressão-polinomial" class="section level1">
+<h1>Regressão polinomial</h1>
+<p>Os tratamentos podem ser qualitativos por exemplo: variedades,
+genótipos, raças etc.Estes devem ser comparados utilizando os métodos
+vistos anteriormente. Ou ainda podem ser quantitativos por exemplo doses
+de adubação, quantidade de água etc. Estes devem sem comparados
+utilizando o método da regressão polinomial.</p>
+<p>Exemplo: Ragazzi (1979) utilizou um experimento inteiramente
+casualizado com quatro repetições para estudar o efeito de 7 doses de
+gesso: 0, 50, 100, 150, 200, 250 e 300 kg/ha sobre diversas
+características do feijoeiro. Para a característica peso de 1000
+sementes, obteve os resultados apresentados na Tabela 1.</p>
+<p>Tabela 1. Peso de 1000 sementes de feijão, em g, em função da dose de
+gesso, em kg/ha</p>
+<table>
+<thead>
+<tr class="header">
+<th>Dose</th>
+<th>1</th>
+<th>2</th>
+<th>3</th>
+<th>4</th>
+<th>média</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>0</td>
+<td>134,8</td>
+<td>139,7</td>
+<td>147,6</td>
+<td>132,3</td>
+<td>138,600</td>
+</tr>
+<tr class="even">
+<td>50</td>
+<td>161,7</td>
+<td>157,7</td>
+<td>150,3</td>
+<td>144,7</td>
+<td>153,600</td>
+</tr>
+<tr class="odd">
+<td>100</td>
+<td>160,7</td>
+<td>172,7</td>
+<td>163,4</td>
+<td>161,3</td>
+<td>164,525</td>
+</tr>
+<tr class="even">
+<td>150</td>
+<td>169,8</td>
+<td>168,2</td>
+<td>160,7</td>
+<td>161,0</td>
+<td>164,925</td>
+</tr>
+<tr class="odd">
+<td>200</td>
+<td>165,7</td>
+<td>160,0</td>
+<td>158,2</td>
+<td>151,0</td>
+<td>158,725</td>
+</tr>
+<tr class="even">
+<td>250</td>
+<td>171,8</td>
+<td>157,3</td>
+<td>150,4</td>
+<td>160,4</td>
+<td>159,975</td>
+</tr>
+<tr class="odd">
+<td>300</td>
+<td>154,5</td>
+<td>160,4</td>
+<td>148,8</td>
+<td>154,0</td>
+<td>154,425</td>
+</tr>
+</tbody>
+</table>
+<p>{r, collapse= TRUE, warning=FALSE} rm(list=ls(all=TRUE)) dadosfeijao
+&lt;- data.frame(dosef = rep(seq(0,300,50),each=4), pesof =
+c(134.8,139.7,147.6,132.3, 161.7,157.7,150.3,144.7,
+160.7,172.7,163.4,161.3, 169.8,168.2,160.7,161.0,
+165.7,160.0,158.2,151.0, 171.8,157.3,150.4,160.4,
+154.5,160.4,148.8,154.0)) head(dadosfeijao) str(dadosfeijao)</p>
+<p>(media &lt;- with(dadosfeijao, tapply(pesof, dosef, mean)))</p>
+<p>{r, echo=FALSE} library(ggplot2) ggplot(dadosfeijao, aes(x = dosef, y
+= pesof)) + geom_point() + geom_point(stat = “summary”, fun = mean,
+color = 2) + xlab(“dose de gesso (kg/ha)”) + ylab(“peso de 1000 sementes
+de feijão (g)”) + theme_classic()</p>
+<p>{r, echo=FALSE} #’ # 1. Ajuste do modelo (dose como variável
+qualitativa) #’ #’ <span class="math inline">\(H_0: \mu_{0} = \mu_{50} =
+\ldots = \mu_{300} = \mu\)</span> versus <span
+class="math inline">\(H_1:\)</span> pelo menos um contraste de médias
+difere de zero.</p>
+<p>modelof&lt;- lm(pesof ~ as.factor(dosef), dadosfeijao)
+anova(modelof)</p>
+<p>Assumindo-se o nível de 5% de significância, como valor-p =
+0,00018763 &lt; 0,05 = <span class="math inline">\(\alpha\)</span>),
+rejeita-se <span class="math inline">\(H_0\)</span>. Logo há evidências
+para afirmar que há efeito de Dose}}.</p>
+<p>Fatores quantitativos <span
+class="math inline">\(\Rightarrow\)</span> Relação funcional entre a
+variável resposta (<span class="math inline">\(y\)</span>) e os níveis
+desses fatores (<span class="math inline">\(X\)</span>).</p>
+<p>Modelo</p>
+<p><span class="math display">\[y = f(X) + \epsilon,\]</span> em que
+<span class="math inline">\(f(X)\)</span> é uma função desconhecida.</p>
+<p>Objetivos:</p>
+<ul>
+<li>Obter uma função que represente <span
+class="math inline">\(f(X)\)</span>, aproximadamente;</li>
+<li>Obter o nível de <span class="math inline">\(x\)</span> que leva à
+máxima/mínima resposta;</li>
+<li>Obter a dose econômica (é necessário conhecer a equação de lucro e o
+preço do nutriente)</li>
+</ul>
+<p>Função Polinomial de grau <span class="math inline">\(p\)</span>
+<span class="math display">\[y = \beta_0 + \beta_1 X + \beta_2X^2 +
+\ldots + \beta_pX^p + \epsilon\]</span></p>
+<p>Características:</p>
+<ul>
+<li>Fácil ajuste;</li>
+<li>Interpretação limitada ao intervalo de estudo</li>
+</ul>
+<p>Mais de uma observação da variável resposta por nível do fator <span
+class="math display">\[\Downarrow\]</span> Verificação da Falta de
+Ajuste.</p>
+<p>Falta de Ajuste = Desvios de Regressão</p>
+<p>Se <span class="math inline">\(I\)</span> é o número de níveis do
+fator quantitativo <span class="math display">\[\Downarrow\]</span>
+Ajuste de um polinômio de no máximo grau (<span
+class="math inline">\(I-1\)</span>)</p>
+<p>No exemplo <span class="math inline">\(I = 7\)</span> doses de gesso,
+0, 50, 100, 150, 200, 250 e 300. Logo podemos ajustar um polinômio de
+grau no máximo 6.</p>
+<p><strong>Possiveis ajustes</strong></p>
+<p><strong>Modelo Linear</strong></p>
+<p>{r, echo=FALSE} modelo.RL &lt;- lm(pesof ~ poly(dosef,1) +
+as.factor(dosef), dadosfeijao) anova(modelo.RL)</p>
+<p>{r, echo=FALSE} (R21 &lt;- sum(anova(modelo.RL)<span
+class="math inline">\(`Sum
+Sq`[1:2])/  sum(anova(modelo.RL)\)</span><code>Sum Sq</code>[1:3]))</p>
+<p>{r, echo=FALSE} modelo.aj1 &lt;- lm(pesof ~ dosef , dadosfeijao)
+coef(modelo.aj1)</p>
+<p>{r, echo=FALSE} library(ggpubr) ggplot(dadosfeijao, aes(x = dosef, y
+= pesof)) + geom_point() + geom_point(stat = “summary”, fun = mean,
+color = 2) + geom_smooth(method = lm, formula = y ~ poly(x, 1), se =
+FALSE) + stat_regline_equation( aes(label = after_stat(eq.label)) ,
+formula = y ~ poly(x, 1, raw = TRUE), label.x = 170, label.y = 190) +
+ylim(120,190) + theme_classic() + # colocar o R^2. annotate(geom =
+“text”, x = 182, y = 185, label = expression(R^2 == 0.68)) + xlab(“dose
+de gesso (kg/ha)”) + ylab(“peso de 1000 sementes de feijão (g)”)</p>
+<p><span class="math display">\[\underbrace{\beta_0 + \beta_1X } +
+\underbrace{{\beta_{2}X^{2} + \beta_{3}X^{3} + \beta_{4}X^{4} +
+\beta_{5}X^{5} + \beta_{6}X^{6}}}\]</span> em que:</p>
+<p>. <span class="math inline">\({\beta_0 + \beta_1X }\)</span> estão no
+modelo</p>
+<p>. <span class="math inline">\({\beta_{2}X^{2} + \beta_{3}X^{3} +
+\beta_{4}X^{4} + \beta_{5}X^{5} + \beta_{6}X^{6}}\)</span> podem ser
+ajustados ao modelo</p>
+<p><strong>Modelo Quadrático</strong></p>
+<p>{r, echo=FALSE} modelo.RQ &lt;- lm(pesof ~ poly(dosef,1) +
+poly(dosef,2) + as.factor(dosef), dadosfeijao) anova(modelo.RQ)</p>
+<p>{r, echo=FALSE} (R2 &lt;- sum(anova(modelo.RQ)<span
+class="math inline">\(`Sum
+Sq`[1:2])/  sum(anova(modelo.RQ)\)</span><code>Sum Sq</code>[1:3]))</p>
+<p>{r, echo=false} modelo.aj &lt;- lm(pesof ~ dosef + I(dosef^2),
+dadosfeijao) coef(modelo.aj)</p>
+<p>{r, echo=FALSE} library(ggpubr) ggplot(dadosfeijao, aes(x = dosef, y
+= pesof)) + geom_point() + geom_point(stat = “summary”, fun = mean,
+color = 2) + geom_smooth(method = lm, formula = y ~ poly(x, 2), se =
+FALSE) + stat_regline_equation( aes(label = after_stat(eq.label)) ,
+formula = y ~ poly(x, 2, raw = TRUE), label.x = 170, label.y = 190) +
+ylim(120,190) + theme_classic() + # colocar o R^2. annotate(geom =
+“text”, x = 182, y = 185, label = expression(R^2 == 0.88)) + xlab(“dose
+de gesso (kg/ha)”) + ylab(“peso de 1000 sementes de feijão (g)”)</p>
+<p><strong>Modelo Cubico</strong></p>
+<p>{r, echo=FALSE} modelo.TC &lt;- lm(pesof ~ poly(dosef,1) +
+poly(dosef,2) + poly(dosef,3) + as.factor(dosef), dadosfeijao)
+anova(modelo.TC)</p>
+<p>{r, echo=FALSE} (R23 &lt;- sum(anova(modelo.TC)<span
+class="math inline">\(`Sum
+Sq`[1:2])/  sum(anova(modelo.TC)\)</span><code>Sum Sq</code>[1:3]))</p>
+<p>{r, echo=false} modelo.aj3 &lt;- lm(pesof ~ dosef + I(dosef^2)+
+I(dosef^3), dadosfeijao) coef(modelo.aj3)</p>
+<p>{r, echo=FALSE} library(ggpubr) ggplot(dadosfeijao, aes(x = dosef, y
+= pesof)) + geom_point() + geom_point(stat = “summary”, fun = mean,
+color = 2) + geom_smooth(method = lm, formula = y ~ poly(x,3), se =
+FALSE) + stat_regline_equation( aes(label = after_stat(eq.label)) ,
+formula = y ~ poly(x, 3, raw = TRUE), label.x = 100, label.y = 190) +
+ylim(120,190) + theme_classic() + # colocar o R^2. annotate(geom =
+“text”, x = 182, y = 185, label = expression(R^2 == 0.92)) + xlab(“dose
+de gesso (kg/ha)”) + ylab(“peso de 1000 sementes de feijão (g)”)</p>
+<p><strong>Modelo com potencia 4</strong></p>
+<p>{r, echo=FALSE} modelo.QP &lt;- lm(pesof ~ poly(dosef,1) +
+poly(dosef,2) + poly(dosef,3) + poly(dosef,4) + as.factor(dosef),
+dadosfeijao) anova(modelo.QP)</p>
+<p>{r, echo=FALSE} (R24 &lt;- sum(anova(modelo.QP)<span
+class="math inline">\(`Sum
+Sq`[1:2])/  sum(anova(modelo.QP)\)</span><code>Sum Sq</code>[1:3]))</p>
+<p>{r, echo=FALSE} modelo.aj4 &lt;- lm(pesof ~ dosef + I(dosef^2)+
+I(dosef^3)+ I(dosef^4), dadosfeijao) coef(modelo.aj4)</p>
+<p>{r, echo=FALSE} library(ggpubr) ggplot(dadosfeijao, aes(x = dosef, y
+= pesof)) + geom_point() + geom_point(stat = “summary”, fun = mean,
+color = 2) + geom_smooth(method = lm, formula = y ~ poly(x,4), se =
+FALSE) + stat_regline_equation( aes(label = after_stat(eq.label)) ,
+formula = y ~ poly(x, 4, raw = TRUE), label.x = 20, label.y = 190) +
+ylim(120,190) + theme_classic() + # colocar o R^2. annotate(geom =
+“text”, x = 182, y = 185, label = expression(R^2 == 0.92)) + xlab(“dose
+de gesso (kg/ha)”) + ylab(“peso de 1000 sementes de feijão (g)”)</p>
+<p><strong>Modelo com potencia 5</strong></p>
+<p>{r, echo=FALSE} modelo.QT &lt;- lm(pesof ~ poly(dosef,1) +
+poly(dosef,2) + poly(dosef,3) + poly(dosef,4) + poly(dosef,5) +
+as.factor(dosef), dadosfeijao) anova(modelo.QT)</p>
+<p>{r, echo=FALSE} (R25 &lt;- sum(anova(modelo.QP)<span
+class="math inline">\(`Sum
+Sq`[1:2])/  sum(anova(modelo.QP)\)</span><code>Sum Sq</code>[1:3]))</p>
+<p>{r, echo=FALSE} modelo.aj5 &lt;- lm(pesof ~ dosef + I(dosef^2)+
+I(dosef^3)+ I(dosef<sup>4)+I(dosef</sup>5), dadosfeijao)
+coef(modelo.aj5)</p>
+<p>{r, echo=FALSE} library(ggpubr) ggplot(dadosfeijao, aes(x = dosef, y
+= pesof)) + geom_point() + geom_point(stat = “summary”, fun = mean,
+color = 2) + geom_smooth(method = lm, formula = y ~ poly(x,5), se =
+FALSE) + stat_regline_equation( aes(label = after_stat(eq.label)) ,
+formula = y ~ poly(x, 5, raw = TRUE), label.x = 20, label.y = 190) +
+ylim(120,190) + theme_classic() + # colocar o R^2. annotate(geom =
+“text”, x = 182, y = 185, label = expression(R^2 == 0.92)) + xlab(“dose
+de gesso (kg/ha)”) + ylab(“peso de 1000 sementes de feijão (g)”)</p>
+<p><strong>Modelo com potencia 6</strong></p>
+<p>{r, echo=FALSE} modelo.ST &lt;- lm(pesof ~ poly(dosef,1) +
+poly(dosef,2) + poly(dosef,3) + poly(dosef,4) + poly(dosef,5) +
+poly(dosef,6) + as.factor(dosef), dadosfeijao) anova(modelo.ST)</p>
+<p>{r, echo=FALSE} (R26 &lt;- sum(anova(modelo.ST)<span
+class="math inline">\(`Sum
+Sq`[1:2])/  sum(anova(modelo.ST)\)</span><code>Sum Sq</code>[1:3]))</p>
+<p>{r, echo=FALSE} modelo.aj6 &lt;- lm(pesof ~ dosef + I(dosef^2)+
+I(dosef^3)+ I(dosef<sup>4)+I(dosef</sup>5)+I(dosef^6), dadosfeijao)
+coef(modelo.aj6)</p>
+<p>{r, echo=FALSE} library(ggpubr) ggplot(dadosfeijao, aes(x = dosef, y
+= pesof)) + geom_point() + geom_point(stat = “summary”, fun = mean,
+color = 2) + geom_smooth(method = lm, formula = y ~ poly(x,6), se =
+FALSE) + stat_regline_equation( aes(label = after_stat(eq.label)) ,
+formula = y ~ poly(x, 6, raw = TRUE), label.x = 0, label.y = 190) +
+ylim(120,190) + theme_classic() + # colocar o R^2. annotate(geom =
+“text”, x = 182, y = 185, label = expression(R^2 == 0.92)) + xlab(“dose
+de gesso (kg/ha)”) + ylab(“peso de 1000 sementes de feijão (g)”)</p>
+<div id="aplicação-no-r-studio" class="section level2">
+<h2>Aplicação no R studio</h2>
+<p>{r} library(ExpDes.pt) with(dadosfeijao, dic(trat = dosef, resp =
+pesof, quali = FALSE, sigT = 0.05, sigF = 0.05))</p>
+</div>
+<div id="exercícios" class="section level2">
+<h2>Exercícios</h2>
+<ol style="list-style-type: decimal">
+<li>Em um experimento de adubação em eucalipto (Eucalyptus grandis)
+conduzido em casa de vegetação, foram usadas 4 doses de K (0, 30, 60 e
+90 ppm), obtendo-se as alturas, em cm, apresentadas no conjunto de dados
+a seguir. Considerando-se que o experimento foi conduzido segundo o
+delineamento inteiramente casualizado com 3 repetições, pede-se:</li>
+</ol>
+<ol style="list-style-type: lower-alpha">
+<li><p>Faça a análise descrita dos dados apresentando
+comentários</p></li>
+<li><p>Encontre o modelo de regressão polinomial que melhor representa a
+altura das plantas em função da dose de K aplicada. Justifique sua
+escolha apresentado as hipóteses de interesse e conclusões assumindo o
+nível de 5% de significância. Apresente as estimativas dos parâmetros
+para tal modelo.</p></li>
+<li><p>Há uma dose que leva à máxima altura? Se sim, qual
+seria?</p></li>
+</ol>
+<p>{r} dados.ex &lt;- data.frame( dose = rep(seq(0, 90, 30), each = 3),
+altura = c( 80, 86, 71, 144,151, 97, 151,127,117, 70, 85, 92) )
+dados.ex</p>
+<ol start="2" style="list-style-type: decimal">
+<li>Efeito de cinco doses de NPK (kg.ha−1) na produção de cultivares de
+trigo. Com base nos resultados apresentados, responda:</li>
+</ol>
+<ol style="list-style-type: lower-alpha">
+<li>Com relação ao teste F da análise de variância selecione as
+hipóteses e conclua.</li>
+</ol>
+<table>
+<thead>
+<tr class="header">
+<th>F.V.</th>
+<th>GL</th>
+<th>SQ</th>
+<th>QM</th>
+<th>Fcal</th>
+<th>Ftab</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Tratamento</td>
+<td>4</td>
+<td>6291.8</td>
+<td>1572.94</td>
+<td>9.97</td>
+<td>2.54</td>
+</tr>
+<tr class="even">
+<td>Resíduo</td>
+<td>55</td>
+<td>8680.8</td>
+<td>157.83</td>
+<td></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>Total</td>
+<td>59</td>
+<td>14972.6</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<ol start="2" style="list-style-type: lower-alpha">
+<li>Considerando a decomposição da variabilidade entre tratamentos para
+estudo de modelos de regressão polinomial até terceiro grau, qual o
+modelo polinomial mais adequado para representar a relação funcional
+entre as variáveis de interesse?</li>
+</ol>
+<p>Modelo linear</p>
+<table>
+<thead>
+<tr class="header">
+<th>F.V.</th>
+<th>GL</th>
+<th>SQ</th>
+<th>QM</th>
+<th>Fcal</th>
+<th>Ftab</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Efeito linear</td>
+<td>1</td>
+<td>2842.13</td>
+<td>2842.13</td>
+<td>18.01</td>
+<td>4.016</td>
+</tr>
+<tr class="even">
+<td>D. R.</td>
+<td>3</td>
+<td>3449.63</td>
+<td>1149.88</td>
+<td>7.29</td>
+<td>2.77</td>
+</tr>
+<tr class="odd">
+<td>Resíduos</td>
+<td>55</td>
+<td>8680.83</td>
+<td>157.83</td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p>Modelo quadrático</p>
+<table>
+<thead>
+<tr class="header">
+<th>F.V.</th>
+<th>GL</th>
+<th>SQ</th>
+<th>QM</th>
+<th>Fcal</th>
+<th>Ftab</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Efeito linear</td>
+<td>1</td>
+<td>2842.13</td>
+<td>2842.13</td>
+<td>18.01</td>
+<td>4.016</td>
+</tr>
+<tr class="even">
+<td>Efeito quadrático</td>
+<td>1</td>
+<td>3102.88</td>
+<td>3102.88</td>
+<td>19.66</td>
+<td>4.016</td>
+</tr>
+<tr class="odd">
+<td>Desvios de R</td>
+<td>2</td>
+<td>346.75</td>
+<td>173.38</td>
+<td>1.1</td>
+<td>3.16</td>
+</tr>
+<tr class="even">
+<td>Resíduos</td>
+<td>55</td>
+<td>8680.83</td>
+<td>157.83</td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p>Modelo cúbico</p>
+<table>
+<thead>
+<tr class="header">
+<th>F.V.</th>
+<th>GL</th>
+<th>SQ</th>
+<th>QM</th>
+<th>Fcal</th>
+<th>Ftab</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Efeito linear</td>
+<td>1</td>
+<td>2842.13</td>
+<td>2842.13</td>
+<td>18.01</td>
+<td>4.016</td>
+</tr>
+<tr class="even">
+<td>Efeito quadrático</td>
+<td>1</td>
+<td>3102.88</td>
+<td>3102.88</td>
+<td>19.66</td>
+<td>4.016</td>
+</tr>
+<tr class="odd">
+<td>Efeito cúbico</td>
+<td>1</td>
+<td>343.41</td>
+<td>343.41</td>
+<td>2.18</td>
+<td>4.016</td>
+</tr>
+<tr class="even">
+<td>Desvios de R.</td>
+<td>1</td>
+<td>3.34</td>
+<td>3.34</td>
+<td>0.02</td>
+<td>4.016</td>
+</tr>
+<tr class="odd">
+<td>Resíduos</td>
+<td>55</td>
+<td>8680.83</td>
+<td>157.83</td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<div id="resolução" class="section level3">
+<h3>Resolução</h3>
+<p>1 a)</p>
+<p>{r, warning=FALSE} #’ ## Estatísticas descritivas nrp &lt;-
+with(dados.ex, tapply(altura, dose, length)) somarp &lt;- with(dados.ex,
+tapply(altura, dose, sum)) mediarp &lt;- with(dados.ex, tapply(altura,
+dose, mean)) varianciarp &lt;- with(dados.ex, tapply(altura, dose, var))
+desv.padrrp &lt;- with(dados.ex, tapply(altura, dose, sd)) dist.intrp
+&lt;- with(dados.ex, tapply(altura, dose, IQR))</p>
+<p>{r} #’ Criando uma função que calcula a amplitude frp &lt;-
+function(x) max(x)-min(x) amplituderp &lt;- with(dados.ex,
+tapply(altura, dose, frp))</p>
+<p>resumorp &lt;- rbind(nrp, somarp, mediarp, varianciarp, desv.padrrp,
+amplituderp, dist.intrp) rownames(resumorp) &lt;- c(“n”, “Soma”,
+“Média”, “Variância”, “Desvio-padrão”, “Amplitude”, “Amplitude
+Interquartílica”) round(resumorp,3)</p>
+<ol start="2" style="list-style-type: lower-alpha">
+<li>{r} library(ExpDes.pt) with(dados.ex, dic(trat = dose, resp =
+altura, quali = FALSE, sigT = 0.05, sigF = 0.05))</li>
+</ol>
+<p>Pode-se concluir que ao nível de significancia de 5% o modelo
+quadrático é o que expressa a regressão polinomial dos dados.</p>
+<ol start="3" style="list-style-type: lower-alpha">
+<li>modelo: <span class="math display">\[ y =
+79.0167+2.5617x-0.0281x^2\]</span> Para saber o valor da dose máxima
+deve-se derivar e igular a zero.</li>
+</ol>
+<p><span class="math display">\[ y&#39;= 2.5617 - 0.0562x \]</span>
+<span class="math display">\[ 0 = 2.5617 - 0.0562x\]</span></p>
+<p><span class="math display">\[ \frac{-2.5617}{-0.0562} =
+x\]</span></p>
+<p><span class="math display">\[ x= 45.581 \]</span></p>
+<p>2 a) Como o Fcal&gt;Ftab pode-se concluir que há evidências para
+rejeitarmos Ho ao nível de 5% de confiança.</p>
+<ol start="2" style="list-style-type: lower-alpha">
+<li>Modelo quadrático por que ao nível de 5% de confiça o Fcal se
+mostrou maior que o F tabelado no efeito linear e no efeito quadrático e
+o F cal se mostrou menor que o F tab no desvio de regressão já no modelo
+quadrático.</li>
+</ol>
+</div>
+</div>
+</div>
+
+
+
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.odd').parent('tbody').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open');
+  });
+});
+</script>
+
+<!-- code folding -->
+
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>

@@ -1,0 +1,1561 @@
+---
+title: "Parcelas subdivididas"
+---
+
+Considere o seguinte experimento instalado de acordo com o delineamento casualizado em blocos, sendo os fatores de tratamento variedades de soja, com 4 níveis e formas de adubação, com 3 níveis.
+
+$$\mbox{2 fatores} \left\{\begin{array}{l}
+\mbox{[rgb]{1.00,0.00,0.00}{\textbf{Variedades}}:} V_1, V_2, V_3, V_4\\
+\mbox{[rgb]{0.00,0.00,1.00}{\textbf{Formas}}}: F_1, F_2, F_3\\
+\end{array} \right.$$
+$$\Downarrow$$
+$$\mbox{12 combinações} \Rightarrow \mbox{12 tratamentos}$$
+$$\begin{array}{c}
+V_1F_1 \; V_1F_2 \; V_1F_3\\
+V_2F_1 \; V_2F_2 \; V_2F_3\\
+V_3F_1 \; V_3F_2 \; V_3F_3\\
+V_4F_1 \; V_4F_2 \; V_4F_3
+\end{array}
+$$
+\end{frame}
+
+
+ {Introdução}
+
+\begin{itemize}
+\item [rgb]{1.00,0.00,0.00}{\textbf{Ensaio Fatorial}}
+\begin{figure}[b]
+\includegraphics[width=10cm]{Aulas/Figuras/aula11_fat.pdf} %
+\end{figure}
+\end{itemize}
+
+$$y_{jik} = \mu + b_j + \alpha_{i} + \gamma_k + (\alpha\gama)_{ik} + e_{jik}.$$
+
+\end{frame}
+
+ {Introdução}
+
+\begin{itemize}
+\item [rgb]{1.00,0.00,0.00}{\textbf{Ensaio em Parcelas Subdivididas}} (Sorteio dos níveis de Formas casualizados às Parcelas)
+\begin{figure}[b]
+\includegraphics[width=10cm]{Aulas/Figuras/aula11_split1.pdf} %
+%\caption{Possível croqui para um bloco: ensaio em parcelas subdivididas}
+\end{figure}
+\end{itemize}
+
+\end{frame}
+
+ {Introdução}
+
+\begin{itemize}
+\item [rgb]{1.00,0.00,0.00}{\textbf{Ensaio em Parcelas Subdivididas}} (Sorteio dos níveis de Variedades casualizados às Subparcelas)
+\begin{figure}[b]
+\includegraphics[width=10cm]{Aulas/Figuras/aula11_split.pdf} %
+%\caption{Possível croqui para um bloco: ensaio em parcelas subdivididas}
+\end{figure}
+\end{itemize}
+
+\end{frame}
+
+ {Introdução}
+
+\begin{itemize}
+\item [rgb]{1.00,0.00,0.00}{\textbf{Ensaio em Faixas}}
+\begin{figure}[b]
+\includegraphics[width=10cm]{Aulas/Figuras/aula11_faixas.pdf} %
+%\caption{Possível croqui para um bloco: ensaio em faixas}
+\end{figure}
+\end{itemize}
+
+\end{frame}
+
+{Introdução}
+
+\begin{block}{Exemplo de um Delineamento Casualizado em Blocos com parcelas subdivididas}
+{\small
+O vírus da batata Y (PVY) é uma séria ameaça à produção de batata devido aos efeitos no rendimento e na qualidade dos tubérculos,
+em particular, devido à indução de doença de mancha anelar necrótica do tubérculo da batateira (PTNRD), tipicamente associada
+com cepas recombinantes de PVY. Essas cepas recombinantes têm se espalhado nos Estados Unidos nos últimos anos, embora as razões para essa disseminação contínua permaneçam obscuras. Para documentar e avaliar esta propagação entre 2011 e 2015, a composição da cepa de isolados de PVY que circulam na área de produção de batata da  Columbia Basin  foi determinada a partir de centenas de lotes de sementes de vários cultivares.
+Para abordar ainda mais a mudança na abundância de cepas, experimentos em casa de vegetação foram conduzidos (Funke et al, 2017, Plant Disease 101:20-28,
+https://doi.org/10.1094/PDIS-06-16-0901-RE).}
+    
+\end{block}
+    
+\end{frame}
+
+{Introdução}
+
+\begin{block}{Exemplo de um Delineamento Casualizado em Blocos com parcelas subdivididas}
+\begin{itemize}
+\item {\bf A}, Croqui do experimento em casa de vegetação, mostrando as dimensões das parcelas e o delineamento casualizado em blocos.
+\item As letras indicam plantas de batata individuais: B = Russet Burbank, U = Umatilla Russet, R = Ranger Russet e A = Alturas.
+\item A cor de sombreamento designa a cepa do virus de batata Y (PVY) usada para inoculação: verde significa PVY O (isolado Tb60), azul significa PVY N-Wi (isolado N1), rosa significa PVY NTN (isolado HR1) e sem sombreamento significa não inoculado.
+\item {\bf B}, Imagem da casa de vegetação antes da inoculação com isolados de PVY.
+\end{itemize}
+\end{block}
+\end{frame}
+
+{Introdução}
+
+\begin{block}{Exemplo de um Delineamento Casualizado em Blocos com parcelas subdivididas}
+\begin{center}
+    \includegraphics[scale = 1]{Aulas/Figuras/RCBD4.jpg}
+\end{center}
+\end{block}
+    
+\end{frame}
+
+ {Introdução}
+\begin{block}{Os ensaios em parcelas subdivididas...}
+\begin{itemize}
+\item podem ser instalados em qualquer delineamento experimental (DIC, DBC, DQL);
+\item assim como os fatoriais, também envolvem as combinações dos níveis dos fatores de tratamento.
+\end{itemize}
+\end{block}
+\begin{multicols}{2}
+\begin{figure}[b]
+\includegraphics[width=6cm]{Figuras/subdiv3.jpg} %
+\end{figure}
+
+
+{\small
+\begin{itemize}
+\item[]
+\item [rgb]{0.00,0.00,0.63}{\textbf{Fator primário}}: casualizado às parcelas;
+\item [rgb]{1.00,0.00,0.00}{\textbf{Fator secundário}}: casualizado às subparcelas.
+\end{itemize}
+}
+\end{multicols}
+
+\end{frame}
+
+ {Introdução}
+\begin{block}{Observações}
+\begin{itemize}
+\item Os níveis do fator secundário são mais sorteados $\Rightarrow$ maior precisão;
+\item Deve-se, preferencialmente, alocar os níveis do fator de maior interesse na subparcela;
+\item A ANOVA terá [rgb]{1.00,0.00,0.00}{\textbf{dois resíduos}}, um para parcelas e outro para subparcelas;
+\item Teremos [rgb]{1.00,0.00,0.00}{\textbf{dois coeficientes de variação}}, um ao nível de parcela, e outro ao nível de subparcela.
+\end{itemize}
+\end{block}
+\end{frame}
+
+ {Modelo estatístico}
+{\footnotesize
+Supondo um experimento instalado de acordo com o delineamento casualizado em blocos, sendo $r$ o número de blocos, e esquema de tratamento em parcelas subdivididas, com o fator primário $A$, com $a$ níveis e o fator secundário $B$, com $b$ níveis.
+
+\begin{block}{O modelo estatístico}
+$$y_{jik} = \mu + b_j + \alpha_i + e_{ji} + \gamma_k + (\alpha\gamma)_{ik} + \epsilon_{jik}, \; j=1,\ldots, r, \; i=1,\ldots, a, \; k=1,\ldots, b,$$
+em que $y_{jik}$, é o valor observado no $j$-ésimo bloco, $i$-ésimo nível do fator $A$ e $k$-ésimo nível do fator $B$,\\
+$\mu$ é uma constante,\\
+$b_j$ é o efeito do $j$-ésimo bloco,\\
+$\alpha_i$ é o efeito do $i$-ésimo nível do fator $A$, \\
+$e_{ji}$ é o erro experimental associado às parcelas, tais que $e_{ji}\sim N(0, \sigma^2_P)$, \\
+$\gamma_k$ é o efeito do $k$-ésimo nível do fator $B$, \\
+$(\alpha\gamma)_{ik}$ é o efeito da interação entre o $i$-ésimo nível do fator $A$ e o $k$-ésimo nível do fator $B$,\\
+$\epsilon_{jik}$ é o erro experimental associado às subparcelas, tais que $\epsilon_{jik} \sim N(0, \sigma^2)$.
+\end{block}
+}
+\end{frame}
+
+ {Modelo estatístico}
+{\footnotesize
+$$y_{jik} = \mu + b_j + \alpha_i + e_{ji} + \gamma_k + (\alpha\gamma)_{ik} + \epsilon_{jik}, \; j=1,\ldots, r, \; i=1,\ldots, a, \; k=1,\ldots, b,$$
+}
+
+\vspace{0.5cm}
+
+Pressuposições:
+\begin{itemize}
+    \item O modelo deve ser aditivo;
+    \item Os erros experimentais devem ser independentes;
+    \item Os erros devem vir de uma distribuição normal;
+    \item As variâncias dos erros experimentais (parcelas e subparcelas) devem ser constantes.
+\end{itemize}
+
+\end{frame}
+
+
+ {Esquema da ANOVA}
+
+Considere um experimento instalado de acordo com o delineamento casualizado em blocos com três repetições, em um esquema de tratamentos em parcelas subdivididas, sendo o fator primário formas de adubação, com três níveis, e o fator secundário variedades de soja, com 4 níveis.
+
+\begin{block}{Se considerarmos somente parcelas}
+
+\begin{center}
+\begin{center}
+    \includegraphics[scale = 0.4]{Aulas/Figuras/aula11_split1.pdf} %
+\end{center}
+\end{center}
+\end{block}
+\end{frame}
+
+ {Esquema da ANOVA}
+
+Considere um experimento instalado de acordo com o delineamento casualizado em blocos com três repetições, em um esquema de tratamentos em parcelas subdivididas, sendo o fator primário formas de adubação, com três níveis, e o fator secundário variedades de soja, com 4 níveis.
+
+\begin{block}{Se considerarmos somente parcelas}
+
+\begin{center}
+{\small
+\begin{tabular}{lc} \hline
+\textbf{F.V.} & \textbf{gl} \\ \hline
+Blocos  & $3-1 = 2$ \\
+Fator A & $3-1 = 2$ \\
+Resíduo (a) & $(3-1)(3-1) = 4$\\ \hline
+(Parcelas) & $(3\times3-1 = 8)$\\ \hline
+\end{tabular}
+}
+\end{center}
+\end{block}
+\end{frame}
+
+
+ {Esquema da ANOVA}
+
+Considere um experimento instalado de acordo com o delineamento casualizado em blocos com três repetições, em um esquema de tratamentos em parcelas subdivididas, sendo o fator primário formas de adubação, com três níveis, e o fator secundário variedades de soja, com 4 níveis.
+
+\begin{block}{Entretanto, os níveis de Variedade foram casualizados às subparcelas}
+
+\begin{center}
+\begin{center}
+    \includegraphics[scale = 0.4]{Aulas/Figuras/aula11_split.pdf} %
+\end{center}
+\end{center}
+\end{block}
+\end{frame}
+
+ {Esquema da ANOVA}
+
+Considere um experimento instalado de acordo com o delineamento casualizado em blocos com três repetições, em um esquema de tratamentos em parcelas subdivididas, sendo o fator primário formas de adubação, com três níveis, e o fator secundário variedades de soja, com 4 níveis.
+
+\begin{block}{Entretanto, os níveis de Variedade foram casualizados às subparcelas}
+
+\begin{center}
+{\small
+\begin{tabular}{lc} \hline
+\textbf{F.V.} & \textbf{gl} \\ \hline
+Blocos  & $3-1 = 2$ \\
+Forma & $3-1 = 2$ \\
+Resíduo (a) & $(3-1)(3-1) = 4$\\ \hline
+(Parcelas) & $(3\times3-1) = 8$\\ \hline
+Variedade & $4-1 = 3$ \\
+Forma\#Variedade & $(3-1)(4-1) = 6$ \\
+Resíduo (b) & $3(4-1)(3-1) = 18$ \\ \hline
+Total (Subparcelas) & $3\times3\times4 - 1 = 35$\\ \hline
+\end{tabular}
+}
+\end{center}
+\end{block}
+\end{frame}
+
+ {Esquema da ANOVA}
+
+Supondo um experimento instalado de acordo com o delineamento casualizado em blocos, sendo $r$ o número de blocos, e esquema de tratamento em parcelas subdivididas, com o fator primário $A$, com $a$ níveis e o fator secundário $B$, com $b$ níveis.
+
+
+\begin{center}
+	{\tiny
+\begin{tabular}{llccccl} \hline
+             &  & \multicolumn{4}{c}{Blocos} & \\ \cline{3-6}
+Fator $A$ & Fator $B$ & 1 & 2 & $\cdots$ & $r$ & Totais \\ \hline
+$A_1$ & $B_1$ & $y_{111}$ & $y_{211}$ & $\cdots$ & $y_{r11}$ & $T_1 = y_{.11}$ \\
+      & $B_2$ & $y_{112}$ & $y_{212}$ & $\cdots$ & $y_{r12}$ & $T_2 = y_{.12}$ \\
+      & $\cdots$ & $\cdots$ & $\cdots$ & $\cdots$ & $\cdots$ & $\cdots$ \\
+      & $B_b$ & $y_{11b}$ & $y_{21b}$ & $\cdots$ & $y_{r1b}$ & $T_b = y_{.1b}$ \\
+
+$A_2$ & $B_1$ & $y_{121}$ & $y_{221}$ & $\cdots$ & $y_{r21}$ & $T_{b+1} =  = y_{.21}$ \\
+      & $B_2$ & $y_{122}$ & $y_{222}$ & $\cdots$ & $y_{r22}$ & $T_{b+2} = y_{.22}$ \\
+      & $\cdots$ & $\cdots$ & $\cdots$ & $\cdots$ & $\cdots$ & $\cdots$ \\
+      & $B_b$ & $y_{12b}$ & $y_{22b}$ & $\cdots$ & $y_{r2b}$ & $T_{2b} = y_{.2b}$ \\
+
+$\cdots$  & $\cdots$  & $\cdots$ & $\cdots$ & $\cdots$ & $\cdots$ & $\cdots$ \\
+      
+$A_a$ & $B_1$ & $y_{1a1}$ & $y_{2a1}$ & $\cdots$ & $y_{ra1}$ & $T_{b(a-1)+1} = y_{.a1}$ \\
+      & $B_2$ & $y_{1a2}$ & $y_{2a2}$ & $\cdots$ & $y_{ra2}$ & $T_{b(a-1)+2} = y_{.a2}$ \\
+      & $\cdots$ & $\cdots$ & $\cdots$ & $\cdots$ & $\cdots$ & $\cdots$ \\
+      & $B_b$ & $y_{1ab}$ & $y_{2ab}$ & $\cdots$ & $y_{rab}$ & $T_{ab} = y_{.ab}$ \\ \hline
+Totais &      & $R_1 = y_{1..}$ & $R_2 = y_{2..}$ & $\cdots$ & $R_r = y_{r..}$ & $G = y_{...}$ \\ \hline
+
+\end{tabular}
+}
+\end{center}
+
+\noindent {\bf Nota:} No exemplo, $r=3$, $a = 3$ e $b = 4$.
+
+\end{frame}
+
+
+ {Esquema da ANOVA}
+
+\begin{center}
+	{\tiny
+\begin{tabular}{llccccl} \hline
+             &  & \multicolumn{4}{c}{Blocos} & \\ \cline{3-6}
+Fator $A$ & Fator $B$ & 1 & 2 & $\cdots$ & $r$ & Totais \\ \hline
+$A_1$ & $B_1$ & $y_{111}$ & $y_{211}$ & $\cdots$ & $y_{r11}$ & $T_1 = y_{.11}$ \\
+      & $B_2$ & $y_{112}$ & $y_{212}$ & $\cdots$ & $y_{r12}$ & $T_2 = y_{.12}$ \\
+      & $\cdots$ & $\cdots$ & $\cdots$ & $\cdots$ & $\cdots$ & $\cdots$ \\
+      & $B_b$ & $y_{11b}$ & $y_{21b}$ & $\cdots$ & $y_{r1b}$ & $T_b = y_{.1b}$ \\
+
+$A_2$ & $B_1$ & $y_{121}$ & $y_{221}$ & $\cdots$ & $y_{r21}$ & $T_{b+1} =  = y_{.21}$ \\
+      & $B_2$ & $y_{122}$ & $y_{222}$ & $\cdots$ & $y_{r22}$ & $T_{b+2} = y_{.22}$ \\
+      & $\cdots$ & $\cdots$ & $\cdots$ & $\cdots$ & $\cdots$ & $\cdots$ \\
+      & $B_b$ & $y_{12b}$ & $y_{22b}$ & $\cdots$ & $y_{r2b}$ & $T_{2b} = y_{.2b}$ \\
+
+$\cdots$  & $\cdots$  & $\cdots$ & $\cdots$ & $\cdots$ & $\cdots$ & $\cdots$ \\
+      
+$A_a$ & $B_1$ & $y_{1a1}$ & $y_{2a1}$ & $\cdots$ & $y_{ra1}$ & $T_{b(a-1)+1} = y_{.a1}$ \\
+      & $B_2$ & $y_{1a2}$ & $y_{2a2}$ & $\cdots$ & $y_{ra2}$ & $T_{b(a-1)+2} = y_{.a2}$ \\
+      & $\cdots$ & $\cdots$ & $\cdots$ & $\cdots$ & $\cdots$ & $\cdots$ \\
+      & $B_b$ & $y_{1ab}$ & $y_{2ab}$ & $\cdots$ & $y_{rab}$ & $T_{ab} = y_{.ab}$ \\ \hline
+Totais &      & $R_1 = y_{1..}$ & $R_2 = y_{2..}$ & $\cdots$ & $R_r = y_{r..}$ & $G = y_{...}$ \\ \hline
+
+\end{tabular}
+}
+\end{center}
+
+\begin{block}{Soma de quadrados do Total}
+$$\displaystyle{SQ_{\text{Total}} = \sum_j\sum_i\sum_k y_{jik}^2 - \frac{(\sum_j\sum_i\sum_k y_{jik})^2}{rab}}.$$
+\end{block}
+
+
+
+\end{frame}
+
+ {Esquema da ANOVA}
+
+Quadro auxiliar com os totais para as combinações dos níveis de Blocos e Fator A.
+
+	{\tiny
+\begin{center}
+    \begin{tabular}{ccccccc} \hline
+     &  & \multicolumn{4}{c}{Blocos} & \\ \cline{3-6}
+     &  & $1$ & $2$ & $\ldots$ & $r$  & \\ \hline 
+     & $A_1$ & ${y}_{11.}$ & ${y}_{21.}$ & $\ldots$ & ${y}_{r1.}$ & $T_{A_1 = y_{.1.}}$ \\
+     & $A_2$ & ${y}_{12.}$ & ${y}_{22.}$ & $\ldots$ & ${y}_{r2.}$ & $T_{A_2} = y_{.2.}$ \\
+     & $\ldots$ & $\ldots$ & $\ldots$ & $\ldots$ & $\ldots$ & $\ldots$ \\
+     \multirow{-4}{*}{\begin{sideways} Fator A \end{sideways}} & $A_a$ & ${y}_{1a.}$ & ${y}_{2a.}$ & $\ldots$ & ${y}_{ra.}$ & $T_{A_a} = y_{.a.}$ \\ \hline
+     & & $R_1 = y_{1..}$ & $R_2 = y_{2..}$ & $\ldots$ & $R_r = y_{r..}$ & $G = y_{...}$ \\ \hline
+    \end{tabular}
+\end{center}
+}
+
+\begin{block}{Soma de quadrados da Parcela}
+$$\displaystyle{SQ_{\text{Parcela}} = \frac{1}{b}\sum_j\sum_i y_{ji.}^2 - \frac{(\sum_j\sum_i\sum_k y_{jik})^2}{rab}}.$$
+\end{block}
+
+
+
+\end{frame}
+
+ {Esquema da ANOVA}
+
+Quadro auxiliar com os totais para as combinações dos níveis de Blocos e Fator A.
+
+	{\tiny
+\begin{center}
+     \begin{tabular}{ccccccc} \hline
+     &  & \multicolumn{4}{c}{Blocos} & \\ \cline{3-6}
+     &  & $1$ & $2$ & $\ldots$ & $r$  & \\ \hline 
+     & $A_1$ & ${y}_{11.}$ & ${y}_{21.}$ & $\ldots$ & ${y}_{r1.}$ & $T_{A_1 = y_{.1.}}$ \\
+     & $A_2$ & ${y}_{12.}$ & ${y}_{22.}$ & $\ldots$ & ${y}_{r2.}$ & $T_{A_2} = y_{.2.}$ \\
+     & $\ldots$ & $\ldots$ & $\ldots$ & $\ldots$ & $\ldots$ & $\ldots$ \\
+     \multirow{-4}{*}{\begin{sideways} Fator A \end{sideways}} & $A_a$ & ${y}_{1a.}$ & ${y}_{2a.}$ & $\ldots$ & ${y}_{ra.}$ & $T_{A_a} = y_{.a.}$ \\ \hline
+     & & $R_1 = y_{1..}$ & $R_2 = y_{2..}$ & $\ldots$ & $R_r = y_{r..}$ & $G = y_{...}$ \\ \hline
+    \end{tabular}
+\end{center}
+}
+
+\begin{block}{Soma de quadrados do Fator $A$}
+$$\displaystyle{SQ_{\text{Fator A}} = \frac{1}{rb}\sum_i T_{A_i}^2 - \frac{(\sum_j\sum_i\sum_k y_{jik})^2}{rab}}.$$
+\end{block}
+
+\end{frame}
+
+ {Esquema da ANOVA}
+
+Quadro auxiliar com os totais para as combinações dos níveis de Blocos e Fator A.
+
+	{\tiny
+\begin{center}
+     \begin{tabular}{ccccccc} \hline
+     &  & \multicolumn{4}{c}{Blocos} & \\ \cline{3-6}
+     &  & $1$ & $2$ & $\ldots$ & $r$  & \\ \hline 
+     & $A_1$ & ${y}_{11.}$ & ${y}_{21.}$ & $\ldots$ & ${y}_{r1.}$ & $T_{A_1 = y_{.1.}}$ \\
+     & $A_2$ & ${y}_{12.}$ & ${y}_{22.}$ & $\ldots$ & ${y}_{r2.}$ & $T_{A_2} = y_{.2.}$ \\
+     & $\ldots$ & $\ldots$ & $\ldots$ & $\ldots$ & $\ldots$ & $\ldots$ \\
+     \multirow{-4}{*}{\begin{sideways} Fator A \end{sideways}} & $A_a$ & ${y}_{1a.}$ & ${y}_{2a.}$ & $\ldots$ & ${y}_{ra.}$ & $T_{A_a} = y_{.a.}$ \\ \hline
+     & & $R_1 = y_{1..}$ & $R_2 = y_{2..}$ & $\ldots$ & $R_r = y_{r..}$ & $G = y_{...}$ \\ \hline
+    \end{tabular}
+\end{center}
+}
+
+\begin{block}{Soma de quadrados do Resíduo (a)}
+$$\displaystyle{SQ_{\text{Res (a)}} = SQ_\text{Parcela} - SQ_\text{Blocos} - SQ_\text{Fator A}}.$$
+\end{block}
+
+\end{frame}
+
+ {Esquema da ANOVA}
+
+Quadro auxiliar com os totais para as combinações dos níveis do Fator A e do Fator B.
+
+	{\tiny
+\begin{center}
+    \begin{tabular}{ccccccc} \hline
+     &  & \multicolumn{4}{c}{Fator B} & \\ \cline{3-6}
+     &  & $B_1$ & $B_2$ & $\ldots$ & $B_b$  & \\ \hline 
+     & $A_1$ & ${y}_{.11}$ & ${y}_{.12}$ & $\ldots$ & ${y}_{.1b}$ & $T_{A_1} = y_{.1.}$ \\
+     & $A_2$ & ${y}_{.21}$ & ${y}_{.22}$ & $\ldots$ & ${y}_{.2b}$ & $T_{A_2} = y_{.2.}$ \\
+     & $\ldots$ & $\ldots$ & $\ldots$ & $\ldots$ & $\ldots$ & $\ldots$ \\
+     \multirow{-4}{*}{\begin{sideways} Fator A \end{sideways}} & $A_a$ & ${y}_{.a1}$ & ${y}_{.a2}$ & $\ldots$ & ${y}_{.ab}$ & $T_{A_a}  = y_{.a.}$ \\ \hline
+     & & $T_{B_1} = y_{..1}$ & $T_{B_2} = y_{..2}$ & $\ldots$ & $T_{B_b} = y_{..b}$ & $G$ \\ \hline
+    \end{tabular}
+\end{center}
+}
+
+\begin{block}{Soma de quadrados do Fator B}
+$$\displaystyle{SQ_{\text{Fator B}} = \frac{1}{ra}\sum_k T_{B_k}^2 - \frac{(\sum_j\sum_i\sum_k y_{jik})^2}{rab}}.$$
+\end{block}
+
+\end{frame}
+
+ {Esquema da ANOVA}
+
+Quadro auxiliar com os totais para as combinações dos níveis do Fator A e do Fator B.
+
+	{\tiny
+\begin{center}
+    \begin{tabular}{ccccccc} \hline
+     &  & \multicolumn{4}{c}{Fator B} & \\ \cline{3-6}
+     &  & $B_1$ & $B_2$ & $\ldots$ & $B_b$  & \\ \hline 
+     & $A_1$ & ${y}_{.11}$ & ${y}_{.12}$ & $\ldots$ & ${y}_{.1b}$ & $T_{A_1} = y_{.1.}$ \\
+     & $A_2$ & ${y}_{.21}$ & ${y}_{.22}$ & $\ldots$ & ${y}_{.2b}$ & $T_{A_2} = y_{.2.}$ \\
+     & $\ldots$ & $\ldots$ & $\ldots$ & $\ldots$ & $\ldots$ & $\ldots$ \\
+     \multirow{-4}{*}{\begin{sideways} Fator A \end{sideways}} & $A_a$ & ${y}_{.a1}$ & ${y}_{.a2}$ & $\ldots$ & ${y}_{.ab}$ & $T_{A_a}  = y_{.a.}$ \\ \hline
+     & & $T_{B_1} = y_{..1}$ & $T_{B_2} = y_{..2}$ & $\ldots$ & $T_{B_b} = y_{..b}$ & $G$ \\ \hline
+    \end{tabular}
+\end{center}
+}
+
+\begin{block}{Soma de quadrados da combinação $A,B$ (Tratamentos)}
+$$\displaystyle{SQ_{A,B} = \frac{1}{r}\sum_i\sum_k y_{.ij}^2 - \frac{(\sum_j\sum_i\sum_k y_{jik})^2}{rab}}.$$
+\end{block}
+
+\end{frame}
+
+ {Esquema da ANOVA}
+
+Quadro auxiliar com os totais para as combinações dos níveis do Fator A e do Fator B.
+
+	{\tiny
+\begin{center}
+    \begin{tabular}{ccccccc} \hline
+     &  & \multicolumn{4}{c}{Fator B} & \\ \cline{3-6}
+     &  & $B_1$ & $B_2$ & $\ldots$ & $B_b$  & \\ \hline 
+     & $A_1$ & ${y}_{.11}$ & ${y}_{.12}$ & $\ldots$ & ${y}_{.1b}$ & $T_{A_1} = y_{.1.}$ \\
+     & $A_2$ & ${y}_{.21}$ & ${y}_{.22}$ & $\ldots$ & ${y}_{.2b}$ & $T_{A_2} = y_{.2.}$ \\
+     & $\ldots$ & $\ldots$ & $\ldots$ & $\ldots$ & $\ldots$ & $\ldots$ \\
+     \multirow{-4}{*}{\begin{sideways} Fator A \end{sideways}} & $A_a$ & ${y}_{.a1}$ & ${y}_{.a2}$ & $\ldots$ & ${y}_{.ab}$ & $T_{A_a}  = y_{.a.}$ \\ \hline
+     & & $T_{B_1} = y_{..1}$ & $T_{B_2} = y_{..2}$ & $\ldots$ & $T_{B_b} = y_{..b}$ & $G$ \\ \hline
+    \end{tabular}
+\end{center}
+}
+
+\begin{block}{Soma de quadrados da Interação $A\#B$}
+$$\displaystyle{SQ_{A\#B} = SQ_{A,B} - SQ_\text{Fator A} - SQ_\text{FAtor B}}.$$
+\end{block}
+
+\begin{block}{Soma de quadrados do Resíduo (b)}
+$$\displaystyle{SQ_\text{Res (b)} = SQ_\text{Total} - SQ_\text{Parcela} - SQ_\text{Fator B} - SQ_{A\#B}}.$$
+\end{block}
+
+\end{frame}
+
+
+ {ANOVA}
+\begin{block}{Esquema da ANOVA - Generalizando}
+\begin{center}
+{\small
+\begin{tabular}{lcccc} \hline
+\textbf{F.V.} & \textbf{gl} & \textbf{SQ} & \textbf{QM} & \textbf{F} \\ \hline
+Blocos  & $r-1$ & SQ Blocos & \\
+Fator A & $a-1$ & SQ A & QM A & $\frac{\mbox{QM A}}{\mbox{[rgb]{0.00,0.00,1.00}{QM Res(a)}}}$\\
+Resíduo (a) & $(r-1)(a-1)$ & SQ Res(a) & QM Res(a) \\ \hline
+(Parcelas) & $(ar-1)$ & (SQ Parcelas)\\ \hline
+Fator B & $b-1$ & SQ B & QM B & $\frac{\mbox{QM B}}{\mbox{[rgb]{1.00,0.00,0.00}{QM Res(b)}}}$ \\
+Int A\#B & $(a-1)(b-1)$ & SQ Int A\#B & QM Int A\#B & $\frac{\mbox{QM Int A\#B}}{[rgb]{1.00,0.00,0.00}{\mbox{QM Res(b)}}}$\\ 
+Resíduo (b) & $a(b-1)(r-1)$ & SQ Res(b) & QM Res(b)\\ \hline
+Total & $abr-1$ & SQ Total \\ \hline
+\end{tabular}
+}
+\end{center}
+\end{block}
+\end{frame}
+
+
+ {ANOVA}
+	\begin{block}{Interação não Significativa}
+	\begin{itemize}
+		\item Avaliar efeito principal do Fator A;
+		\item Avaliar efeito principal do Fator B;
+	\end{itemize}
+	
+	Caso algum efeito seja significativo, realizar teste de comparações múltiplas e/ou estudo de regressão.
+	\end{block}
+
+	\begin{block}{Interação Significativa}
+		\begin{itemize}
+			\item Avaliar efeito do Fator B dentro de cada nível do Fator A \\$\Rightarrow$ QMRes (b);
+			\item Avaliar efeito do Fator A dentro de cada nível do Fator B \\$\Rightarrow$ QMRes Composto;
+		\end{itemize}
+	\end{block}
+\end{frame}
+
+
+
+
+{Exemplo}
+{\footnotesize
+Banzatto e Kronka (1992), apresentaram o ensaio citado por Steel e Torrie (1980), no qual são comparadas 4 variedades de aveia e 4 tratamentos de sementes quanto aos efeitos sobre a produção.
+As variedades foram casualizadas às parcelas de cada um dos quatro blocos do ensaio. Os tratamentos de sementes foram casualizados às  quatro subparcelas de cada parcela.
+
+
+\vspace{.3cm}
+Variedades de aveia: 
+\begin{itemize}
+    \item $A_1$ - Vicland 1 infectada com o fungo {\it Helminthosporium victoriae}
+    \item $A_2$ - Vicland 2 não infectada
+    \item $A_3$ - Clinton resistente a {\it H. victoriae}
+    \item $A_4$ - Branch resistente a {\it H. victoriae}
+\end{itemize}
+
+\vspace{.3cm}
+Tratamentos de sementes: 
+\begin{itemize}
+    \item $B_1$ - Testemunha
+    \item $B_2$ - Ceresan M
+    \item $B_3$ - Panogem
+    \item $B_4$ - Agros
+\end{itemize}
+}
+
+
+
+\end{frame}
+
+
+
+
+{Exemplo: Dados de produção de aveia}
+\vspace{-.5cm}
+\begin{center}
+	{\footnotesize
+\begin{tabular}{llcccccc} \hline
+             & Tratamento de & \multicolumn{4}{c}{Blocos} & & \\ \cline{3-6}
+Variedades (A) & sementes (B) & 1 & 2 & 3 & 4 & Totais & Médias \\ \hline
+$A_1$ & $B_1$ & 42,9 & 41,6 & 28,9 & 30,8 & 144,2 & 36,050 \\
+      & $B_2$ & 53,8 & 58,5 & 43,9 & 46,3 & 202,5 & 50,625 \\
+      & $B_3$ & 49,5 & 53,8 & 40,7 & 39,4 & 183,4 & 45,850 \\
+      & $B_4$ & 44,4 & 41,8 & 28,3 & 34,7 & 149,2 & 37,300\\
+
+$A_2$ & $B_1$ & 53,3 & 69,6 & 45,4 & 35,1 & 203,4 & 50,850\\
+      & $B_2$ & 57,6 & 69,6 & 42,4 & 51,9 & 221,5 & 55,375\\
+      & $B_3$ & 59,8 & 65,8 & 41,4 & 45,4 & 212,4 & 53,100\\
+      & $B_4$ & 64,1 & 57,4 & 44,1 & 51,6 & 217,2 & 54,300\\
+
+$A_3$ & $B_1$ & 62,3 & 58,5 & 44,6 & 50,3 & 215,7 & 53,925\\
+      & $B_2$ & 63,4 & 50,4 & 45,0 & 46,7 & 205,5 & 51,375\\
+      & $B_3$ & 64,5 & 46,1 & 62,6 & 50,3 & 223,5 & 55,875\\
+      & $B_4$ & 63,6 & 56,1 & 52,7 & 51,8 & 224,2 & 56,050\\
+
+$A_4$ & $B_1$ & 75,4 & 65,6 & 54,0 & 52,7 & 247,7 & 61,925\\
+      & $B_2$ & 70,3 & 67,3 & 57,6 & 58,5 & 253,7 & 63,425\\
+      & $B_3$ & 68,8 & 65,3 & 45,6 & 51,0 & 230,7 & 57,675\\
+      & $B_4$ & 71,6 & 69,4 & 56,6 & 47,4 & 245,0 & 61,250\\ \hline
+Totais &      & 965,3 & 936,8 & 733,8 & 743,9 & 3379,8 & 52,809\\ \hline
+
+\end{tabular}
+}
+\end{center}
+\end{frame}
+
+
+ {Exemplo: Efeitos principais}
+
+\begin{columns}
+\begin{column}{.3\textwidth}
+\begin{figure}[H]
+	\centering
+	\includegraphics[scale=0.4]{Aulas/Figuras/psub_variedade.pdf}
+\end{figure}
+\end{column}
+
+\begin{column}{.7\textwidth}
+{\tiny
+\begin{center}
+    \begin{tabular}{crrrrr} \hline
+            & \multicolumn{4}{c}{Tratamento de Semente} & \\
+Variedade   &   B1   &    B2  &    B3  & B4 & médias\\ \hline
+A1 & 36,050 & 50,625 & 45,850 & 37,30 & {red}{42,456} \\
+A2 & 50,850 & 55,375 & 53,100 & 54,30 & {red}{53,406} \\
+A3 & 53,925 & 51,375 & 55,875 & 56,05 & {red}{54,306} \\
+A4 & 61,925 & 63,425 & 57,675 & 61,25 & {red}{61,069} \\ \hline
+médias & 50,688 & 55,200 & 53,125 & 52,225 & 52,809 \\ \hline
+\end{tabular}
+\end{center}
+}
+\end{column}
+\end{columns}
+\end{frame}
+
+ {Exemplo: Efeitos principais}
+
+\begin{columns}
+\begin{column}{.3\textwidth}
+\begin{figure}[H]
+	\centering
+	\includegraphics[scale=0.4]{Aulas/Figuras/psub_semente.pdf}
+\end{figure}
+\end{column}
+
+\begin{column}{.7\textwidth}
+{\tiny
+\begin{center}
+    \begin{tabular}{crrrrr} \hline
+            & \multicolumn{4}{c}{Tratamento de Semente} & \\
+Variedade   &   B1   &    B2  &    B3  & B4 & médias\\ \hline
+A1 & 36,050 & 50,625 & 45,850 & 37,30 & 42,456 \\
+A2 & 50,850 & 55,375 & 53,100 & 54,30 & 53,406 \\
+A3 & 53,925 & 51,375 & 55,875 & 56,05 & 54,306 \\
+A4 & 61,925 & 63,425 & 57,675 & 61,25 & 61,069 \\ \hline
+médias & {red}{50,688} & {red}{55,200} & {red}{53,125} & {red}{52,225} & 52,809 \\ \hline
+\end{tabular}
+\end{center}
+}
+\end{column}
+\end{columns}
+\end{frame}
+
+ {Exemplo: Efeitos simples e de interação}
+
+\begin{columns}
+\begin{column}{.3\textwidth}
+\begin{figure}[H]
+	\centering
+	\includegraphics[scale=0.4]{Aulas/Figuras/psub_variedadesimples.pdf}
+\end{figure}
+\end{column}
+
+\begin{column}{.7\textwidth}
+{\tiny
+\begin{center}
+    \begin{tabular}{crrrrr} \hline
+            & \multicolumn{4}{c}{Tratamento de Semente} & \\
+Variedade   &   B1   &    B2  &    B3  & B4 & médias\\ \hline
+A1 & {red}{36,050} & {ForestGreen}{50,625} & {blue}{45,850} & {purple}{37,30} & 42,456 \\
+A2 & {red}{50,850} & {ForestGreen}{55,375} & {blue}{53,100} & {purple}{54,30} & 53,406 \\
+A3 & {red}{53,925} & {ForestGreen}{51,375} & {blue}{55,875} & {purple}{56,05} & 54,306 \\
+A4 & {red}{61,925} & {ForestGreen}{63,425} & {blue}{57,675} & {purple}{61,25} & 61,069 \\ \hline
+médias & 50,688 & 55,200 & 53,125 & 52,225 & 52,809 \\ \hline
+\end{tabular}
+\end{center}
+}
+\end{column}
+\end{columns}
+\end{frame}
+
+ {Exemplo: Efeitos simples e de interação}
+
+\begin{columns}
+\begin{column}{.3\textwidth}
+\begin{figure}[H]
+	\centering
+	\includegraphics[scale=0.4]{Aulas/Figuras/psub_sementesimples.pdf}
+\end{figure}
+\end{column}
+
+\begin{column}{.7\textwidth}
+{\tiny
+\begin{center}
+    \begin{tabular}{crrrrr} \hline
+            & \multicolumn{4}{c}{Tratamento de Semente} & \\
+Variedade   &   B1   &    B2  &    B3  & B4 & médias\\ \hline
+A1 & {red}{36,050} & {red}{50,625} & {red}{45,850} & {red}{37,30} & 42,456 \\
+A2 & {ForestGreen}{50,850} & {ForestGreen}{55,375} & {ForestGreen}{53,100} & {ForestGreen}{54,30} & 53,406 \\
+A3 & {blue}{53,925} & {blue}{51,375} & {blue}{55,875} & {blue}{56,05} & 54,306 \\
+A4 & {purple}{61,925} & {purple}{63,425} & {purple}{57,675} & {purple}{61,25} & 61,069 \\ \hline
+médias & 50,688 & 55,200 & 53,125 & 52,225 & 52,809 \\ \hline
+\end{tabular}
+\end{center}
+}
+\end{column}
+\end{columns}
+\end{frame}
+
+{Exemplo}
+
+\begin{center}
+	{\footnotesize
+\begin{tabular}{llccccc} \hline
+             & Tratamento de & \multicolumn{4}{c}{Blocos} & \\ \cline{3-6}
+Variedades (A) & sementes (B) & 1 & 2 & 3 & 4 & Totais \\ \hline
+$A_1$ & $B_1$ & {red}{42,9} & {red}{41,6} & {red}{28,9} & {red}{30,8} & 144,2 \\
+      & $B_2$ & {red}{53,8} & {red}{58,5} & {red}{43,9} & {red}{46,3} & 202,5 \\
+      & $B_3$ & {red}{49,5} & {red}{53,8} & {red}{40,7} & {red}{39,4} & 183,4 \\
+      & $B_4$ & {red}{44,4} & {red}{41,8} & {red}{28,3} & {red}{34,7} & 149,2 \\
+
+$A_2$ & $B_1$ & {red}{53,3} & {red}{69,6} & {red}{45,4} & {red}{35,1} & 203,4 \\
+      & $B_2$ & {red}{57,6} & {red}{69,6} & {red}{42,4} & {red}{51,9} & 221,5 \\
+      & $B_3$ & {red}{59,8} & {red}{65,8} & {red}{41,4} & {red}{45,4} & 212,4 \\
+      & $B_4$ & {red}{64,1} & {red}{57,4} & {red}{44,1} & {red}{51,6} & 217,2 \\
+
+$A_3$ & $B_1$ & {red}{62,3} & {red}{58,5} & {red}{44,6} & {red}{50,3} & 215,7 \\
+      & $B_2$ & {red}{63,4} & {red}{50,4} & {red}{45,0} & {red}{46,7} & 205,5 \\
+      & $B_3$ & {red}{64,5} & {red}{46,1} & {red}{62,6} & {red}{50,3} & 223,5 \\
+      & $B_4$ & {red}{63,6} & {red}{56,1} & {red}{52,7} & {red}{51,8} & 224,2 \\
+
+$A_4$ & $B_1$ & {red}{75,4} & {red}{65,6} & {red}{54,0} & {red}{52,7} & 247,7 \\
+      & $B_2$ & {red}{70,3} & {red}{67,3} & {red}{57,6} & {red}{58,5} & 253,7 \\
+      & $B_3$ & {red}{68,8} & {red}{65,3} & {red}{45,6} & {red}{51,0} & 230,7 \\
+      & $B_4$ & {red}{71,6} & {red}{69,4} & {red}{56,6} & {red}{47,4} & 245,0 \\ \hline
+Totais &      & 965,3 & 936,8 & 733,8 & 743,9 & {red}{3379,8} \\ \hline
+
+\end{tabular}
+}
+\end{center}
+\end{frame}
+
+
+\frame{
+	{Exemplo}
+	{\footnotesize
+	
+			\begin{eqnarray*}
+			SQTotal &=& \sum_{jik}y_{jik}^2 - \frac{y_{\cdot\cdot\cdot}^2}{rab} \\ \nonumber
+			&=& {red}{42,9}^2 + {red}{53,8}^2 + \ldots + {red}{47,4}^2 - \frac{{red}{3379,8}^2}{64} = 7797,39 \\ \nonumber
+		\end{eqnarray*}
+		
+		
+		\begin{center}
+			\begin{tabular}{lrrrr}\hline
+				Fontes de Variação & gl & SQ & QM & F\\ \hline
+				Blocos             & 3 &  & & \\
+				 A           & $3$    & {white}{2848,02} & {white}{949,34} & {white}{13,82}\\
+				 Resíduo (a) & $9$ &  {white}{618,30} & {white}{68,70} & \\ \hline
+				(Parcelas)           & $(15)$   & {white}{3466,32} & & \\ \hline
+				 B           & $3$    & {white}{170,53} & {white}{56,84} & {white}{2,80}\\
+				 A\#B        & $9$    & {white}{586,47} & {white}{65,16} & {white}{3,21}\\
+				 Resíduo (b) & $36$ & {white}{731,20} & {white}{20,31}\\ \hline
+				Total & 63 & 7797,39 & & \\ \hline
+			\end{tabular}
+		\end{center}
+		
+
+	}	
+}
+
+
+{Exemplo}
+
+Tabela auxiliar: Envolve a repetição (ou blocos) e o tratamento de parcela.
+
+\begin{center}
+	{\footnotesize
+	\begin{tabular}{lccccc} \hline
+Variedades (A)& \multicolumn{4}{c}{Blocos} & 	Totais\\ \cline{2-5}
+              & I	& II &	III &	IV	 \\ \hline
+A1 &	190,6(4) &	195,7(4) &	141,8(4) &	151,2(4) &	679,3(16)\\
+A2 &	234,8(4) &	262,4(4) &	173,3(4) &	184,0(4) &	854,5(16)\\
+A3 &	253,8(4) &	211,1(4) &	204,9(4) &	199,1(4) &	868,9(16)\\
+A4 &	286,1(4) &	267,6(4) &	213,8(4) &	209,6(4) &	977,1(16)\\ \hline
+Totais &	965,3(16) &	936,8(16) &	733,8(16) &	743,9(16) &	3.379,8(64) \\ \hline
+\end{tabular}
+}
+\end{center}
+\end{frame}
+
+
+\frame{
+	{Exemplo}
+\begin{center}
+	{\footnotesize
+	\begin{tabular}{lccccc} \hline
+Variedades (A)& \multicolumn{4}{c}{Blocos} & 	Totais\\ \cline{2-5}
+              & I	& II &	III &	IV	 \\ \hline
+A1 &	190,6(4) &	195,7(4) &	141,8(4) &	151,2(4) &	679,3(16)\\
+A2 &	234,8(4) &	262,4(4) &	173,3(4) &	184,0(4) &	854,5(16)\\
+A3 &	253,8(4) &	211,1(4) &	204,9(4) &	199,1(4) &	868,9(16)\\
+A4 &	286,1(4) &	267,6(4) &	213,8(4) &	209,6(4) &	977,1(16)\\ \hline
+Totais &	{red}{965,3}(16) &	{red}{936,8}(16) &	{red}{733,8}(16) &	{red}{743,9}(16) &	{red}{3.379,8}(64) \\ \hline
+\end{tabular}
+}
+\end{center}
+		
+		\begin{eqnarray*}
+			SQBlocos &=& \frac{1}{ab}\sum_{j}y_{j\cdot\cdot}^2 - \frac{y_{\cdot\cdot\cdot}^2}{rab} \\ \nonumber
+			&=&  \frac{1}{16}\Big({red}{965,3}^2 + {red}{936,8}^2 + {red}{733,8}^2 + {red}{743,9}^2 \Big) - \frac{{red}{3379,8}^2}{64} \\
+			&=& 2842,87\\
+		\end{eqnarray*}
+		
+}
+
+\frame{
+	{Exemplo}
+\begin{center}
+	{\footnotesize
+	\begin{tabular}{lccccc} \hline
+Variedades (A)& \multicolumn{4}{c}{Blocos} & 	Totais\\ \cline{2-5}
+              & I	& II &	III &	IV	 \\ \hline
+A1 &	{red}{190,6}(4) &	{red}{195,7}(4) &	{red}{141,8}(4) &	{red}{151,2}(4) &	679,3(16)\\
+A2 &	{red}{234,8}(4) &	{red}{262,4}(4) &	{red}{173,3}(4) &	{red}{184,0}(4) &	854,5(16)\\
+A3 &	{red}{253,8}(4) &	{red}{211,1}(4) &	{red}{204,9}(4) &	{red}{199,1}(4) &	868,9(16)\\
+A4 &	{red}{286,1}(4) &	{red}{267,6}(4) &	{red}{213,8}(4) &	{red}{209,6}(4) &	977,1(16)\\ \hline
+Totais &	965,3(16) &	936,8(16) &	733,8(16) &	743,9(16) &	{red}{3.379,8}(64) \\ \hline
+\end{tabular}
+}
+\end{center}
+		
+		\begin{eqnarray*}
+			SQParcelas &=& \frac{1}{b}\sum_{ji}y_{ji\cdot}^2 - \frac{y_{\cdot\cdot\cdot}^2}{rab}\\ \nonumber
+			&=& \frac{1}{4}\Big({red}{190,6}^2 + {red}{234,8}^2 + \ldots + {red}{209,6}^2\Big) - \frac{{red}{3379,8}^2}{64} \\ \nonumber
+			&=& 6309,19 \\ \nonumber
+		\end{eqnarray*}
+		
+}
+
+\frame{
+	{Exemplo}
+	{\footnotesize
+		\begin{center}
+	{\footnotesize
+	\begin{tabular}{lccccc} \hline
+Variedades (A)& \multicolumn{4}{c}{Blocos} & 	Totais\\ \cline{2-5}
+              & I	& II &	III &	IV	 \\ \hline
+A1 &	190,6(4) &	195,7(4) &	141,8(4) &	151,2(4) &	{red}{679,3}(16)\\
+A2 &	234,8(4) &	262,4(4) &	173,3(4) &	184,0(4) &	{red}{854,5}(16)\\
+A3 &	253,8(4) &	211,1(4) &	204,9(4) &	199,1(4) &	{red}{868,9}(16)\\
+A4 &	286,1(4) &	267,6(4) &	213,8(4) &	209,6(4) &	{red}{977,1}(16)\\ \hline
+Totais &	965,3(16) &	936,8(16) &	733,8(16) &	743,9(16) &	{red}{3.379,8}(64) \\ \hline
+\end{tabular}
+}
+\end{center}
+		
+		\begin{eqnarray*}
+			SQA &=& \frac{1}{rb}\sum_{i}y_{\cdot i\cdot}^2 - \frac{y_{\cdot\cdot\cdot}^2}{rab} \\ \nonumber
+			&=& \frac{1}{16}\Big({red}{679,3}^2+{red}{854,5}^2+{red}{868,9}^2+{red}{977,1}^2\Big) - \frac{{red}{3379,8}^2}{64}  \\ \nonumber
+			&=& 2848,02 \\ \nonumber
+		\end{eqnarray*}
+	}	
+}
+
+\frame{
+	{Exemplo}
+	{\footnotesize
+		\begin{center}
+			\begin{tabular}{lrrrr}\hline
+				Fontes de Variação & gl & SQ & QM & F\\ \hline
+				Blocos             & 3 & 2842,87 & & \\
+				 A           & $3$    & 2848,02 & {white}{949,34} & {white}{13,82}\\
+				 Resíduo (a) & $9$ &  618,30 & {white}{68,70} & \\ \hline
+				(Parcelas)           & $(15)$   & (6309,19) & & \\ \hline
+				 B           & $3$    & {white}{170,53} & {white}{56,84} & {white}{2,80}\\
+				 A\#B        & $9$    & {white}{586,47} & {white}{65,16} & {white}{3,21}\\
+				 Resíduo (b) & $36$ & {white}{731,20} & {white}{20,31}\\ \hline
+				Total & 63 & 7797,39 & & \\ \hline
+			\end{tabular}
+		\end{center}
+		
+		\begin{eqnarray*}
+			SQRes(a) &=& SQParcelas - SQBlocos - SQA \\ \nonumber
+			&=& 6309,19-2842,87-2848,02 = 618,30
+		\end{eqnarray*}
+	}	
+}
+
+{Exemplo}
+
+Tabela auxiliar: Envolve o tratamento de parcela e de subparcela.
+
+\begin{center}
+	{\footnotesize
+		\begin{tabular}{lccccc} \hline
+			Variedades (A)& \multicolumn{4}{c}{Tratamento de Sementes} & 	Totais\\ \cline{2-5}
+			& B1	& B2 &	B3 &	B4	 \\ \hline
+			A1 &	144,2(4) &	202,5(4) &	183,4(4) &	149,2(4) &	679,3(16) \\
+			A2 &	203,4(4) &	221,5(4) &	212,4(4) &	217,2(4) &	854,5(16) \\
+			A3 &	215,7(4) &	205,5(4) &	223,5(4) &	224,2(4) &	868,9(16) \\
+			A4 &	247,7(4) &	253,7(4) &	230,7(4) &	245,0(4) &	977,1(16) \\ \hline
+			Totais &	811,0(16) &	883,2(16) &	850,0(16) &	835,6(16) &	3.379,8(64) \\ \hline
+		\end{tabular}
+	}
+\end{center}
+\end{frame}
+
+\frame{
+{Exemplo}
+{\footnotesize
+	\begin{center}
+	{\footnotesize
+		\begin{tabular}{lccccc} \hline
+			Variedades (A)& \multicolumn{4}{c}{Tratamento de Sementes} & 	Totais\\ \cline{2-5}
+			& B1	& B2 &	B3 &	B4	 \\ \hline
+			A1 &	144,2(4) &	202,5(4) &	183,4(4) &	149,2(4) &	679,3(16) \\
+			A2 &	203,4(4) &	221,5(4) &	212,4(4) &	217,2(4) &	854,5(16) \\
+			A3 &	215,7(4) &	205,5(4) &	223,5(4) &	224,2(4) &	868,9(16) \\
+			A4 &	247,7(4) &	253,7(4) &	230,7(4) &	245,0(4) &	977,1(16) \\ \hline
+			Totais &	{red}{811,0}(16) &	{red}{883,2}(16) &	{red}{850,0}(16) &	{red}{835,6}(16) &	{red}{3.379,8}(64) \\ \hline
+		\end{tabular}
+	}
+\end{center}
+	
+	\begin{eqnarray*}
+		SQB &=& \frac{1}{ra}\sum_ky_{\cdot \cdot k^2} - \frac{y_{\cdot\cdot\cdot^2}}{rab} \\ \nonumber
+		&=& \frac{1}{16}\Big({red}{811,0}^2 + {red}{883,2}^2+{red}{850,0}^2+{red}{835,6}^2\Big) - \frac{{red}{3379,8}^2}{64} \\ \nonumber
+		&=& 170,53 \\ \nonumber
+	\end{eqnarray*}
+}	
+}
+
+\frame{
+{Exemplo}
+{\footnotesize
+	\begin{center}
+	{\footnotesize
+		\begin{tabular}{lccccc} \hline
+			Variedades (A)& \multicolumn{4}{c}{Tratamento de Sementes} & 	Totais\\ \cline{2-5}
+			& B1	& B2 &	B3 &	B4	 \\ \hline
+			A1 &	{red}{144,2}(4) &	{red}{202,5}(4) &	{red}{183,4}(4) &	{red}{149,2}(4) &	679,3(16) \\
+			A2 &	{red}{203,4}(4) &	{red}{221,5}(4) &	{red}{212,4}(4) &	{red}{217,2}(4) &	854,5(16) \\
+			A3 &	{red}{215,7}(4) &	{red}{205,5}(4) &	{red}{223,5}(4) &	{red}{224,2}(4) &	868,9(16) \\
+			A4 &	{red}{247,7}(4) &	{red}{253,7}(4) &	{red}{230,7}(4) &	{red}{245,0}(4) &	977,1(16) \\ \hline
+			Totais &	811,0(16) &	883,2(16) &	850,0(16) &	835,6(16) &	{red}{3.379,8}(64) \\ \hline
+		\end{tabular}
+	}
+\end{center}
+	
+	\begin{eqnarray*}
+		SQA,B &=& \frac{1}{r}\sum_{ik} y_{\cdot ik^2} - \frac{y_{\cdot\cdot\cdot^2}}{rab} \\ \nonumber
+		&=& \frac{1}{4}\Big({red}{144,2}^2 + {red}{203,4}^2+ \ldots +{red}{245,0}^2\Big) - \frac{{red}{3379,8}^2}{64} \\ \nonumber
+		&=& 3605,02 \\ \nonumber
+	\end{eqnarray*}
+}	
+}
+
+
+
+\frame{
+{Exemplo}
+{\footnotesize
+	\begin{center}
+		\begin{tabular}{lrrrr}\hline
+			Fontes de Variação & gl & SQ & QM & F\\ \hline
+			Blocos             & 3 & 2842,87 & & \\
+			 A           & $3$    & 2848,02 & {white}{949,34} & {white}{13,82}\\
+			 Resíduo (a) & $9$ &  618,30 & {white}{68,70} & \\ \hline
+			(Parcelas)           & $(15)$   & (6309,19) & & \\ \hline
+			 B           & $3$    & 170,53 & {white}{56,84} & {white}{2,80}\\
+			 A\#B        & $9$    & 586,47 & {white}{65,16} & {white}{3,21}\\
+			 Resíduo (b) & $36$ & 731,20 & {white}{20,31}\\ \hline
+			Total & 63 &7797,39 & & \\ \hline
+		\end{tabular}
+	\end{center}
+	
+	\begin{eqnarray*}
+		SQA\#B &=& SQA,B - SQA - SQB\\ \nonumber
+		&=& 3605,02 - 2848,02 - 170,53 = 586,47 \\ \nonumber
+		SQRes(b) &=& SQTotal - SQParcelas - SQB - SQA\#B \\ \nonumber
+		&=& 7797,39 - 6309,19 - 170,53 - 586,47 = 731,20 \\ \nonumber
+	\end{eqnarray*}
+}	
+}
+
+
+
+\frame{
+{Exemplo}
+{\footnotesize
+\begin{center}
+	\begin{tabular}{lrrrrr}\hline
+		Fontes de Variação & gl & SQ & QM & F & F$_\text{tab}(\alpha = 0,05)$\\ \hline
+		Blocos             & 3 & 2842,87 & & \\
+		 A           & $3$    & 2848,02 & 949,34 & 13,82 & 3,86\\
+		 Resíduo (a) & $9$ &  618,30 & 68,70 & \\ \hline
+		(Parcelas)           & $(15)$   & (6309,19) & & \\ \hline
+		 B           & $3$    & 170,53 & 56,84 & 2,80 & 2,87\\
+		 {red}{A\#B}        & {red}{$9$}    & {red}{586,47} & {red}{65,16} & {red}{3,21} & {red}{2,15}\\
+		 Resíduo (b) & $36$ & 731,20 & 20,31\\ \hline
+		Total & 63 &7797,39 & & \\ \hline
+	\end{tabular}
+\end{center}
+
+Hipóteses:\\
+{red}{
+	$H_0:$ Não há efeito da interação \\
+	$H_1:$ Há efeito da interação.}
+
+
+Como $F = 3,21 > 2,15 = F_\text{tab}(\alpha = 0,05)$, com nível de 5\% de significância, rejeita-se $H_0$. Desse modo, há evidências para afirmarmos que há efeito da interação entre os fatores. Sendo assim, serão avaliados os efeitos simples.
+}
+}
+
+\frame{
+{Exemplo: Efeito de Tratamento de Sementes dentro de cada Variedade}
+
+$H_0: \mu_{A1{red}{B1}} = \mu_{A1{red}{B2}} = \mu_{A1{red}{B3}} = \mu_{A1{red}{B4}}$ \\
+$H_1: \text{Pelo menos duas médias diferente entre si}$
+
+\begin{center}
+	{\footnotesize
+		\begin{tabular}{lccccc} \hline
+			Variedades (A)& \multicolumn{4}{c}{Tratamento de Sementes} & 	Totais\\ \cline{2-5}
+			& B1	& B2 &	B3 &	B4	 \\ \hline
+			A1 &	{red}{144,2}(4) &	{red}{202,5}(4) &	{red}{183,4}(4) &	{red}{149,2}(4) &	{red}{679,3}(16) \\
+			A2 &	{ForestGreen}{203,4}(4) &	{ForestGreen}{221,5}(4) &	{ForestGreen}{212,4}(4) &	{ForestGreen}{217,2}(4) &	{ForestGreen}{854,5}(16) \\
+			A3 &	{blue}{215,7}(4) &	{blue}{205,5}(4) &	{blue}{223,5}(4) &	{blue}{224,2}(4) &	{blue}{868,9}(16) \\
+			A4 &	{purple}{247,7}(4) &	{purple}{253,7}(4) &	{purple}{230,7}(4) &	{purple}{245,0}(4) &	{purple}{977,1}(16) \\ \hline
+			Totais &	811,0(16) &	883,2(16) &	850,0(16) &	835,6(16) &	{3.379,8}(64) \\ \hline
+		\end{tabular}
+	}
+\end{center}
+
+\vspace{0.5cm}
+
+$SQ B d.A1= \frac{1}{4}\Big({red}{144,2}^2+{red}{202,5}^2+{red}{183,4}^2+{red}{149,2}^2\Big)-  \frac{{red}{679,3}^2}{16}=583,49$\\
+}
+
+\frame{
+{Exemplo: Efeito de Tratamento de Sementes dentro de cada Variedade}
+
+$H_0: \mu_{A2{ForestGreen}{B1}} = \mu_{A2{ForestGreen}{B2}} = \mu_{A2{ForestGreen}{B3}} = \mu_{A2{ForestGreen}{B4}}$ \\
+$H_1: \text{Pelo menos duas médias diferente entre si}$
+
+
+\begin{center}
+	{\footnotesize
+		\begin{tabular}{lccccc} \hline
+			Variedades (A)& \multicolumn{4}{c}{Tratamento de Sementes} & 	Totais\\ \cline{2-5}
+			& B1	& B2 &	B3 &	B4	 \\ \hline
+			A1 &	{red}{144,2}(4) &	{red}{202,5}(4) &	{red}{183,4}(4) &	{red}{149,2}(4) &	{red}{679,3}(16) \\
+			A2 &	{ForestGreen}{203,4}(4) &	{ForestGreen}{221,5}(4) &	{ForestGreen}{212,4}(4) &	{ForestGreen}{217,2}(4) &	{ForestGreen}{854,5}(16) \\
+			A3 &	{blue}{215,7}(4) &	{blue}{205,5}(4) &	{blue}{223,5}(4) &	{blue}{224,2}(4) &	{blue}{868,9}(16) \\
+			A4 &	{purple}{247,7}(4) &	{purple}{253,7}(4) &	{purple}{230,7}(4) &	{purple}{245,0}(4) &	{purple}{977,1}(16) \\ \hline
+			Totais &	811,0(16) &	883,2(16) &	850,0(16) &	835,6(16) &	{3.379,8}(64) \\ \hline
+		\end{tabular}
+	}
+\end{center}
+
+\vspace{0.5cm}
+
+$SQ B d.A2=\frac{1}{4}\Big({ForestGreen}{ 203,4}^2+{ForestGreen}{221,5}^2+{ForestGreen}{212,4}^2+{ForestGreen}{217,2}^2\Big)-  \frac{{ForestGreen}{854,5}^2}{16}=45,21$\\
+
+
+
+}
+
+\frame{
+{Exemplo: Efeito de Tratamento de Sementes dentro de cada Variedade}
+
+$H_0: \mu_{A3{blue}{B1}} = \mu_{A3{blue}{B2}} = \mu_{A3{blue}{B3}} = \mu_{A3{blue}{B4}}$ \\
+$H_1: \text{Pelo menos duas médias diferente entre si}$
+
+
+\begin{center}
+	{\footnotesize
+		\begin{tabular}{lccccc} \hline
+			Variedades (A)& \multicolumn{4}{c}{Tratamento de Sementes} & 	Totais\\ \cline{2-5}
+			& B1	& B2 &	B3 &	B4	 \\ \hline
+			A1 &	{red}{144,2}(4) &	{red}{202,5}(4) &	{red}{183,4}(4) &	{red}{149,2}(4) &	{red}{679,3}(16) \\
+			A2 &	{ForestGreen}{203,4}(4) &	{ForestGreen}{221,5}(4) &	{ForestGreen}{212,4}(4) &	{ForestGreen}{217,2}(4) &	{ForestGreen}{854,5}(16) \\
+			A3 &	{blue}{215,7}(4) &	{blue}{205,5}(4) &	{blue}{223,5}(4) &	{blue}{224,2}(4) &	{blue}{868,9}(16) \\
+			A4 &	{purple}{247,7}(4) &	{purple}{253,7}(4) &	{purple}{230,7}(4) &	{purple}{245,0}(4) &	{purple}{977,1}(16) \\ \hline
+			Totais &	811,0(16) &	883,2(16) &	850,0(16) &	835,6(16) &	{3.379,8}(64) \\ \hline
+		\end{tabular}
+	}
+\end{center}
+
+\vspace{0.5cm}
+
+$SQ B d.A3=\frac{1}{4}\Big({blue}{215,7}^2+{blue}{205,5}^2+{blue}{223,5}^2+{blue}{224,2}^2\Big)-  \frac{{blue}{868,9}^2}{16}=56,96$\\
+
+
+}
+
+\frame{
+{Exemplo: Efeito de Tratamento de Sementes dentro de cada Variedade}
+
+$H_0: \mu_{A4{purple}{B1}} = \mu_{A4{purple}{B2}} = \mu_{A4{purple}{B3}} = \mu_{A4{purple}{B4}}$ \\
+$H_1: \text{Pelo menos duas médias diferentes entre si}$
+
+
+\begin{center}
+	{\footnotesize
+		\begin{tabular}{lccccc} \hline
+			Variedades (A)& \multicolumn{4}{c}{Tratamento de Sementes} & 	Totais\\ \cline{2-5}
+			& B1	& B2 &	B3 &	B4	 \\ \hline
+			A1 &	{red}{144,2}(4) &	{red}{202,5}(4) &	{red}{183,4}(4) &	{red}{149,2}(4) &	{red}{679,3}(16) \\
+			A2 &	{ForestGreen}{203,4}(4) &	{ForestGreen}{221,5}(4) &	{ForestGreen}{212,4}(4) &	{ForestGreen}{217,2}(4) &	{ForestGreen}{854,5}(16) \\
+			A3 &	{blue}{215,7}(4) &	{blue}{205,5}(4) &	{blue}{223,5}(4) &	{blue}{224,2}(4) &	{blue}{868,9}(16) \\
+			A4 &	{purple}{247,7}(4) &	{purple}{253,7}(4) &	{purple}{230,7}(4) &	{purple}{245,0}(4) &	{purple}{977,1}(16) \\ \hline
+			Totais &	811,0(16) &	883,2(16) &	850,0(16) &	835,6(16) &	{3.379,8}(64) \\ \hline
+		\end{tabular}
+	}
+\end{center}
+
+\vspace{0.5cm}
+
+$SQ B d.A4=\frac{1}{4}\Big({purple}{247,7}^2+{purple}{253,7}^2+{purple}{230,7}^2+{purple}{245,0}^2\Big)- \frac{{purple}{977,1}^2}{16}=71,34$\\
+
+
+}
+
+\frame{
+{Exemplo: Efeito de Tratamento de Sementes dentro de cada Variedade}
+
+\begin{center}
+	\begin{tabular}{lrrrrr} \hline
+		Fontes de Variação &	 gl & 	 SQ & 	 QM & 	 Fcal &	 F_\text{tab}($\alpha = 0,05$) \\ \hline
+		B d. A1 &	 3 &	 583,49 & 	 194,50 &	 9,58 &	 2,87\\
+		B d. A2 &	 3 &	 45,21 &	 15,07 &	 0,74 & 	 2,87\\
+		B d. A3 &	 3 &	 56,96 &	 18,99 &	 0,94 &	 2,87\\
+		B d. A4 &	 3 &	 71,34 &	 23,78 &	 1,17 &	 2,87\\
+		Resíduo (b) & 	 36 &	 731,20 &	 20,31 	& & \\ \hline
+	\end{tabular}
+\end{center}
+
+\vspace{.5cm}
+
+Ao nível de 5\% de significância, há efeito de tratamentos de sementes dentro da variedade A1. Considerando-se as demais variedades, não há efeito significativo de tratamento de sementes. 
+
+}
+
+
+\frame{
+{Exemplo: Efeito de Tratamento de Sementes dentro de cada Variedade}
+
+Teste de Tukey para tratamentos de sementes dentro da variedade A1
+
+$$\Delta = q_{(5\%, b, \text{gl Res (b)})}\sqrt{\frac{QMRes(b)}{r}} = 3,81\sqrt{\frac{20,31}{4}} = 8,585$$	
+
+\begin{center}
+    {\footnotesize
+    \begin{tabular}{crrr} \hline
+& $\hat{\mu}_{A_1B_3} = 45,850$ & $\hat{\mu}_{A_1B_4} = 37,300$ & $\hat{\mu}_{A_1B_1} = 36,050$ \\ \hline
+$\hat{\mu}_{A_1B_2} = 50,625$  & 4,775                         & {red}{13,325}                        & {red}{14,575} \\   
+$\hat{\mu}_{A_1B_3} = 45,850$  &                               & 8,550                         & {red}{9,800} \\
+$\hat{\mu}_{A_1B_4} = 37,300$  &                               &                               & 1,250 \\ \hline
+    \end{tabular}
+    }
+\end{center}
+
+\begin{columns}
+\begin{column}{.3\textwidth}
+\begin{figure}[H]
+	\centering
+	\includegraphics[scale=0.25]{Aulas/Figuras/psub_sementesimples.pdf}
+\end{figure}
+\end{column}
+
+\begin{column}{.65\textwidth}
+\begin{center}
+	\begin{tabular}{llll}
+		$\hat{\mu}_{A_1B_2}=50,625$ &	 a & & \\
+		$\hat{\mu}_{A_1B_3}=45,850$ &	 a & b & \\
+		$\hat{\mu}_{A_1B_4}=37,300$ &    & b & c\\
+		$\hat{\mu}_{A_1B_1}=36,050$ &	   &   & c \\			
+	\end{tabular}
+\end{center}
+\end{column}
+\end{columns}
+}
+
+ {Exemplo: Efeitos principais}
+
+\begin{columns}
+\begin{column}{.3\textwidth}
+\begin{figure}[H]
+	\centering
+	\includegraphics[scale=0.4]{Aulas/Figuras/psub_sementesimples.pdf}
+\end{figure}
+\end{column}
+
+\begin{column}{.7\textwidth}
+{\tiny
+\begin{center}
+    \begin{tabular}{crrrrr} \hline
+            & \multicolumn{4}{c}{Tratamento de Semente} & \\
+Variedade   &   B1   &    B2  &    B3  & B4 & médias\\ \hline
+A1 & {red}{36,050} \; C & {red}{50,625} \; A & {red}{45,850} \;A B & {red}{37,30} \; B C & {42,456} \\
+A2 & {ForestGreen}{50,850} \; A & {ForestGreen}{55,375} \; A & {ForestGreen}{53,100} \; A & {ForestGreen}{54,30} \; A & {53,406} \\
+A3 & {blue}{53,925} \; A & {blue}{51,375} \; A & {blue}{55,875} \; A & {blue}{56,05} \; A & {54,306} \\
+A4 & {purple}{61,925} \; A & {purple}{63,425} \; A & {purple}{57,675} \; A & {purple}{61,25} \; A & {61,069} \\ \hline
+médias & 50,688 & 55,200 & 53,125 & 52,225 & 52,809 \\ \hline
+\end{tabular}
+\end{center}
+}
+\end{column}
+\end{columns}
+\end{frame}
+
+\frame{
+{Exemplo: Efeito de Tratamento de Sementes dentro de cada Variedade}
+
+Teste de Tukey para tratamentos de sementes dentro da variedade A1
+
+$$\Delta = q_{(5\%, b, \text{gl Res (b)})}\sqrt{\frac{QMRes(b)}{r}} = 3,81\sqrt{\frac{20,31}{4}} = 8,585$$	
+
+\begin{center}
+	\begin{tabular}{llll}
+		$\hat{\mu}_{A_1B_2}=50,625$ &	 a & & \\
+		$\hat{\mu}_{A_1B_3}=45,850$ &	 a & b & \\
+		$\hat{\mu}_{A_1B_4}=37,300$ &    & b & c\\
+		$\hat{\mu}_{A_1B_1}=36,050$ &	   &   & c \\			
+	\end{tabular}
+\end{center}
+
+{\footnotesize
+De acordo com o teste de Tukey, ao nível de 5\% de significância, há evidências para afirmar que a produção média para o tratamento de sementes B2 difere da produção média para os tratamentos de sementes B1 e B4, sendo B2 o que apresentou maior produção. Ainda, há evidências para afirmar que a produção média para o tratamento de sementes B3 difere da produção média para o tratamento de sementes B1 e as demais médias não apresentaram diferença significativa.
+}
+}
+
+\frame{
+{Exemplo: Efeito de Variedades dentro de cada Tratamento de Sementes}
+
+$H_0: \mu_{{red}{A1}B1} = \mu_{{red}{A2}B1} = \mu_{{red}{A3}B1} = \mu_{{red}{A4}B1}$\\
+$H_1: \text{Pelo menos duas médias diferem entre si}$
+
+\begin{center}
+	{\footnotesize
+		\begin{tabular}{lccccc} \hline
+			Variedades (A)& \multicolumn{4}{c}{Tratamento de Sementes} & 	Totais\\ \cline{2-5}
+			& B1	& B2 &	B3 &	B4	 \\ \hline
+			A1 &	{red}{144,2}(4) &	{ForestGreen}{202,5}(4) &	{blue}{183,4}(4) &	{purple}{149,2}(4) &	679,3(16) \\
+			A2 &	{red}{203,4}(4) &	{ForestGreen}{221,5}(4) &	{blue}{212,4}(4) &	{purple}{217,2}(4) &	854,5(16) \\
+			A3 &	{red}{215,7}(4) &	{ForestGreen}{205,5}(4) &	{blue}{223,5}(4) &	{purple}{224,2}(4) &	868,9(16) \\
+			A4 &	{red}{247,7}(4) &	{ForestGreen}{253,7}(4) &	{blue}{230,7}(4) &	{purple}{245,0}(4) &	977,1(16) \\ \hline
+			Totais &	{red}{811,0}(16) &	{ForestGreen}{883,2}(16) &	{blue}{850,0}(16) &	{purple}{835,6}(16) &	{3.379,8}(64) \\ \hline
+		\end{tabular}
+	}
+\end{center}
+
+\vspace{.5cm}
+
+$SQ A d.B1=\frac{1}{4}\Big({red}{144,2}^2+{red}{203,4}^2+{red}{215,7}^2+{red}{247,7}^2\Big)-  \frac{{red}{811,0}^2}{16}=1.404,18$\\
+
+}
+
+\frame{
+{Exemplo: Efeito de Variedades dentro de cada Tratamento de Sementes}
+
+$H_0: \mu_{{ForestGreen}{A1}B2} = \mu_{{ForestGreen}{A2}B2} = \mu_{{ForestGreen}{A3}B2} = \mu_{{ForestGreen}{A4}B2}$\\
+$H_1: \text{Pelo menos duas médias diferem entre si}$
+
+\begin{center}
+	{\footnotesize
+		\begin{tabular}{lccccc} \hline
+			Variedades (A)& \multicolumn{4}{c}{Tratamento de Sementes} & 	Totais\\ \cline{2-5}
+			& B1	& B2 &	B3 &	B4	 \\ \hline
+			A1 &	{red}{144,2}(4) &	{ForestGreen}{202,5}(4) &	{blue}{183,4}(4) &	{purple}{149,2}(4) &	679,3(16) \\
+			A2 &	{red}{203,4}(4) &	{ForestGreen}{221,5}(4) &	{blue}{212,4}(4) &	{purple}{217,2}(4) &	854,5(16) \\
+			A3 &	{red}{215,7}(4) &	{ForestGreen}{205,5}(4) &	{blue}{223,5}(4) &	{purple}{224,2}(4) &	868,9(16) \\
+			A4 &	{red}{247,7}(4) &	{ForestGreen}{253,7}(4) &	{blue}{230,7}(4) &	{purple}{245,0}(4) &	977,1(16) \\ \hline
+			Totais &	{red}{811,0}(16) &	{ForestGreen}{883,2}(16) &	{blue}{850,0}(16) &	{purple}{835,6}(16) &	{3.379,8}(64) \\ \hline
+		\end{tabular}
+	}
+\end{center}
+
+\vspace{.5cm}
+
+$SQ A d.B2=\frac{1}{4}\Big({ForestGreen}{202,5}^2+{ForestGreen}{221,5}^2+{ForestGreen}{205,5}^2+{ForestGreen}{253,7}^2\Big)-  \frac{{ForestGreen}{883,2}^2}{16}=412,97$\\
+
+}
+
+\frame{
+{Exemplo: Efeito de Variedades dentro de cada Tratamento de Sementes}
+
+$H_0: \mu_{{blue}{A1}B3} = \mu_{{blue}{A2}B3} = \mu_{{blue}{A3}B3} = \mu_{{blue}{A4}B3}$\\
+$H_1: \text{Pelo menos duas médias diferem entre si}$
+
+\begin{center}
+	{\footnotesize
+		\begin{tabular}{lccccc} \hline
+			Variedades (A)& \multicolumn{4}{c}{Tratamento de Sementes} & 	Totais\\ \cline{2-5}
+			& B1	& B2 &	B3 &	B4	 \\ \hline
+			A1 &	{red}{144,2}(4) &	{ForestGreen}{202,5}(4) &	{blue}{183,4}(4) &	{purple}{149,2}(4) &	679,3(16) \\
+			A2 &	{red}{203,4}(4) &	{ForestGreen}{221,5}(4) &	{blue}{212,4}(4) &	{purple}{217,2}(4) &	854,5(16) \\
+			A3 &	{red}{215,7}(4) &	{ForestGreen}{205,5}(4) &	{blue}{223,5}(4) &	{purple}{224,2}(4) &	868,9(16) \\
+			A4 &	{red}{247,7}(4) &	{ForestGreen}{253,7}(4) &	{blue}{230,7}(4) &	{purple}{245,0}(4) &	977,1(16) \\ \hline
+			Totais &	{red}{811,0}(16) &	{ForestGreen}{883,2}(16) &	{blue}{850,0}(16) &	{purple}{835,6}(16) &	{3.379,8}(64) \\ \hline
+		\end{tabular}
+	}
+\end{center}
+
+\vspace{.5cm}
+
+$SQ A d.B3=\frac{1}{4}\Big({blue}{183,4}^2+{blue}{212,4}^2+{blue}{223,5}^2+{blue}{230,7}^2\Big)-\frac{{blue}{850,0}^2}{16}=324,77$\\
+
+}
+
+\frame{
+{Exemplo: Efeito de Variedades dentro de cada Tratamento de Sementes}
+
+$H_0: \mu_{{purple}{A1}B4} = \mu_{{purple}{A2}B4} = \mu_{{purple}{A3}B4} = \mu_{{purple}{A4}B4}$\\
+$H_1: \text{Pelo menos duas médias diferem entre si}$
+
+\begin{center}
+	{\footnotesize
+		\begin{tabular}{lccccc} \hline
+			Variedades (A)& \multicolumn{4}{c}{Tratamento de Sementes} & 	Totais\\ \cline{2-5}
+			& B1	& B2 &	B3 &	B4	 \\ \hline
+			A1 &	{red}{144,2}(4) &	{ForestGreen}{202,5}(4) &	{blue}{183,4}(4) &	{purple}{149,2}(4) &	679,3(16) \\
+			A2 &	{red}{203,4}(4) &	{ForestGreen}{221,5}(4) &	{blue}{212,4}(4) &	{purple}{217,2}(4) &	854,5(16) \\
+			A3 &	{red}{215,7}(4) &	{ForestGreen}{205,5}(4) &	{blue}{223,5}(4) &	{purple}{224,2}(4) &	868,9(16) \\
+			A4 &	{red}{247,7}(4) &	{ForestGreen}{253,7}(4) &	{blue}{230,7}(4) &	{purple}{245,0}(4) &	977,1(16) \\ \hline
+			Totais &	{red}{811,0}(16) &	{ForestGreen}{883,2}(16) &	{blue}{850,0}(16) &	{purple}{835,6}(16) &	{3.379,8}(64) \\ \hline
+		\end{tabular}
+	}
+\end{center}
+
+\vspace{.5cm}
+
+$SQ A d.B4=\frac{1}{4}\Big({purple}{149,2}^2+{purple}{217,2}^2+{purple}{224,2}^2+{purple}{245,0}^2\Big)-\frac{{purple}{835,6}^2}{16}=1.292,57$
+
+}
+
+
+\frame{
+{Exemplo: Efeito de Variedades dentro de cada Tratamento de Sementes}
+\begin{eqnarray*}
+	QM\text{Resíduo Composto} &=& \frac{QM \text{Resíduo (a)}+(b-1)QM \text{Resíduo (b)}}{b} \\ \nonumber
+	&=& \frac{68,70+(4-1)20,31}{4}=32,41 \\ \nonumber
+	& & \\ \nonumber
+\end{eqnarray*}
+
+\begin{eqnarray*}
+	\nu &=&\frac{[QM \text{Resíduo (a)}+(b-1)QM \text{Resíduo (b)}]^2}{\frac{[QM \text{Resíduo (a)}]^2}{gl \text{Resíduo (a)}}+ \frac{[(b-1)QM \text{Resíduo (b)}]^2}{gl \text{Resíduo (b)}}} \\ \nonumber
+	&=&  \frac{[68,70+(4-1)20,31]^2}{[68,70]^2/9+[(4-1)20,31]^2/36} \approx26,78\approx27 gl
+	
+\end{eqnarray*}
+
+
+}
+
+
+
+\frame{
+{Exemplo: Efeito de Variedades dentro de cada Tratamento de Sementes}
+
+
+\begin{center}
+	\begin{tabular}{lrrrrr} \hline
+		Fontes de Variação &	 gl & 	 SQ & 	 QM & 	 Fcal &	 $F_\text{tab}(\alpha = 0,05)$ \\ \hline
+		A d. B1 &	 3 & 	1.404,18	& 468,06 &	14,44 &	2,96 \\
+		A d. B2 &	 3 &	412,97	& 137,66 &	4,25&	2,96 \\
+		A d. B3 &	 3 &	324,77	& 108,26&	3,34&	2,96 \\
+		A d. B4 &	 3 &	1.292,57 &	430,86&	13,29&	2,96 \\
+		Resíduo Composto &	 27 & &	32,41 & & \\ \hline
+	\end{tabular}
+\end{center}
+
+De acordo com o teste F, ao nível de 5\% de significância, há efidências para afirmar que há efeito significativa de Variedades dentro de cada um dos tratamentos de sementes.
+
+}
+
+
+
+
+\frame{
+{Exemplo: Efeito de Variedades dentro de cada Tratamento de Sementes}
+{\tiny
+Teste de Tukey para comparação de médias de Variedades dentro de cada Tratamento de sementes
+
+$$\Delta=q_{(5\%, a, gl \text{Res Composto})}\sqrt{\frac{\text{QM Resíduo Composto}}{r}}=3,88\sqrt{\frac{32,41}{4}}=11,0$$
+
+\begin{block}{Variedades dentro de B1 (Testemunha)}
+    \begin{center}
+    
+    \begin{tabular}{crrr} \hline
+                               & $\hat{\mu}_{A_3B_1} = 53,925$ & $\hat{\mu}_{A_2B_1} = 50,850$ & $\hat{\mu}_{A_1B_1} = 36,050$ \\ \hline
+$\hat{\mu}_{A_4B_1} = 61,925$  & 8,000                         & {red}{11,075}                        & {red}{25,875} \\   
+$\hat{\mu}_{A_3B_1} = 53,925$  &                               & 3,075                         & {red}{17,875} \\
+$\hat{\mu}_{A_2B_1} = 50,850$  &                               &                               & {red}{14,800} \\ \hline
+    \end{tabular}
+    
+\end{center}
+\end{block}
+
+\begin{columns}
+\begin{column}{.3\textwidth}
+\begin{figure}[H]
+	\centering
+	\includegraphics[scale=0.25]{Aulas/Figuras/psub_variedadesimples.pdf}
+\end{figure}
+\end{column}
+
+\begin{column}{.7\textwidth}
+\begin{center}
+	\begin{tabular}{llll}
+		$\hat{\mu}_{A_4B_1}=61,925$ &	 a & & \\
+		$\hat{\mu}_{A_3B_1}=53,925$ &	 a & b & \\
+		$\hat{\mu}_{A_2B_1}=50,850$ &    & b & \\
+		$\hat{\mu}_{A_1B_1}=36,050$ &	   &   & c \\			
+	\end{tabular}
+\end{center}
+\end{column}
+\end{columns}
+}
+}
+
+
+% B2 
+\frame{
+{Exemplo: Efeito de Variedades dentro de cada Tratamento de Sementes}
+{\tiny
+Teste de Tukey para comparação de médias de Variedades dentro de cada Tratamento de sementes
+
+$$\Delta=q_{(5\%, a, gl \text{Res Composto})}\sqrt{\frac{\text{QM Resíduo Composto}}{r}}=3,88\sqrt{\frac{32,41}{4}}=11,0$$
+
+\begin{block}{Variedades dentro de B2 (Ceresan M)}
+    \begin{center}
+    
+    \begin{tabular}{crrr} \hline
+                                                              & $\hat{\mu}_{A_2B_2} = 55,375$ & $\hat{\mu}_{A_3B_2} = 51,375$ & $\hat{\mu}_{A_1B_2} = 50,625$ \\ \hline
+$\hat{\mu}_{A_4B_2} = 63,425$  & 8,050                         & {red}{12,050}                        & {red}{12,800} \\   
+$\hat{\mu}_{A_2B_2} = 55,375$  &                               & 4,000                         & 4,750 \\
+$\hat{\mu}_{A_3B_2} = 51,375$  &                               &                               & 0,750 \\ \hline
+    \end{tabular}
+    
+\end{center}
+\end{block}
+
+\begin{columns}
+\begin{column}{.3\textwidth}
+\begin{figure}[H]
+	\centering
+	\includegraphics[scale=0.25]{Aulas/Figuras/psub_variedadesimples.pdf}
+\end{figure}
+\end{column}
+
+\begin{column}{.7\textwidth}
+\begin{center}
+	\begin{tabular}{llll}
+		$\hat{\mu}_{A_4B_2}=63,425$ &	 a & & \\
+		$\hat{\mu}_{A_2B_2}=55,375$ &	 a & b & \\
+		$\hat{\mu}_{A_3B_2}=51,375$ &    & b & \\
+		$\hat{\mu}_{A_1B_2}=50,625$ &	   & b  &  \\			
+	\end{tabular}
+\end{center}
+\end{column}
+\end{columns}
+}
+}
+
+% B3
+\frame{
+{Exemplo: Efeito de Variedades dentro de cada Tratamento de Sementes}
+{\tiny
+Teste de Tukey para comparação de médias de Variedades dentro de cada Tratamento de sementes
+
+$$\Delta=q_{(5\%, a, gl \text{Res Composto})}\sqrt{\frac{\text{QM Resíduo Composto}}{r}}=3,88\sqrt{\frac{32,41}{4}}=11,0$$
+
+\begin{block}{Variedades dentro de B3 (Panogen)}
+    \begin{center}
+    
+    \begin{tabular}{crrr} \hline
+                               & $\hat{\mu}_{A_3B_3} = 55,875$ & $\hat{\mu}_{A_2B_3} = 53,100$ & $\hat{\mu}_{A_1B_3} = 45,850$ \\ \hline
+$\hat{\mu}_{A_4B_3} = 57,675$  & 1,800                         & 4,575                         & {red}{11,825} \\   
+$\hat{\mu}_{A_3B_3} = 55,875$  &                               & 2,775                         & 10,025 \\
+$\hat{\mu}_{A_2B_3} = 53,100$  &                               &                               & 7,250 \\ \hline
+    \end{tabular}
+    
+\end{center}
+\end{block}
+
+\begin{columns}
+\begin{column}{.3\textwidth}
+\begin{figure}[H]
+	\centering
+	\includegraphics[scale=0.25]{Aulas/Figuras/psub_variedadesimples.pdf}
+\end{figure}
+\end{column}
+
+\begin{column}{.7\textwidth}
+\begin{center}
+	\begin{tabular}{llll}
+		$\hat{\mu}_{A_4B_3}=57,675$ &	 a & & \\
+		$\hat{\mu}_{A_3B_3}=55,875$ &	 a & b & \\
+		$\hat{\mu}_{A_2B_3}=53,100$ &  a & b & \\
+		$\hat{\mu}_{A_1B_3}=45,850$ &	   & b & \\			
+	\end{tabular}
+\end{center}
+\end{column}
+\end{columns}
+}
+}
+
+% B4
+\frame{
+{Exemplo: Efeito de Variedades dentro de cada Tratamento de Sementes}
+{\tiny
+Teste de Tukey para comparação de médias de Variedades dentro de cada Tratamento de sementes
+
+$$\Delta=q_{(5\%, a, gl \text{Res Composto})}\sqrt{\frac{\text{QM Resíduo Composto}}{r}}=3,88\sqrt{\frac{32,41}{4}}=11,0$$
+
+\begin{block}{Variedades dentro de B4 (Agros)}
+    \begin{center}
+    
+    \begin{tabular}{crrr} \hline
+                               & $\hat{\mu}_{A_3B_4} = 56,050$ & $\hat{\mu}_{A_2B_4} = 54,300$ & $\hat{\mu}_{A_1B_4} = 37,300$ \\ \hline
+$\hat{\mu}_{A_4B_4} = 61,250$  & 5,200                         & 6,950                         & {red}{23,950} \\   
+$\hat{\mu}_{A_3B_4} = 56,050$  &                               & 1,750                         & {red}{18,750} \\
+$\hat{\mu}_{A_2B_4} = 54,300$  &                               &                               & {red}{17,000} \\ \hline
+    \end{tabular}
+    
+\end{center}
+\end{block}
+
+\begin{columns}
+\begin{column}{.3\textwidth}
+\begin{figure}[H]
+	\centering
+	\includegraphics[scale=0.25]{Aulas/Figuras/psub_variedadesimples.pdf}
+\end{figure}
+\end{column}
+
+\begin{column}{.7\textwidth}
+\begin{center}
+	\begin{tabular}{llll}
+		$\hat{\mu}_{A_4B_4}=61,250$ &	 a & & \\
+		$\hat{\mu}_{A_3B_4}=56,050$ &	 a & & \\
+		$\hat{\mu}_{A_2B_4}=54,300$ &  a & & \\
+		$\hat{\mu}_{A_1B_4}=37,300$ &	   & b  &  \\			
+	\end{tabular}
+\end{center}
+\end{column}
+\end{columns}
+}
+}
+
+\frame{
+{Exemplo: Efeito de Variedades dentro de cada Tratamento de Sementes}
+
+\begin{columns}
+\begin{column}{.3\textwidth}
+\begin{figure}[H]
+	\centering
+	\includegraphics[scale=0.4]{Aulas/Figuras/psub_sementesimples.pdf}
+\end{figure}
+\end{column}
+
+\begin{column}{.7\textwidth}
+{\tiny
+\begin{center}
+	\begin{tabular}{lrrrr} \hline
+		& B1 & B2 & B3 & B4 \\
+		& Testemunha & Ceresan M & Panogen & Agros \\ \hline
+		A1  Vicland 1 &	 {red}{36,1} c &	 {ForestGreen}{50,6} b &	 {blue}{45,9} b 	& {purple}{37,3} b \\
+		A2  Vicland 2 &	 {red}{50,9} b& 	 {ForestGreen}{55,4} ab &	 {blue}{53,1} ab &	 {purple}{54,3} a \\
+		A3  Clinton &	    {red}{53,9} ab &	 {ForestGreen}{51,4} b &	 {blue}{55,9} ab &	 {purple}{56,1} a \\
+		A4  Branch &	     {red}{61,9} a& 	 {ForestGreen}{63,4} a &	 {blue}{57,7} a &	 {purple}{61,3} a\\ \hline
+	\end{tabular}

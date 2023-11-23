@@ -1,0 +1,509 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta charset="utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+
+
+
+<title>Parcelas subdivididas</title>
+
+<script src="site_libs/header-attrs-2.24/header-attrs.js"></script>
+<script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/cosmo.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<style>h1 {font-size: 34px;}
+       h1.title {font-size: 38px;}
+       h2 {font-size: 30px;}
+       h3 {font-size: 24px;}
+       h4 {font-size: 18px;}
+       h5 {font-size: 16px;}
+       h6 {font-size: 12px;}
+       code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
+       pre:not([class]) { background-color: white }</style>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+<link href="site_libs/highlightjs-9.12.0/textmate.css" rel="stylesheet" />
+<script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
+
+<style type="text/css">
+  code{white-space: pre-wrap;}
+  span.smallcaps{font-variant: small-caps;}
+  span.underline{text-decoration: underline;}
+  div.column{display: inline-block; vertical-align: top; width: 50%;}
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  ul.task-list{list-style: none;}
+    </style>
+
+<style type="text/css">code{white-space: pre;}</style>
+<script type="text/javascript">
+if (window.hljs) {
+  hljs.configure({languages: []});
+  hljs.initHighlightingOnLoad();
+  if (document.readyState && document.readyState === "complete") {
+    window.setTimeout(function() { hljs.initHighlighting(); }, 0);
+  }
+}
+</script>
+
+
+
+
+
+
+
+
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+img {
+  max-width:100%;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+.html-widget {
+  margin-bottom: 20px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+summary {
+  display: list-item;
+}
+details > summary > p:only-child {
+  display: inline;
+}
+pre code {
+  padding: 0;
+}
+</style>
+
+
+<style type="text/css">
+.dropdown-submenu {
+  position: relative;
+}
+.dropdown-submenu>.dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: -6px;
+  margin-left: -1px;
+  border-radius: 0 6px 6px 6px;
+}
+.dropdown-submenu:hover>.dropdown-menu {
+  display: block;
+}
+.dropdown-submenu>a:after {
+  display: block;
+  content: " ";
+  float: right;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 5px 0 5px 5px;
+  border-left-color: #cccccc;
+  margin-top: 5px;
+  margin-right: -10px;
+}
+.dropdown-submenu:hover>a:after {
+  border-left-color: #adb5bd;
+}
+.dropdown-submenu.pull-left {
+  float: none;
+}
+.dropdown-submenu.pull-left>.dropdown-menu {
+  left: -100%;
+  margin-left: 10px;
+  border-radius: 6px 0 6px 6px;
+}
+</style>
+
+<script type="text/javascript">
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark the anchor link active (and if it's in a dropdown, also mark that active)
+  var dropdown = menuAnchor.closest('li.dropdown');
+  if (window.bootstrap) { // Bootstrap 4+
+    menuAnchor.addClass('active');
+    dropdown.find('> .dropdown-toggle').addClass('active');
+  } else { // Bootstrap 3
+    menuAnchor.parent().addClass('active');
+    dropdown.addClass('active');
+  }
+
+  // Navbar adjustments
+  var navHeight = $(".navbar").first().height() + 15;
+  var style = document.createElement('style');
+  var pt = "padding-top: " + navHeight + "px; ";
+  var mt = "margin-top: -" + navHeight + "px; ";
+  var css = "";
+  // offset scroll position for anchor links (for fixed navbar)
+  for (var i = 1; i <= 6; i++) {
+    css += ".section h" + i + "{ " + pt + mt + "}\n";
+  }
+  style.innerHTML = "body {" + pt + "padding-bottom: 40px; }\n" + css;
+  document.head.appendChild(style);
+});
+</script>
+
+<!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before, .tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "\e259";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "\e258";
+  font-family: 'Glyphicons Halflings';
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+  background-color: transparent;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
+<!-- code folding -->
+
+
+
+
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
+
+
+
+
+<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-bs-toggle="collapse" data-target="#navbar" data-bs-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html">My Website</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li>
+  <a href="index.html">Home</a>
+</li>
+<li>
+  <a href="about.html">About</a>
+</li>
+<li>
+  <a href="dic.html">Delineamento inteiramente casualizado</a>
+</li>
+<li>
+  <a href="dbc.html">Delineamento blocos casualizados</a>
+</li>
+<li>
+  <a href="dql.html">Delineamento quadrado latino</a>
+</li>
+<li>
+  <a href="comparacao.html">Comparação de médias</a>
+</li>
+<li>
+  <a href="regressaopoli.html">Regressão polinomial</a>
+</li>
+<li>
+  <a href="fatorial.html">Esquema fatorial</a>
+</li>
+<li>
+  <a href="parcelas.html">Parcelas subdivididas</a>
+</li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+
+<div id="header">
+
+
+
+<h1 class="title toc-ignore">Parcelas subdivididas</h1>
+
+</div>
+
+
+<p>Considere o seguinte experimento instalado de acordo com o
+delineamento casualizado em blocos, sendo os fatores de tratamento
+variedades de soja, com 4 níveis e formas de adubação, com 3 níveis.</p>
+<p><span class="math display">\[\mbox{2 fatores} \left\{\begin{array}{l}
+\mbox{[rgb]{1.00,0.00,0.00}{\textbf{Variedades}}:} V_1, V_2, V_3, V_4\\
+\mbox{[rgb]{0.00,0.00,1.00}{\textbf{Formas}}}: F_1, F_2, F_3\\
+\end{array} \right.\]</span> <span
+class="math display">\[\Downarrow\]</span> <span
+class="math display">\[\mbox{12 combinações} \Rightarrow \mbox{12
+tratamentos}\]</span> <span class="math display">\[\begin{array}{c}
+V_1F_1 \; V_1F_2 \; V_1F_3\\
+V_2F_1 \; V_2F_2 \; V_2F_3\\
+V_3F_1 \; V_3F_2 \; V_3F_3\\
+V_4F_1 \; V_4F_2 \; V_4F_3
+\end{array}
+\]</span> \end{frame}</p>
+<p>{Introdução}</p>
+<p><span class="math display">\[y_{jik} = \mu + b_j + \alpha_{i} +
+\gamma_k + (\alpha\gama)_{ik} + e_{jik}.\]</span></p>
+<p>\end{frame}</p>
+<p>{Introdução}</p>
+<p>\end{frame}</p>
+<p>{Introdução}</p>
+<p>\end{frame}</p>
+<p>{Introdução}</p>
+<p>\end{frame}</p>
+<p>{Introdução}</p>
+<p>\end{frame}</p>
+<p>{Introdução}</p>
+<p>\end{frame}</p>
+<p>{Introdução}</p>
+<p>\end{frame}</p>
+{Introdução}
+<p>\end{frame}</p>
+{Introdução}
+<p>\end{frame}</p>
+<p>{Modelo estatístico} { Supondo um experimento instalado de acordo com
+o delineamento casualizado em blocos, sendo <span
+class="math inline">\(r\)</span> o número de blocos, e esquema de
+tratamento em parcelas subdivididas, com o fator primário <span
+class="math inline">\(A\)</span>, com <span
+class="math inline">\(a\)</span> níveis e o fator secundário <span
+class="math inline">\(B\)</span>, com <span
+class="math inline">\(b\)</span> níveis.</p>
+<p>} \end{frame}</p>
+<p>{Modelo estatístico} { <span class="math display">\[y_{jik} = \mu +
+b_j + \alpha_i + e_{ji} + \gamma_k + (\alpha\gamma)_{ik} +
+\epsilon_{jik}, \; j=1,\ldots, r, \; i=1,\ldots, a, \; k=1,\ldots,
+b,\]</span> }</p>
+Pressuposições:
+<p>\end{frame}</p>
+<p>{Esquema da ANOVA}</p>
+<p>Considere um experimento instalado de acordo com o delineamento
+casualizado em blocos com três repetições, em um esquema de tratamentos
+em parcelas subdivididas, sendo o fator primário formas de adubação, com
+três níveis, e o fator secundário variedades de soja, com 4 níveis.</p>
+<p>\end{frame}</p>
+<p>{Esquema da ANOVA}</p>
+<p>Considere um experimento instalado de acordo com o delineamento
+casualizado em blocos com três repetições, em um esquema de tratamentos
+em parcelas subdivididas, sendo o fator primário formas de adubação, com
+três níveis, e o fator secundário variedades de soja, com 4 níveis.</p>
+<p>\end{frame}</p>
+<p>{Esquema da ANOVA}</p>
+<p>Considere um experimento instalado de acordo com o delineamento
+casualizado em blocos com três repetições, em um esquema de tratamentos
+em parcelas subdivididas, sendo o fator primário formas de adubação, com
+três níveis, e o fator secundário variedades de soja, com 4 níveis.</p>
+<p>\end{frame}</p>
+<p>{Esquema da ANOVA}</p>
+<p>Considere um experimento instalado de acordo com o delineamento
+casualizado em blocos com três repetições, em um esquema de tratamentos
+em parcelas subdivididas, sendo o fator primário formas de adubação, com
+três níveis, e o fator secundário variedades de soja, com 4 níveis.</p>
+<p>\end{frame}</p>
+<p>{Esquema da ANOVA}</p>
+<p>Supondo um experimento instalado de acordo com o delineamento
+casualizado em blocos, sendo <span class="math inline">\(r\)</span> o
+número de blocos, e esquema de tratamento em parcelas subdivididas, com
+o fator primário <span class="math inline">\(A\)</span>, com <span
+class="math inline">\(a\)</span> níveis e o fator secundário <span
+class="math inline">\(B\)</span>, com <span
+class="math inline">\(b\)</span> níveis.</p>
+<p> No exemplo, <span class="math inline">\(r=3\)</span>, <span
+class="math inline">\(a = 3\)</span> e <span class="math inline">\(b =
+4\)</span>.</p>
+<p>\end{frame}</p>
+<p>{Esquema da ANOVA}</p>
+<p>\end{frame}</p>
+<p>{Esquema da ANOVA}</p>
+<p>Quadro auxiliar com os totais para as combinações dos níveis de
+Blocos e Fator A.</p>
+<pre><code>{\tiny</code></pre>
+<p>}</p>
+<p>\end{frame}</p>
+<p>{Esquema da ANOVA}</p>
+<p>Quadro auxiliar com os totais para as combinações dos níveis de
+Blocos e Fator A.</p>
+<pre><code>{\tiny</code></pre>
+<p>}</p>
+<p>\end{frame}</p>
+<p>{Esquema da ANOVA}</p>
+<p>Quadro auxiliar com os totais para as combinações dos níveis de
+Blocos e Fator A.</p>
+<pre><code>{\tiny</code></pre>
+<p>}</p>
+<p>\end{frame}</p>
+<p>{Esquema da ANOVA}</p>
+<p>Quadro auxiliar com os totais para as combinações dos níveis do Fator
+A e do Fator B.</p>
+<pre><code>{\tiny</code></pre>
+<p>}</p>
+<p>\end{frame}</p>
+<p>{Esquema da ANOVA}</p>
+<p>Quadro auxiliar com os totais para as combinações dos níveis do Fator
+A e do Fator B.</p>
+<pre><code>{\tiny</code></pre>
+<p>}</p>
+<p>\end{frame}</p>
+<p>{Esquema da ANOVA}</p>
+<p>Quadro auxiliar com os totais para as combinações dos níveis do Fator
+A e do Fator B.</p>
+<pre><code>{\tiny</code></pre>
+<p>}</p>
+<p>\end{frame}</p>
+{ANOVA}
+<p>\end{frame}</p>
+{ANOVA}
+<pre><code>\begin{block}{Interação Significativa}
+    \begin{itemize}
+        \item Avaliar efeito do Fator B dentro de cada nível do Fator A \\$\Rightarrow$ QMRes (b);
+        \item Avaliar efeito do Fator A dentro de cada nível do Fator B \\$\Rightarrow$ QMRes Composto;
+    \end{itemize}
+\end{block}</code></pre>
+<p>\end{frame}</p>
+<p>{Exemplo} { Banzatto e Kronka (1992), apresentaram o ensaio citado
+por Steel e Torrie (1980), no qual são comparadas 4 variedades de aveia
+e 4 tratamentos de sementes quanto aos efeitos sobre a produção. As
+variedades foram casualizadas às parcelas de cada um dos quatro blocos
+do ensaio. Os tratamentos de sementes foram casualizados às quatro
+subparcelas de cada parcela.</p>
+Variedades de aveia:
+Tratamentos de sementes:
+<p>}</p>
+<p>\end{frame}</p>
+{Exemplo: Dados de produção de aveia}
+<p>\end{frame}</p>
+<p>{Exemplo: Efeitos principais}</p>
+<p>\end{frame}</p>
+<p>{Exemplo: Efeitos principais}</p>
+<p>\end{frame}</p>
+<p>{Exemplo: Efeitos simples e de interação}</p>
+<p>\end{frame}</p>
+<p>{Exemplo: Efeitos simples e de interação}</p>
+<p>\end{frame}</p>
+<p>{Exemplo}</p>
+<p>\end{frame}</p>
+<p>{Exemplo}</p>
+<p>Tabela auxiliar: Envolve a repetição (ou blocos) e o tratamento de
+parcela.</p>
+<p>\end{frame}</p>
+<p>{Exemplo}</p>
+<p>Tabela auxiliar: Envolve o tratamento de parcela e de subparcela.</p>
+<p>\end{frame}</p>
+<p>{Exemplo: Efeitos principais}</p>
+<p>\end{frame}</p>
+<p>% B2 </p>
+<p>% B3 </p>
+<p>% B4 </p>
+<p>\frame{ {Exemplo: Efeito de Variedades dentro de cada Tratamento de
+Sementes}</p>
+\begin{columns}
+\begin{column}{.7} { \begin{center}
+
+
+
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.odd').parent('tbody').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open');
+  });
+});
+</script>
+
+<!-- code folding -->
+
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>

@@ -1,0 +1,560 @@
+---
+title: "Regressão polinomial"
+
+---
+{r, echo=FALSE}
+options(OutDec = ",")
+
+
+# Regressão polinomial
+
+Os tratamentos podem ser qualitativos por exemplo: variedades, genótipos, raças etc.Estes devem ser comparados utilizando os métodos vistos anteriormente.
+Ou ainda podem ser quantitativos por exemplo doses de adubação, quantidade de água etc. Estes devem sem comparados utilizando o método da regressão polinomial.
+
+Exemplo: Ragazzi (1979) utilizou um experimento inteiramente casualizado com quatro  repetições  para estudar o efeito  de 7 doses de gesso: 0,  50, 100, 150, 200, 250 e 300 kg/ha sobre diversas características do feijoeiro. Para a característica peso de 1000
+sementes, obteve os resultados apresentados na Tabela 1.
+
+Tabela 1. Peso de 1000 sementes de feijão, em g, em função da dose de gesso, em kg/ha
+
+Dose|1    | 2   | 3   |    4|  média|
+----|-----|-----|-----|-----|-------|
+0   |134,8|139,7|147,6|132,3|138,600|
+50  |161,7|157,7|150,3|144,7|153,600|
+100 |160,7|172,7|163,4|161,3|164,525|
+150 |169,8|168,2|160,7|161,0|164,925|
+200 |165,7|160,0|158,2|151,0|158,725|
+250 |171,8|157,3|150,4|160,4|159,975|
+300 |154,5|160,4|148,8|154,0|154,425|
+
+{r, collapse= TRUE, warning=FALSE}
+rm(list=ls(all=TRUE))
+dadosfeijao <- data.frame(dosef = rep(seq(0,300,50),each=4),
+                    pesof = c(134.8,139.7,147.6,132.3,
+                             161.7,157.7,150.3,144.7,
+                             160.7,172.7,163.4,161.3,
+                             169.8,168.2,160.7,161.0,
+                             165.7,160.0,158.2,151.0,
+                             171.8,157.3,150.4,160.4,
+                             154.5,160.4,148.8,154.0))
+head(dadosfeijao)
+str(dadosfeijao)
+
+(media <- with(dadosfeijao, 
+               tapply(pesof, dosef, mean)))
+
+
+
+{r, echo=FALSE}
+library(ggplot2)
+ggplot(dadosfeijao,
+       aes(x = dosef,
+           y = pesof)) +
+  geom_point() +
+  geom_point(stat = "summary",
+             fun = mean,
+             color = 2) +
+  xlab("dose de gesso (kg/ha)") +
+  ylab("peso de 1000 sementes de feijão (g)") +
+  theme_classic()
+
+
+
+{r, echo=FALSE}
+#' # 1. Ajuste do modelo (dose como variável qualitativa)
+#' 
+#' $H_0: \mu_{0} = \mu_{50} = \ldots = \mu_{300} = \mu$ versus $H_1:$ pelo menos um contraste de médias difere de zero.
+
+modelof<- lm(pesof ~ as.factor(dosef), dadosfeijao)
+anova(modelof)
+
+
+Assumindo-se o nível de 5% de significância, como valor-p = 0,00018763 < 0,05 = $\alpha$), rejeita-se $H_0$. Logo há evidências para afirmar que há efeito de Dose}}.
+
+Fatores quantitativos $\Rightarrow$ Relação funcional entre a variável resposta ($y$) e os níveis desses fatores ($X$).
+
+Modelo
+
+$$y = f(X) + \epsilon,$$
+em que $f(X)$ é uma função desconhecida.
+
+Objetivos:
+
+- Obter uma função que represente $f(X)$, aproximadamente;
+- Obter o nível de $x$ que leva à máxima/mínima resposta;
+- Obter a dose econômica (é necessário conhecer a equação de lucro e o preço do nutriente)
+
+Função Polinomial de grau $p$
+$$y = \beta_0 + \beta_1 X + \beta_2X^2 + \ldots + \beta_pX^p + \epsilon$$
+
+Características:
+
+- Fácil ajuste;
+- Interpretação limitada ao intervalo de estudo
+
+Mais de uma observação da variável resposta por nível do fator
+		$$\Downarrow$$
+Verificação da Falta de Ajuste. 
+		
+Falta de Ajuste = Desvios de Regressão
+
+Se $I$ é o número de níveis do fator quantitativo
+$$\Downarrow$$
+Ajuste de um polinômio de no máximo grau ($I-1$)
+
+
+No exemplo
+$I = 7$ doses de gesso, 0, 50, 100, 150, 200, 250 e 300. Logo podemos ajustar um polinômio de grau no máximo 6.
+		
+
+__Possiveis ajustes__
+
+__Modelo Linear__
+
+{r, echo=FALSE}
+modelo.RL <- lm(pesof ~ poly(dosef,1) + as.factor(dosef),
+                dadosfeijao)
+anova(modelo.RL)
+
+
+{r, echo=FALSE}
+(R21 <- sum(anova(modelo.RL)$`Sum Sq`[1:2])/
+    sum(anova(modelo.RL)$`Sum Sq`[1:3]))
+
+
+{r, echo=FALSE}
+modelo.aj1 <-  lm(pesof ~ dosef , dadosfeijao)
+coef(modelo.aj1)
+
+
+{r, echo=FALSE}
+library(ggpubr)
+ggplot(dadosfeijao,
+       aes(x = dosef,
+           y = pesof)) +
+  geom_point() +
+  geom_point(stat = "summary",
+             fun = mean,
+             color = 2) +
+  geom_smooth(method = lm, 
+              formula = y ~ poly(x, 1), 
+              se = FALSE) +
+  stat_regline_equation(
+    aes(label = after_stat(eq.label)) ,
+    formula = y ~ poly(x, 1, raw = TRUE),
+    label.x = 170,
+    label.y = 190) +
+  ylim(120,190) +
+  theme_classic() +
+  # colocar o R^2.
+  annotate(geom = "text",
+           x = 182,
+           y = 185,
+           label = expression(R^2 == 0.68)) +
+  xlab("dose de gesso (kg/ha)") +
+  ylab("peso de 1000 sementes de feijão (g)")
+
+
+$$\underbrace{\beta_0 + \beta_1X } + \underbrace{{\beta_{2}X^{2} + \beta_{3}X^{3} + \beta_{4}X^{4} + \beta_{5}X^{5} + \beta_{6}X^{6}}}$$
+em que: 
+
+  . ${\beta_0 + \beta_1X }$ estão no modelo
+  
+  . ${\beta_{2}X^{2} + \beta_{3}X^{3} + \beta_{4}X^{4} + \beta_{5}X^{5} + \beta_{6}X^{6}}$ podem ser ajustados ao modelo
+  
+
+__Modelo Quadrático__ 
+
+
+{r, echo=FALSE}
+modelo.RQ <- lm(pesof ~ poly(dosef,1) + 
+                  poly(dosef,2) + 
+                  as.factor(dosef),
+                dadosfeijao)
+anova(modelo.RQ)
+
+
+{r, echo=FALSE}
+(R2 <- sum(anova(modelo.RQ)$`Sum Sq`[1:2])/
+    sum(anova(modelo.RQ)$`Sum Sq`[1:3]))
+
+
+{r, echo=false}
+modelo.aj <-  lm(pesof ~ dosef + I(dosef^2), dadosfeijao)
+coef(modelo.aj)
+
+
+{r, echo=FALSE}
+library(ggpubr)
+ggplot(dadosfeijao,
+       aes(x = dosef,
+           y = pesof)) +
+  geom_point() +
+  geom_point(stat = "summary",
+             fun = mean,
+             color = 2) +
+  geom_smooth(method = lm, 
+              formula = y ~ poly(x, 2), 
+              se = FALSE) +
+  stat_regline_equation(
+    aes(label = after_stat(eq.label)) ,
+    formula = y ~ poly(x, 2, raw = TRUE),
+    label.x = 170,
+    label.y = 190) +
+  ylim(120,190) +
+  theme_classic() +
+  # colocar o R^2.
+  annotate(geom = "text",
+           x = 182,
+           y = 185,
+           label = expression(R^2 == 0.88)) +
+  xlab("dose de gesso (kg/ha)") +
+  ylab("peso de 1000 sementes de feijão (g)")
+
+
+
+
+
+
+
+__Modelo Cubico__
+
+
+{r, echo=FALSE}
+modelo.TC <- lm(pesof ~ poly(dosef,1) + 
+                  poly(dosef,2) + 
+                   poly(dosef,3) + 
+                  as.factor(dosef),
+                dadosfeijao)
+anova(modelo.TC)
+
+
+{r, echo=FALSE}
+(R23 <- sum(anova(modelo.TC)$`Sum Sq`[1:2])/
+    sum(anova(modelo.TC)$`Sum Sq`[1:3]))
+
+
+{r, echo=false}
+modelo.aj3 <-  lm(pesof ~ dosef + I(dosef^2)+ I(dosef^3), dadosfeijao)
+coef(modelo.aj3)
+
+
+{r, echo=FALSE}
+library(ggpubr)
+ggplot(dadosfeijao,
+       aes(x = dosef,
+           y = pesof)) +
+  geom_point() +
+  geom_point(stat = "summary",
+             fun = mean,
+             color = 2) +
+  geom_smooth(method = lm, 
+              formula = y ~ poly(x,3), 
+              se = FALSE) +
+  stat_regline_equation(
+    aes(label = after_stat(eq.label)) ,
+    formula = y ~ poly(x, 3, raw = TRUE),
+    label.x = 100, 
+    label.y = 190) +
+  ylim(120,190) +
+  theme_classic() +
+  # colocar o R^2.
+  annotate(geom = "text",
+           x = 182,
+           y = 185,
+           label = expression(R^2 == 0.92)) +
+  xlab("dose de gesso (kg/ha)") +
+  ylab("peso de 1000 sementes de feijão (g)")
+
+
+
+__Modelo com potencia 4__
+
+{r, echo=FALSE}
+modelo.QP <- lm(pesof ~ poly(dosef,1) + 
+                  poly(dosef,2) + 
+                   poly(dosef,3) + 
+                  poly(dosef,4) +
+                  as.factor(dosef),
+                dadosfeijao)
+anova(modelo.QP)
+
+
+{r, echo=FALSE}
+(R24 <- sum(anova(modelo.QP)$`Sum Sq`[1:2])/
+    sum(anova(modelo.QP)$`Sum Sq`[1:3]))
+
+
+{r, echo=FALSE}
+modelo.aj4 <-  lm(pesof ~ dosef + I(dosef^2)+ I(dosef^3)+ I(dosef^4), dadosfeijao)
+coef(modelo.aj4)
+
+
+{r, echo=FALSE}
+library(ggpubr)
+ggplot(dadosfeijao,
+       aes(x = dosef,
+           y = pesof)) +
+  geom_point() +
+  geom_point(stat = "summary",
+             fun = mean,
+             color = 2) +
+  geom_smooth(method = lm, 
+              formula = y ~ poly(x,4), 
+              se = FALSE) +
+  stat_regline_equation(
+    aes(label = after_stat(eq.label)) ,
+    formula = y ~ poly(x, 4, raw = TRUE),
+    label.x = 20, 
+    label.y = 190) +
+  ylim(120,190) +
+  theme_classic() +
+  # colocar o R^2.
+  annotate(geom = "text",
+           x = 182,
+           y = 185,
+           label = expression(R^2 == 0.92)) +
+  xlab("dose de gesso (kg/ha)") +
+  ylab("peso de 1000 sementes de feijão (g)")
+
+
+
+__Modelo com potencia 5__
+
+{r, echo=FALSE}
+modelo.QT <- lm(pesof ~ poly(dosef,1) + 
+                  poly(dosef,2) + 
+                   poly(dosef,3) + 
+                  poly(dosef,4) +
+                  poly(dosef,5) +
+                  as.factor(dosef),
+                dadosfeijao)
+anova(modelo.QT)
+
+
+{r, echo=FALSE}
+(R25 <- sum(anova(modelo.QP)$`Sum Sq`[1:2])/
+    sum(anova(modelo.QP)$`Sum Sq`[1:3]))
+
+
+{r, echo=FALSE}
+modelo.aj5 <-  lm(pesof ~ dosef + I(dosef^2)+ I(dosef^3)+ I(dosef^4)+I(dosef^5), dadosfeijao)
+coef(modelo.aj5)
+
+
+{r, echo=FALSE}
+library(ggpubr)
+ggplot(dadosfeijao,
+       aes(x = dosef,
+           y = pesof)) +
+  geom_point() +
+  geom_point(stat = "summary",
+             fun = mean,
+             color = 2) +
+  geom_smooth(method = lm, 
+              formula = y ~ poly(x,5), 
+              se = FALSE) +
+  stat_regline_equation(
+    aes(label = after_stat(eq.label)) ,
+    formula = y ~ poly(x, 5, raw = TRUE),
+    label.x = 20, 
+    label.y = 190) +
+  ylim(120,190) +
+  theme_classic() +
+  # colocar o R^2.
+  annotate(geom = "text",
+           x = 182,
+           y = 185,
+           label = expression(R^2 == 0.92)) +
+  xlab("dose de gesso (kg/ha)") +
+  ylab("peso de 1000 sementes de feijão (g)")
+
+
+
+__Modelo com potencia 6__
+
+{r, echo=FALSE}
+modelo.ST <- lm(pesof ~ poly(dosef,1) + 
+                  poly(dosef,2) + 
+                   poly(dosef,3) + 
+                  poly(dosef,4) +
+                  poly(dosef,5) +
+                  poly(dosef,6) +
+                  as.factor(dosef),
+                dadosfeijao)
+anova(modelo.ST)
+
+
+{r, echo=FALSE}
+(R26 <- sum(anova(modelo.ST)$`Sum Sq`[1:2])/
+    sum(anova(modelo.ST)$`Sum Sq`[1:3]))
+
+
+
+{r, echo=FALSE}
+modelo.aj6 <-  lm(pesof ~ dosef + I(dosef^2)+ I(dosef^3)+ I(dosef^4)+I(dosef^5)+I(dosef^6), dadosfeijao)
+coef(modelo.aj6)
+
+
+{r, echo=FALSE}
+library(ggpubr)
+ggplot(dadosfeijao,
+       aes(x = dosef,
+           y = pesof)) +
+  geom_point() +
+  geom_point(stat = "summary",
+             fun = mean,
+             color = 2) +
+  geom_smooth(method = lm, 
+              formula = y ~ poly(x,6), 
+              se = FALSE) +
+  stat_regline_equation(
+    aes(label = after_stat(eq.label)) ,
+    formula = y ~ poly(x, 6, raw = TRUE),
+    label.x = 0, 
+    label.y = 190) +
+  ylim(120,190) +
+  theme_classic() +
+  # colocar o R^2.
+  annotate(geom = "text",
+           x = 182,
+           y = 185,
+           label = expression(R^2 == 0.92)) +
+  xlab("dose de gesso (kg/ha)") +
+  ylab("peso de 1000 sementes de feijão (g)")
+
+
+
+## Aplicação no R studio
+
+{r}
+library(ExpDes.pt)
+with(dadosfeijao,
+     dic(trat = dosef,
+         resp = pesof,
+         quali = FALSE,
+         sigT = 0.05,
+         sigF = 0.05))
+
+
+
+## Exercícios
+
+1) Em um experimento de adubação em eucalipto (Eucalyptus grandis) conduzido em casa de vegetação, foram usadas 4 doses de K (0, 30, 60 e 90 ppm), obtendo-se as alturas, em cm, apresentadas no conjunto de dados a seguir. Considerando-se que o experimento foi conduzido segundo o delineamento inteiramente casualizado com 3 repetições, pede-se:
+
+(a) Faça a análise descrita dos dados apresentando comentários
+
+(b) Encontre o modelo de regressão polinomial que melhor representa a altura das plantas em função da dose de K aplicada. Justifique sua escolha apresentado as hipóteses de interesse e conclusões assumindo o nível de 5% de significância. Apresente as estimativas dos parâmetros para tal modelo.
+
+(c) Há uma dose que leva à máxima altura? Se sim, qual seria?
+
+{r}
+dados.ex <- data.frame(
+dose = rep(seq(0, 90, 30), each = 3),
+altura = c( 80, 86, 71,
+144,151, 97,
+151,127,117,
+70, 85, 92)
+)
+dados.ex
+
+
+
+2) Efeito de cinco doses de NPK  (kg.ha−1) na produção de cultivares de trigo. Com base nos resultados apresentados, responda:
+
+a) Com relação ao teste F da análise de variância selecione as hipóteses e conclua.
+
+
+F.V.      | GL|  SQ   | QM    |  Fcal |Ftab|
+----------|---|-------|-------|-------|----|
+Tratamento| 4 |6291.8 |1572.94| 9.97  |2.54|
+Resíduo   | 55|8680.8 |157.83 |       |    |
+Total     | 59|14972.6|       |       |    |
+
+b) Considerando a decomposição da variabilidade entre tratamentos para estudo de modelos de regressão polinomial até terceiro grau, qual o modelo polinomial mais adequado para representar a relação funcional entre as variáveis de interesse?
+
+Modelo linear 
+
+
+F.V.          | GL | SQ    | QM    | Fcal | Ftab|
+--------------|----|-------|-------|------|-----|
+Efeito linear |1   |2842.13|2842.13|18.01 |4.016|
+D. R.         |3   |3449.63|1149.88|7.29  |2.77 |
+Resíduos      |55  |8680.83|157.83 |      |     |
+
+
+Modelo quadrático  
+
+
+F.V.             |GL|  SQ   |  QM   |  Fcal|  Ftab|
+-----------------|--|-------|-------|------|------|
+Efeito linear    |1 |2842.13|2842.13| 18.01| 4.016|
+Efeito quadrático|1 |3102.88|3102.88| 19.66| 4.016|
+Desvios de R     |2 |346.75 |173.38 | 1.1  |  3.16|
+Resíduos         |55|8680.83|157.83 |      |      |
+
+Modelo cúbico 
+
+F.V.             |GL  |  SQ   |  QM   |  Fcal| Ftab|
+-----------------|----|-------|-------|------|-----|
+Efeito linear    |1   |2842.13|2842.13|18.01 |4.016|
+Efeito quadrático|1   |3102.88|3102.88|19.66 |4.016|
+Efeito cúbico    |1   |343.41 |343.41 |2.18  |4.016|
+Desvios de R.    |1   |3.34   |3.34   |0.02  |4.016|
+Resíduos         |55  |8680.83|157.83 |      |     |
+
+
+### Resolução 
+
+1 a) 
+
+{r, warning=FALSE}
+#' ## Estatísticas descritivas
+nrp <- with(dados.ex, tapply(altura, dose, length))
+somarp <- with(dados.ex, tapply(altura, dose, sum))
+mediarp <- with(dados.ex, tapply(altura, dose, mean))
+varianciarp <- with(dados.ex, tapply(altura, dose, var))
+desv.padrrp <- with(dados.ex, tapply(altura, dose, sd))
+dist.intrp <- with(dados.ex, tapply(altura, dose, IQR))
+
+
+{r}
+#' Criando uma função que calcula a amplitude
+frp <- function(x) max(x)-min(x)
+amplituderp <- with(dados.ex, tapply(altura, dose, frp))
+
+resumorp <- rbind(nrp, somarp, mediarp, varianciarp,
+                desv.padrrp, amplituderp, dist.intrp)
+rownames(resumorp) <- c("n", "Soma", "Média", 
+                      "Variância", "Desvio-padrão", 
+                      "Amplitude", "Amplitude Interquartílica")
+round(resumorp,3)
+
+
+b) 
+{r}
+library(ExpDes.pt)
+with(dados.ex,
+     dic(trat = dose,
+         resp = altura,
+         quali = FALSE,
+         sigT = 0.05,
+         sigF = 0.05))
+
+
+Pode-se concluir que ao nível de significancia de 5% o modelo quadrático é o que expressa a regressão polinomial dos dados.
+
+c) modelo:
+$$ y = 79.0167+2.5617x-0.0281x^2$$
+Para saber o valor da dose máxima deve-se derivar e igular a zero.
+
+$$ y'= 2.5617 - 0.0562x $$
+$$ 0 = 2.5617 - 0.0562x$$ 
+
+$$ \frac{-2.5617}{-0.0562} = x$$
+
+$$ x= 45.581 $$ 
+
+2 a)
+Como o Fcal>Ftab pode-se concluir que há evidências para rejeitarmos Ho ao nível de 5% de confiança. 
+
+b) Modelo quadrático por que ao nível de 5% de confiça o Fcal se mostrou maior que o F tabelado no efeito linear e no efeito quadrático e o F cal se mostrou menor que o F tab no desvio de regressão já no modelo quadrático.

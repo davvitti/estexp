@@ -1,0 +1,28 @@
+name: "my-website"
+navbar:
+  title: "My Website"
+  left:
+    - text: "Home"
+      href: index.html
+    - text: "About"
+      href: about.html
+    - text: "Delineamento inteiramente casualizado"
+      href: dic.html
+    - text: "Delineamento blocos casualizados"
+      href: dbc.html
+    - text: "Delineamento quadrado latino"
+      href: dql.html
+    - text: "Comparação de médias"
+      href: comparacao.html
+    - text: "Regressão polinomial"
+      href: regressaopoli.html
+    - text: "Esquema fatorial"
+      href: fatorial.html
+    - text: "Parcelas subdivididas"
+      href: parcelas.html   
+      
+      
+output:
+  html_document:
+    theme: cosmo
+    highlight: textmate

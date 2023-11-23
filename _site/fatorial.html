@@ -1,0 +1,647 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta charset="utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+
+
+
+<title>esquema fatorial</title>
+
+<script src="site_libs/header-attrs-2.24/header-attrs.js"></script>
+<script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/cosmo.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<style>h1 {font-size: 34px;}
+       h1.title {font-size: 38px;}
+       h2 {font-size: 30px;}
+       h3 {font-size: 24px;}
+       h4 {font-size: 18px;}
+       h5 {font-size: 16px;}
+       h6 {font-size: 12px;}
+       code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
+       pre:not([class]) { background-color: white }</style>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+<link href="site_libs/highlightjs-9.12.0/textmate.css" rel="stylesheet" />
+<script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
+
+<style type="text/css">
+  code{white-space: pre-wrap;}
+  span.smallcaps{font-variant: small-caps;}
+  span.underline{text-decoration: underline;}
+  div.column{display: inline-block; vertical-align: top; width: 50%;}
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  ul.task-list{list-style: none;}
+    </style>
+
+<style type="text/css">code{white-space: pre;}</style>
+<script type="text/javascript">
+if (window.hljs) {
+  hljs.configure({languages: []});
+  hljs.initHighlightingOnLoad();
+  if (document.readyState && document.readyState === "complete") {
+    window.setTimeout(function() { hljs.initHighlighting(); }, 0);
+  }
+}
+</script>
+
+
+
+
+
+
+
+
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+img {
+  max-width:100%;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+.html-widget {
+  margin-bottom: 20px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+summary {
+  display: list-item;
+}
+details > summary > p:only-child {
+  display: inline;
+}
+pre code {
+  padding: 0;
+}
+</style>
+
+
+<style type="text/css">
+.dropdown-submenu {
+  position: relative;
+}
+.dropdown-submenu>.dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: -6px;
+  margin-left: -1px;
+  border-radius: 0 6px 6px 6px;
+}
+.dropdown-submenu:hover>.dropdown-menu {
+  display: block;
+}
+.dropdown-submenu>a:after {
+  display: block;
+  content: " ";
+  float: right;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 5px 0 5px 5px;
+  border-left-color: #cccccc;
+  margin-top: 5px;
+  margin-right: -10px;
+}
+.dropdown-submenu:hover>a:after {
+  border-left-color: #adb5bd;
+}
+.dropdown-submenu.pull-left {
+  float: none;
+}
+.dropdown-submenu.pull-left>.dropdown-menu {
+  left: -100%;
+  margin-left: 10px;
+  border-radius: 6px 0 6px 6px;
+}
+</style>
+
+<script type="text/javascript">
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark the anchor link active (and if it's in a dropdown, also mark that active)
+  var dropdown = menuAnchor.closest('li.dropdown');
+  if (window.bootstrap) { // Bootstrap 4+
+    menuAnchor.addClass('active');
+    dropdown.find('> .dropdown-toggle').addClass('active');
+  } else { // Bootstrap 3
+    menuAnchor.parent().addClass('active');
+    dropdown.addClass('active');
+  }
+
+  // Navbar adjustments
+  var navHeight = $(".navbar").first().height() + 15;
+  var style = document.createElement('style');
+  var pt = "padding-top: " + navHeight + "px; ";
+  var mt = "margin-top: -" + navHeight + "px; ";
+  var css = "";
+  // offset scroll position for anchor links (for fixed navbar)
+  for (var i = 1; i <= 6; i++) {
+    css += ".section h" + i + "{ " + pt + mt + "}\n";
+  }
+  style.innerHTML = "body {" + pt + "padding-bottom: 40px; }\n" + css;
+  document.head.appendChild(style);
+});
+</script>
+
+<!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before, .tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "\e259";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "\e258";
+  font-family: 'Glyphicons Halflings';
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+  background-color: transparent;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
+<!-- code folding -->
+
+
+
+
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
+
+
+
+
+<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-bs-toggle="collapse" data-target="#navbar" data-bs-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html">My Website</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li>
+  <a href="index.html">Home</a>
+</li>
+<li>
+  <a href="about.html">About</a>
+</li>
+<li>
+  <a href="dic.html">Delineamento inteiramente casualizado</a>
+</li>
+<li>
+  <a href="dbc.html">Delineamento blocos casualizados</a>
+</li>
+<li>
+  <a href="dql.html">Delineamento quadrado latino</a>
+</li>
+<li>
+  <a href="comparacao.html">Comparação de médias</a>
+</li>
+<li>
+  <a href="regressaopoli.html">Regressão polinomial</a>
+</li>
+<li>
+  <a href="fatorial.html">Esquema fatorial</a>
+</li>
+<li>
+  <a href="parcelas.html">Parcelas subdivididas</a>
+</li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+
+<div id="header">
+
+
+
+<h1 class="title toc-ignore">esquema fatorial</h1>
+
+</div>
+
+
+<p>Análise de dois ou mais fatores de tratamento em um mesmo experimento
+Os tratamentos serão as combinações dos níveis dos fatores</p>
+<p>Exemplo 1: Avaliação do efeito da adubação NPK sobre uma determinada
+cultura</p>
+<pre><code>$$\left.\begin{array}{l}
+\mbox{N com 2 níveis}\\ \nonumber
+\mbox{P com 2 níveis}\\ \nonumber
+\mbox{K com 2 níveis} \nonumber
+\end{array} 
+\right\} = 2\times 2 \times 2 = 2^3 = \mbox{8 tratamentos}$$</code></pre>
+<p>Lê-se: fatorial dois por dois por dois ou fatorial dois ao cubo.</p>
+ {Esquema fatorial: Introdução}
+<p>{Esquema fatorial: Introdução} {Exemplo 2: Avaliação da Temperatura e
+da Umidade sobre o tempo de consevação de um produto}</p>
+<p><span class="math display">\[3 \times 2 = \mbox{6
+tratamentos}\]</span></p>
+<pre><code>    Lê-se: fatorial três por dois.
+\end{block}</code></pre>
+ {Esquema fatorial: Introdução}
+ {Esquema fatorial: Introdução}
+ {Esquema fatorial: Introdução}
+ {Esquema fatorial: Introdução}
+ {Esquema fatorial: Introdução}
+<p>{1cm} {} As combinações dos níveis dos fatores serão casualizadas às
+parcelas, de acordo com o delineamento experimental selecionado.</p>
+ {Esquema fatorial: Introdução}
+ {Esquema fatorial: Introdução}
+<p> {Esquema fatorial: Exemplo - Fatorial <span
+class="math inline">\(2\times2\)</span>}</p>
+<p>Suponha dois fatores, cada um com dois níveis. O fator <span
+class="math inline">\(A\)</span>, com os níveis <span
+class="math inline">\(A_0\)</span> e <span
+class="math inline">\(A_1\)</span> e o fator <span
+class="math inline">\(B\)</span>, com os níveis <span
+class="math inline">\(B_0\)</span> e <span
+class="math inline">\(B_1\)</span>.</p>
+<p> {Esquema fatorial: Exemplo - Fatorial <span
+class="math inline">\(2\times2\)</span>}</p>
+<p>Suponha dois fatores, cada um com dois níveis. O fator <span
+class="math inline">\(A\)</span>, com os níveis <span
+class="math inline">\(A_0\)</span> e <span
+class="math inline">\(A_1\)</span> e o fator <span
+class="math inline">\(B\)</span>, com os níveis <span
+class="math inline">\(B_0\)</span> e <span
+class="math inline">\(B_1\)</span>.</p>
+<p> {Esquema fatorial: Exemplo - Fatorial <span
+class="math inline">\(2\times2\)</span>}</p>
+<p>Suponha dois fatores, cada um com dois níveis. O fator <span
+class="math inline">\(A\)</span>, com os níveis <span
+class="math inline">\(A_0\)</span> e <span
+class="math inline">\(A_1\)</span> e o fator <span
+class="math inline">\(B\)</span>, com os níveis <span
+class="math inline">\(B_0\)</span> e <span
+class="math inline">\(B_1\)</span>.</p>
+<p> {Esquema fatorial: Exemplo - Fatorial <span
+class="math inline">\(2\times2\)</span>}</p>
+<p> {Esquema fatorial: Exemplo - Fatorial <span
+class="math inline">\(2\times2\)</span>}</p>
+<p> {Esquema fatorial: Exemplo - Fatorial <span
+class="math inline">\(2\times2\)</span>}</p>
+<p> {Esquema fatorial: Modelo estatístico}</p>
+<p>O modelo estatístico, considerando-se um experimento seguindo o
+delineamento inteiramente casualizado com <span
+class="math inline">\(r\)</span> repetições, dois fatores de tratamento,
+<span class="math inline">\(A\)</span> com <span
+class="math inline">\(a\)</span> níveis e <span
+class="math inline">\(B\)</span> com <span
+class="math inline">\(b\)</span>, é dado por:</p>
+<p><span class="math display">\[y_{ikj} = \mu + \alpha_i + \gamma_k +
+(\alpha\gamma)_{ik} + e_{ikj},\]</span> em que \ <span
+class="math inline">\(y_{ikj}\)</span> é o valor observado no <span
+class="math inline">\(i\)</span>-ésimo nível do fator <span
+class="math inline">\(A\)</span> e <span
+class="math inline">\(k\)</span>-ésimo nível do fator <span
+class="math inline">\(B\)</span> na <span
+class="math inline">\(j\)</span>-ésima repetição; \ <span
+class="math inline">\(\mu\)</span> é uma constante, comum a todas as
+observações; \ <span class="math inline">\(\alpha_i\)</span> é o efeito
+do <span class="math inline">\(i-\)</span>ésimo nível do fator <span
+class="math inline">\(A\)</span>; \ <span
+class="math inline">\(\gamma_k\)</span> é o efeito do <span
+class="math inline">\(k-\)</span>ésimo nível do fator <span
+class="math inline">\(B\)</span>;\ <span
+class="math inline">\((\alpha\gamma)_{ik}\)</span> é o efeito da
+interação entre entre o <span class="math inline">\(i-\)</span>ésimo
+nível do fator <span class="math inline">\(A\)</span> e o <span
+class="math inline">\(k-\)</span>ésimo nível do fator <span
+class="math inline">\(B\)</span>\ <span
+class="math inline">\(e_{ikj}\)</span> é o efeito do acaso.</p>
+<p> {Esquema fatorial: Estimadores dos parâmetros pelo método dos
+mínimos quadrados}</p>
+<p>Dado o modelo <span class="math display">\[y_{ikj} = \mu + \alpha_i +
+\gamma_k + (\alpha\gamma)_{ik} + e_{ikj},\]</span></p>
+<p>as restrições usuais são: <span
+class="math display">\[\sum_{i=1}^{a}\hat{\alpha}_i = 0\]</span> <span
+class="math display">\[\sum_{k=1}^{b}\hat{\gamma}_k = 0\]</span> <span
+class="math display">\[\sum_{i=1}^{a}\hat{(\alpha\gamma)}_{ik} =
+\sum_{k=1}^{b}\hat{(\alpha\gamma)}_{ik} =
+\sum_{i=1}^{a}\sum_{k=1}^{b}\hat{(\alpha\gamma)}_{ik} = 0\]</span></p>
+<p> {Esquema fatorial: Soluções pelo método dos mínimos quadrados}</p>
+<p>As soluções de mínimos quadrados, considerando-se as restrições,
+são:</p>
+<p><span class="math display">\[\hat{\mu} = \bar{Y},\]</span> <span
+class="math display">\[\hat{\alpha}_i = \bar{Y}_i - \bar{Y},\]</span>
+<span class="math display">\[\hat{\gamma}_k = \bar{Y}_k - \bar{Y} \text{
+e }\]</span> <span class="math display">\[\hat{(\alpha\gamma)}_{ik} =
+\bar{Y}_{ik} - \bar{Y}_i - \bar{Y}_k + \bar{Y}.\]</span></p>
+<p> {Esquema fatorial: Esquema da ANOVA}</p>
+<p>Para um experimento seguindo o delineamento inteiramente casualizado
+com <span class="math inline">\(r\)</span> repetições, dois fatores de
+tratamento, <span class="math inline">\(A\)</span> com <span
+class="math inline">\(a\)</span> níveis e <span
+class="math inline">\(B\)</span> com <span
+class="math inline">\(b\)</span>, o esquema da tabela ANOVA que
+considera apenas os <span class="math inline">\(ab\)</span> Tratamentos
+é dado por:</p>
+<p> {Esquema fatorial: Esquema da ANOVA}</p>
+<p>Para um experimento seguindo o delineamento inteiramente casualizado
+com <span class="math inline">\(r\)</span> repetições, dois fatores de
+tratamento, <span class="math inline">\(A\)</span> com <span
+class="math inline">\(a\)</span> níveis e <span
+class="math inline">\(B\)</span> com <span
+class="math inline">\(b\)</span>, o esquema da tabela ANOVA que
+considera a decomposição do número de graus de liberdade de Tratamentos
+para avaliar efeitos principais e de interação é dado por:</p>
+<p> {Esquema fatorial: Esquema da ANOVA}</p>
+<p>Hipóteses:\ {red}{ <span class="math inline">\(H_0:\)</span> Não há
+efeito da interação \ <span class="math inline">\(H_1:\)</span> Há
+efeito da interação.}</p>
+<p> {Esquema fatorial: Esquema da ANOVA}</p>
+{red}{}
+<p> {Esquema fatorial: Esquema da ANOVA}</p>
+<p>Hipóteses:\ {red}{ <span class="math inline">\(H_0: \mu_{A_1} =
+\mu_{A_2} = \ldots= \mu_{A_a} = \mu\)</span> \ <span
+class="math inline">\(H_1:\)</span> Pelo menos duas médias diferem entre
+si.}</p>
+{
+<p>}</p>
+<p> {Esquema fatorial: Esquema da ANOVA}</p>
+<p>Hipóteses:\ {red}{ <span class="math inline">\(H_0: \mu_{B_1} =
+\mu_{B_2} = \ldots= \mu_{B_b} = \mu\)</span> \ <span
+class="math inline">\(H_1:\)</span> Pelo menos duas médias diferem entre
+si.}</p>
+{
+<p>}</p>
+<p> {Esquema fatorial: ANOVA}</p>
+<p>{</p>
+<p>}</p>
+<p> {Esquema fatorial: ANOVA}</p>
+{
+<p>}</p>
+<p> {Exemplo - Fatorial <span class="math inline">\(2\times2\)</span>}
+Os dados da Tabela 1 foram obtidos em um experimento fatorial <span
+class="math inline">\(2\times2\)</span> segundo o delineamento
+inteiramente casualizado com três repetições, para analisar o efeito da
+calagem e da irrigação sobre o peso de plantas.</p>
+<p> {Exemplo - Fatorial <span
+class="math inline">\(2\times2\)</span>}</p>
+<p>{</p>
+<p>}</p>
+<p> {Exemplo - Fatorial <span
+class="math inline">\(2\times2\)</span>}</p>
+<p>{red}{Efeito principal de Irrigação}</p>
+<p>{red}{<span class="math display">\[50-30 = 20\]</span>}</p>
+<p> {Exemplo - Fatorial <span
+class="math inline">\(2\times2\)</span>}</p>
+<p>{red}{Efeito principal de Calagem}</p>
+<p>{red}{<span class="math display">\[47-33 = 14\]</span>}</p>
+<p> {Exemplo - Fatorial <span
+class="math inline">\(2\times2\)</span>}</p>
+<p>{red}{Efeito simples e de interação}</p>
+<p>Efeito de Irrigação dentro de <span
+class="math inline">\(C_0\)</span>: {red}{<span
+class="math inline">\(38-28 = 10\)</span>}</p>
+<p>Efeito de Irrigação dentro de <span
+class="math inline">\(C_1\)</span>: {blue}{<span
+class="math inline">\(62-32 = 30\)</span>}</p>
+<p>Efeito da Interação: {<span
+class="math inline">\(\displaystyle{\frac{{blue}{30}-{red}{10}}{2} =
+10}\)</span>}</p>
+<p> {Exemplo - Fatorial <span
+class="math inline">\(2\times2\)</span>}</p>
+<p>{red}{Efeito simples e de interação}</p>
+<p>Efeito de Calagem dentro de <span class="math inline">\(I_0\)</span>:
+{red}{<span class="math inline">\(32-28 = 4\)</span>}</p>
+<p>Efeito de Calagem dentro de <span class="math inline">\(I_1\)</span>:
+{blue}{<span class="math inline">\(62-38 = 24\)</span>}</p>
+<p>Efeito da Interação: {<span
+class="math inline">\(\displaystyle{\frac{{blue}{24}-{red}{4}}{2} =
+10}\)</span>}</p>
+<p> {Exemplo - Fatorial <span
+class="math inline">\(2\times2\)</span>}</p>
+<p><span class="math display">\[SQ_{\text{Total}} = 25^2 + 32^2 + 27^2 +
+\ldots + 59^2 - \frac{480^2}{12} = 2196\]</span></p>
+<p> {Exemplo - Fatorial <span
+class="math inline">\(2\times2\)</span>}</p>
+Quadro auxiliar de totais dos níveis dos fatores
+<p><span class="math display">\[SQ_{\text{Irrigação}} =
+\frac{1}{6}({red}{180}^2 + {red}{300}^2) - \frac{{red}{480}^2}{12} =
+1200\]</span></p>
+<p> {Exemplo - Fatorial <span
+class="math inline">\(2\times2\)</span>}</p>
+Quadro auxiliar de totais dos níveis dos fatores
+<p><span class="math display">\[SQ_{\text{Calagem}} =
+\frac{1}{6}({red}{198}^2 + {red}{282}^2) - \frac{{red}{480}^2}{12} =
+588\]</span></p>
+<p> {Exemplo - Fatorial <span
+class="math inline">\(2\times2\)</span>}</p>
+Quadro auxiliar de totais dos níveis dos fatores
+<p><span class="math display">\[SQ_{\text{I,C}} =
+\frac{1}{3}({red}{84}^2 + {red}{96}^2 + {red}{114}^2 + {red}{186}^2) -
+\frac{{red}{480}^2}{12} = 2088\]</span></p>
+<p> {Exemplo - Fatorial <span
+class="math inline">\(2\times2\)</span>}</p>
+Quadro auxiliar de totais dos níveis dos fatores
+<p><span class="math display">\[SQ_{\text{I\#C}} = 2088 - 1200 - 588 =
+300\]</span></p>
+<p> {Exemplo - Fatorial <span
+class="math inline">\(2\times2\)</span>}<br />
+{red}{ <span class="math inline">\(H_0:\)</span> Não há efeito da
+interação \ <span class="math inline">\(H_1:\)</span> Há efeito da
+interação.}</p>
+<p><span class="math display">\[F_{\text{tab}(5\%,1,8)} =
+5,32\]</span></p>
+<p>Como <span class="math inline">\(\displaystyle{F = \frac{300}{13,5} =
+22,22 &gt; 5,32 = F_{tab}}\)</span>, ao nível de 5% de significância,
+rejeita-se <span class="math inline">\(H_0\)</span>. Logo, há evidências
+para afirmar que há efeito da interação entre Irrigação e Calagem, não
+sendo os mesmos independentes.</p>
+<p>{Exemplo - Fatorial <span class="math inline">\(2\times2\)</span>}
+{}</p>
+<p><span class="math display">\[SQ_{\text{Irrigação dentro de $C_0$}} =
+\frac{1}{r}\sum_i y_{i1\cdot}^2 - \frac{y_{\cdot 1
+\cdot}^2}{ar}\]</span> <span
+class="math display">\[{red}{SQ_{\text{Irrigação dentro de $C_0$}} =
+\frac{1}{3}(84^2 + 114^2) - \frac{198^2}{6} = 150}\]</span></p>
+<p>{Exemplo - Fatorial <span class="math inline">\(2\times2\)</span>}
+{}</p>
+<p><span class="math display">\[SQ_{\text{Irrigação dentro de $C_1$}} =
+\frac{1}{r}\sum_i y_{i2\cdot}^2 - \frac{y_{\cdot 2
+\cdot}^2}{ar}\]</span> <span
+class="math display">\[{blue}{SQ_{\text{Irrigação dentro de $C_1$}} =
+\frac{1}{3}(96^2 + 186^2) - \frac{282^2}{6} = 1350}\]</span></p>
+<p>{Exemplo - Fatorial <span class="math inline">\(2\times2\)</span>}
+{}</p>
+<p>{</p>
+<p>}</p>
+<p>{Exemplo - Fatorial <span class="math inline">\(2\times2\)</span>}
+{}</p>
+<p>{red}{ <span class="math inline">\(H_0: \mu_{I_0C_0} =
+\mu_{I_1C_0}\)</span> \ <span class="math inline">\(H_a: \mu_{I_0C_0}
+\neq \mu_{I_1C_0}\)</span> }</p>
+<p><span class="math display">\[F_{\text{tab}(5\%,1,8)} =
+5,32\]</span></p>
+<p>Como <span class="math inline">\(\displaystyle{F = \frac{150}{13,5} =
+11,11 &gt; 5,32 = F_{tab}}\)</span>, ao nível de 5% de significância
+rejeita-se <span class="math inline">\(H_0\)</span>. Assim as médias de
+peso de plantas na ausência e na presença de irrigação são diferentes,
+quando avaliadas na ausência de Calcário.</p>
+<p>{Exemplo - Fatorial <span class="math inline">\(2\times2\)</span>}
+{}</p>
+<p>{blue}{ <span class="math inline">\(H_0: \mu_{I_0C_1} =
+\mu_{I_1C_1}\)</span> \ <span class="math inline">\(H_a: \mu_{I_0C_1}
+\neq \mu_{I_1C_1}\)</span> }</p>
+<p><span class="math display">\[F_{\text{tab}(5\%,1,8)} =
+5,32\]</span></p>
+<p>Como <span class="math inline">\(\displaystyle{F = \frac{1350}{13,5}
+= 100,00 &gt; 5,32 = F_{tab}}\)</span>, ao nível de 5% de significância
+rejeita-se <span class="math inline">\(H_0\)</span>. Assim as médias de
+peso de plantas na ausência e na presença de irrigação são diferentes,
+quando avaliadas na presença de Calcário.</p>
+<p>{Exemplo - Fatorial <span class="math inline">\(2\times2\)</span>}
+{}</p>
+<p><span class="math display">\[SQ_{\text{Calagem dentro de $I_0$}} =
+\frac{1}{r}\sum_k y_{1k\cdot}^2 - \frac{y_{1 \cdot\cdot}^2}{br}\]</span>
+<span class="math display">\[{red}{SQ_{\text{Calagem dentro de $I_0$}} =
+\frac{1}{3}(84^2 + 96^2) - \frac{180^2}{6} = 24}\]</span></p>
+<p>{Exemplo - Fatorial <span class="math inline">\(2\times2\)</span>}
+{}</p>
+<p><span class="math display">\[SQ_{\text{Calagem dentro de $I_1$}} =
+\frac{1}{r}\sum_k y_{2k\cdot}^2 - \frac{y_{2 \cdot\cdot}^2}{br}\]</span>
+<span class="math display">\[{blue}{SQ_{\text{Calagem dentro de $I_1$}}
+= \frac{1}{3}(114^2 + 186^2) - \frac{300^2}{6} = 864}\]</span></p>
+<p>{Exemplo - Fatorial <span class="math inline">\(2\times2\)</span>}
+{}</p>
+<p>{red}{ <span class="math inline">\(H_0: \mu_{I_0C_0} =
+\mu_{I_0C_1}\)</span> \ <span class="math inline">\(H_a: \mu_{I_0C_0}
+\neq \mu_{I_0C_1}\)</span> }</p>
+<p><span class="math display">\[F_{\text{tab}(5\%,1,8)} =
+5,32\]</span></p>
+<p>Como <span class="math inline">\(\discplaystyle{F = \frac{24}{13,5} =
+1,78 &lt; 5,32 = F_{tab}}\)</span>, ao nível de 5% de significância não
+se rejeita <span class="math inline">\(H_0\)</span>. Assim as médias de
+peso de plantas na ausência e na presença de calcário não são
+diferentes, quando avaliadas na ausência de Irrigação.</p>
+<p>{Exemplo - Fatorial <span class="math inline">\(2\times2\)</span>}
+{}</p>
+<p>{blue}{ <span class="math inline">\(H_0: \mu_{I_1C_0} =
+\mu_{I_1C_1}\)</span> \ <span class="math inline">\(H_a: \mu_{I_1C_0}
+\neq \mu_{I_1C_1}\)</span> }</p>
+<p><span class="math display">\[F_{\text{tab}(5\%,1,8)} =
+5,32\]</span></p>
+<p>Como <span class="math inline">\(\discplaystyle{F = \frac{864}{13,5}
+= 64,00 &gt; 5,32 = F_{tab}}\)</span>, ao nível de 5% de significância
+rejeita-se <span class="math inline">\(H_0\)</span>. Assim as médias de
+peso de plantas na ausência e na presença de calcário são diferentes,
+quando avaliadas na presença de Irrigação.</p>
+{Exemplo - Fatorial <span class="math inline">\(2\times2\)</span>}
+<p>Letras minúsculas representam a comparação das médias de Calagem
+dentro de cada nível de Irrigação e letras maiúsculas representam a
+comparação das médias de Irrigação dentro de cada nível de Calagem.</p>
+
+
+
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.odd').parent('tbody').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open');
+  });
+});
+</script>
+
+<!-- code folding -->
+
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>
