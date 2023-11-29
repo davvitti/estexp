@@ -9,9 +9,10 @@
 <meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
 
 
+<meta name="author" content="Renata Alcarde Sermarini" />
 
 
-<title>Sobre este livro</title>
+<title>Grupos de Experimentos</title>
 
 <script src="site_libs/header-attrs-2.24/header-attrs.js"></script>
 <script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
@@ -361,12 +362,174 @@ div.tocify {
 
 
 
-<h1 class="title toc-ignore">Sobre este livro</h1>
+<h1 class="title toc-ignore">Grupos de Experimentos</h1>
+<h4 class="author">Renata Alcarde Sermarini</h4>
+<h4 class="date">novembro de 2023</h4>
 
 </div>
 
 
+<div id="exemplo-barbin-1994" class="section level2">
+<h2>Exemplo (Barbin, 1994)</h2>
+<p>Os dados que se seguem referem-se às alturas (em metros, médias de 25
+plantas/parcela) de plantas Eucaliptus grandis, com 7 anos de idade (em
+1980) de três ensaios em blocos ao acaso, sob 6 tratamentos
+(progênies).</p>
+<p>T1: Pretoria (Procedente da África do Sul), T2: 637 (Progênie de Rio
+Claro), T3: 2093 (Progênie de Rio Claro), T4: 2094 (Progênie de Rio
+Claro), T5: 9559 (Procedente da Austrália) e T6: 9575 (Procedente da
+Austrália).</p>
+</div>
+<div id="exemplo-barbin-1994-1" class="section level2">
+<h2>Exemplo (Barbin, 1994)</h2>
 
+</div>
+<div id="exemplo-barbin-1994-2" class="section level2">
+<h2>Exemplo (Barbin, 1994)</h2>
+<p>Observação: Os dados foram cedidos pelo Engenheiro Agrônomo Luiz
+Carlos Costa Coelho do Horto Florestal de Tupi, SP.</p>
+</div>
+<div id="análise-exploratória" class="section level2">
+<h2>Análise exploratória</h2>
+<p><img src="gruposde_files/figure-html/unnamed-chunk-2-1.png" width="672" /></p>
+</div>
+<div id="trabalhando-com-grupos-de-experimentos" class="section level2">
+<h2>Trabalhando com grupos de Experimentos</h2>
+<ul>
+<li>Os experimentos são instalados em locais distintos ou em tempos
+distintos (repetição do experimento);</li>
+<li>De modo geral, em casos completos e balanceados, os mesmos
+tratamentos são avaliados em cada um dos experimentos, seguindo o mesmo
+delineamento e o mesmo número de repetições.</li>
+</ul>
+<p><strong>Quando podemos agrupar os dados para a análise?</strong></p>
+<p>Em caso de homogeneidade de variâncias!</p>
+<p><em>Vantagens</em>:</p>
+<ul>
+<li><p>Avaliar o efeito da interação Local#Tratamento (ou
+Repetição#Tratamento - <strong>Cuidado!</strong>)</p></li>
+<li><p>Maior número de graus de liberdade do resíduo.</p></li>
+</ul>
+</div>
+<div id="procedimento" class="section level2">
+<h2>Procedimento</h2>
+<ul>
+<li>Realizar a análise de variância individual;</li>
+<li>Obter o coeficiente de variação;</li>
+<li>Avaliar os efeitos de interesse (efeitos de interação e efeitos
+principais).</li>
+</ul>
+</div>
+<div id="anova-local-1-araraquara" class="section level2">
+<h2>ANOVA Local 1: Araraquara</h2>
+<p><span class="math inline">\(H_0: \mu_1 = \mu_2 = \ldots =
+\mu_6\)</span> <em>vs</em> <span class="math inline">\(H_1\)</span>:
+pelo menos duas médias diferem entre si</p>
+<p>Ao nível de 5% de significância, não há evidências para rejeitarmos
+<span class="math inline">\(H_0\)</span>. Logo, não há efeito
+significativo de progênie quando avaliado em Araraquara.</p>
+</div>
+<div id="anova-local-2-bento-quirino" class="section level2">
+<h2>ANOVA Local 2: Bento Quirino</h2>
+<p><span class="math inline">\(H_0: \mu_{T1} = \mu_{T2} = \ldots =
+\mu_{T6}\)</span> <em>vs</em> <span class="math inline">\(H_1\)</span>:
+pelo menos duas médias diferem entre si</p>
+<p>Ao nível de 5% de significância, não há evidências para rejeitarmos
+<span class="math inline">\(H_0\)</span>. Logo, não há efeito
+significativo de progênie quando avaliado em Bento Quirino.</p>
+</div>
+<div id="anova-local-3-mogi-guaçu" class="section level2">
+<h2>ANOVA Local 3: Mogi-Guaçu</h2>
+<p><span class="math inline">\(H_0: \mu_{T1} = \mu_{T2} = \ldots =
+\mu_{T6}\)</span> <em>vs</em> <span class="math inline">\(H_1\)</span>:
+pelo menos duas médias diferem entre si</p>
+<p>Ao nível de 5% de significância, há evidências para rejeitarmos <span
+class="math inline">\(H_0\)</span>. Logo, há efeito significativo de
+progênie quando avaliado em Mogi-Guaçu.</p>
+</div>
+<div id="mais-análise-exploratória" class="section level2">
+<h2>Mais análise exploratória</h2>
+<p><img src="gruposde_files/figure-html/unnamed-chunk-6-1.png" width="672" /></p>
+</div>
+<div
+id="análise-conjunta-quadro-auxiliar-com-o-total-por-combinação-localtratamento"
+class="section level2">
+<h2>Análise conjunta: quadro auxiliar com o total por combinação
+Local:Tratamento</h2>
+<ul>
+<li>Total</li>
+</ul>
+</div>
+<div id="razão-entre-os-quadrados-médios-dos-resíduos"
+class="section level2">
+<h2>Razão entre os quadrados médios dos resíduos</h2>
+<p><span class="math display">\[\frac{max\{\text{QM Resíduo}
+L_k\}}{min\{\text{QM Resíduo} L_k\}}, k=1,\ldots,3.\]</span></p>
+</div>
+<div id="anova" class="section level2">
+<h2>ANOVA</h2>
+<p><span class="math inline">\(H_0:\)</span>Não há efeito da interação
+Local#Tratamento <em>vs</em> <span class="math inline">\(H_1\)</span>:
+Há efeito da interação Local#Tratamento</p>
+<p><span class="math inline">\(H_0: \mu_{T1} = \mu_{T2} = \ldots =
+\mu_{T6}\)</span> <em>vs</em> <span class="math inline">\(H_1\)</span>:
+pelo menos duas médias diferem entre si</p>
+<p><span class="math inline">\(H_0: \mu_{L1} = \mu_{L2} =
+\mu_{L3}\)</span> <em>vs</em> <span class="math inline">\(H_1\)</span>:
+pelo menos duas médias diferem entre si</p>
+</div>
+<div id="anova-1" class="section level2">
+<h2>ANOVA</h2>
+<p>Como o efeito da interação entre Locais e Tratamentos foi
+significativo (<span class="math inline">\(\alpha = 0,05\)</span>),
+vamos avaliar o efeito de Tratamentos dentro de cada um dos Locais.</p>
+</div>
+<div id="efeito-de-tratamentos-dentro-de-cada-local"
+class="section level2">
+<h2>Efeito de Tratamentos dentro de cada Local</h2>
+<p><span class="math inline">\(H_0: \mu_{L1T1} = \mu_{L1T2} = \ldots =
+\mu_{L1T6}\)</span> <em>vs</em> <span
+class="math inline">\(H_1\)</span>: pelo menos duas médias diferem entre
+si</p>
+<p><span class="math inline">\(H_0: \mu_{L2T1} = \mu_{L2T2} = \ldots =
+\mu_{L2T6}\)</span> <em>vs</em> <span
+class="math inline">\(H_1\)</span>: pelo menos duas médias diferem entre
+si</p>
+<p><span class="math inline">\(H_0: \mu_{L3T1} = \mu_{L3T2} = \ldots =
+\mu_{L3T6}\)</span> <em>vs</em> <span
+class="math inline">\(H_1\)</span>: pelo menos duas médias diferem entre
+si</p>
+</div>
+<div id="efeito-de-tratamentos-dentro-de-cada-local-1"
+class="section level2">
+<h2>Efeito de Tratamentos dentro de cada Local</h2>
+<p>Há evidências para rejeitarmos as três hipóteses <span
+class="math inline">\(H_0\)</span>. Assim, pelo menos duas médias de
+tratamentos diferem entre si em cada um dos três locais (há efeito
+significativo de tratamentos dentro de cada um dos locais).</p>
+</div>
+<div id="comparações-múltiplas" class="section level2">
+<h2>Comparações múltiplas</h2>
+<ul>
+<li>Médias de Tratamentos dentro do Local 1 (Araraquara)</li>
+</ul>
+</div>
+<div id="comparações-múltiplas-1" class="section level2">
+<h2>Comparações múltiplas</h2>
+<ul>
+<li>Médias de Tratamentos dentro do Local 2 (Bento Quirino)</li>
+</ul>
+</div>
+<div id="comparações-múltiplas-2" class="section level2">
+<h2>Comparações múltiplas</h2>
+<ul>
+<li>Médias de Tratamentos dentro do Local 3 (Mogi-Guaçu)</li>
+</ul>
+</div>
+<div id="gráficamente" class="section level2">
+<h2>Gráficamente</h2>
+<p><img src="gruposde_files/figure-html/unnamed-chunk-15-1.png" width="672" /></p>
+</div>
 
 
 

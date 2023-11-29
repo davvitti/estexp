@@ -1,7 +1,7 @@
 output_dir: "docs"
-name: "Extatística experimental"
+name: "Estatística experimental"
 navbar:
-  title: "Extatística experimental"
+  title: "Estatística experimental"
   type:
   toc: true 
   left:
@@ -24,7 +24,9 @@ navbar:
        - text: "Esquema fatorial"
          href: fatorial.html
        - text: "Parcelas subdivididas"
-         href: parcelas.html   
+         href: parcelas.html  
+       - text: "Grupos de experimentos"
+         href: gruposde.html
     - text: "Atividades"
       href: https://renataas.shinyapps.io/teste2/       
       
@@ -34,6 +36,7 @@ output:
     toc_float: true
     theme: united
     highlight: kate
-    paper-grey-200: "#616161"
+    css: extra.css
+    
     
   

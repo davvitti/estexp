@@ -96,7 +96,7 @@ Como vantagens de sua utilização temos que é um experimento de fácil planeja
 
 ## Obtendo um croqui para um DIC  
 
-Para obtermos um croqui para um experimento com $I$ tratamentos em um DIC, sendo o $i$-ésimo tratamento repetido $n_i$ vezes e o número total de parcelas $n=\sum_{i=1}^I n_i$ (1)
+Para obtermos um croqui para um experimento com $I$ tratamentos em um DIC, sendo o $i$-ésimo tratamento repetido $n_i$ vezes e o número total de parcelas $n=\sum_{i=1}^I n_i$ 
 
 (i) Enumerar as parcelas 1, 2, . . . , $n$
 (ii) Criar o delineamento sistemático, ou seja,
@@ -141,7 +141,7 @@ y_{ij} = \mu + \tau_i + e_{ij} = \mu_i + e_{ij}
 
 em que:
 
-- $y_{ij}$ é o valor observado na jésima repetição do iésimo tratamento, com:
+- $y_{ij}$ é o valor observado na j-ésima repetição do iésimo tratamento, com: 
   - $i = 1, ... , I$ e 
   - $j = 1, ... , n_i$
   

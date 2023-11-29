@@ -1,0 +1,457 @@
+---
+title: "Grupos de Experimentos"
+author: Renata Alcarde Sermarini
+date: "novembro de 2023"
+header-includes: 
+  \usepackage{here} 
+  \usepackage{setspace} 
+  \usepackage{multicol}
+  \usepackage[portuguese]{babel}
+  \usepackage{booktabs}
+  \usepackage{longtable}
+  \usepackage{array}
+  \usepackage{multirow}
+  \usepackage{wrapfig}
+  \usepackage{float}
+  \usepackage{colortbl}
+---
+
+
+```{r, echo=FALSE, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE, message = FALSE, warning = FALSE)
+library(ggplot2)
+library(MASS)
+library(ExpDes.pt)
+library(xtable)
+library(lmtest)
+library(agricolae)
+library(knitr)
+library(magrittr)
+library(tidyverse)
+options(knitr.kable.NA = '')
+```
+
+
+## Exemplo (Barbin, 1994)
+
+Os dados que se seguem referem-se às alturas (em metros, médias de 25 plantas/parcela) de plantas Eucaliptus grandis, com 7 anos de idade (em 1980) de três ensaios em blocos ao acaso, sob 6 tratamentos (progênies).
+
+\begin{center}
+\begin{tabular}{lccccr} 
+\multicolumn{6}{l}{Tabela 1: Ensaio em Araraquara}\\ \hline
+& \multicolumn{4}{c}{Blocos} & \\ \cline{2-5}
+Tratamentos &	I &	II &	III &	IV	& Totais \\ \hline
+T1 &	20,3 &	19,6 &	23,5 &	19,1 &	82,5\\
+T2 &	21,7 &	19,3 &	16,7 &	18,5 &	76,2\\
+T3 &	22,0 &	24,9 &	24,4 &	20,8 &	92,1\\
+T4 &	20,8 &	23,0 &	21,3 &	24,9 &	90,0\\
+T5 &	21,5 &	22,3 &	22,1 &	21,9 &	87,8\\
+T6 &	19,6 &	17,7 &	18,7 &	22,0 &	78,0\\ \hline
+Totais &	125,9 &	126,8 &	126,7 &	127,2	506,6\\ \hline
+\multicolumn{6}{l}{Fonte: Instituto Florestal – Tupi, SP}\\
+\end{tabular}
+\end{center}
+
+T1: Pretoria (Procedente da África do Sul), T2: 637 (Progênie de Rio Claro), T3: 2093 (Progênie de Rio Claro), T4: 2094 (Progênie de Rio Claro), T5: 9559 (Procedente da Austrália) e T6: 9575 (Procedente da Austrália).
+
+
+## Exemplo (Barbin, 1994)
+
+\begin{center}
+\begin{tabular}{lccccr} 
+\multicolumn{6}{l}{Tabela 2: Ensaio em Bento Quirino}\\ \hline
+& \multicolumn{4}{c}{Blocos} & \\ \cline{2-5}
+Tratamentos &	I &	II &	III &	IV	& Totais \\ \hline
+T1 &	10,2 &	11,7 &	9,1 &	8,1	& 39,1 \\
+T2 &	16,1 &	10,8 &	10,9 &	10,3 &	48,1 \\ 
+T3 &	17,7 &	13,1 &	14,2 &	11,0 &	56,0\\
+T4 &	13,5 &	14,4 &	11,2 &	12,8 &	51,9\\
+T5 &	20,5 &	12,5 &	11,3 &	12,2 &	56,5\\
+T6 &	12,0 &	13,0 &	12,3 &	10,6 &	47,9\\ \hline
+Totais  &	90,0 &	75,5 &	69,0 &	65,0 &	299,5 \\ \hline
+\multicolumn{6}{l}{Fonte: Instituto Florestal – Tupi, SP}\\
+\end{tabular}
+\end{center}
+
+
+## Exemplo (Barbin, 1994)
+
+\begin{center}
+\begin{tabular}{lccccr} 
+\multicolumn{6}{l}{Tabela 3: Ensaio em Mogi-Guaçu}\\ \hline
+& \multicolumn{4}{c}{Blocos} & \\ \cline{2-5}
+Tratamentos &	I &	II &	III &	IV	& Totais \\ \hline
+T1 &	22,7 &	21,4 &	22,9 &	22,0 &	89,0\\
+T2 &	22,6 &	21,4 &	20,7 &	20,8 &	85,5\\
+T3 &	21,4 &	21,7 &	22,5 &	19,4 &	85,0\\
+T4 &	25,0 &	23,6 &	23,3 &	24,8 &	96,7\\
+T5 &	26,4 &	26,4 &	28,0 &	27,3 &	108,1\\
+T6 &	20,6 &	23,5 &	19,4 &	21,9 &	85,4\\
+Totais &	138,7 &	138,0 &	136,8 &	136,2 &	549,7\\ \hline
+\multicolumn{6}{l}{Fonte: Instituto Florestal – Tupi, SP}\\
+\end{tabular}
+\end{center}
+
+
+Observação: Os dados foram cedidos pelo Engenheiro Agrônomo Luiz Carlos Costa Coelho do Horto Florestal de Tupi, SP.
+
+
+## Análise exploratória
+
+
+```{r, fig.height=6}
+dados<- read.csv2("eucalipto.csv")
+# str(dados)
+ggplot(dados,
+       aes(x = Trat ,
+           y = altura ,
+           color = Trat)) + 
+  geom_point() +
+  facet_wrap(~Local) +
+  xlab("Tratamentos") +
+  ylab("altura (m)") +
+  theme_bw() +
+  theme(legend.position = "bottom",
+        legend.direction = "horizontal",
+        legend.title = element_blank())
+```
+
+## Trabalhando com grupos de Experimentos
+
+- Os experimentos são instalados em locais distintos ou em tempos distintos (repetição do experimento);
+- De modo geral, em casos completos e balanceados, os mesmos tratamentos são avaliados em cada um dos experimentos, seguindo o mesmo delineamento e o mesmo número de repetições.
+
+
+
+**Quando podemos agrupar os dados para a análise?**
+
+
+Em caso de homogeneidade de variâncias!
+
+*Vantagens*: 
+
+- Avaliar o efeito da interação Local\#Tratamento (ou Repetição\#Tratamento - **Cuidado!**)
+
+- Maior número de graus de liberdade do resíduo.
+
+
+## Procedimento
+
+- Realizar a análise de variância individual;
+- Obter o coeficiente de variação;
+- Avaliar os efeitos de interesse (efeitos de interação e efeitos principais).
+
+
+
+## ANOVA Local 1: Araraquara
+
+$H_0: \mu_1 = \mu_2 = \ldots = \mu_6$ *vs* $H_1$: pelo menos duas médias diferem entre si
+
+
+```{r, echo=FALSE}
+mod.l1<- aov(altura ~ Bloco + Trat, 
+             data=dados, 
+             subset=c(Local=="L1"))
+# shapiro.test(rstandard(mod.l1))
+# bptest(mod.l1)
+
+#library(kableExtra)
+# kable(anova(mod.l1),
+  #     digits = 4,
+  #     booktabs = T,
+  #     format.args = list(decimal.mark = ',')) %>% 
+  # kable_styling(position = "center") %>% 
+  # row_spec(which(rownames(anova(mod.l1)) == "Trat"), 
+  #          bold = T, 
+  #          color = "black", 
+  #          background = "green")
+```
+
+Ao nível de 5\% de significância, não há evidências para rejeitarmos $H_0$. Logo, não há efeito significativo de progênie quando avaliado em Araraquara.
+
+
+## ANOVA Local 2: Bento Quirino
+
+$H_0: \mu_{T1} = \mu_{T2} = \ldots = \mu_{T6}$ *vs* $H_1$: pelo menos duas médias diferem entre si
+
+
+```{r, echo=FALSE}
+mod.l2<- aov(altura ~ Bloco + Trat, 
+             data=dados,
+             subset=c(Local=="L2"))
+# shapiro.test(rstandard(mod.l2))
+# bptest(mod.l2)
+# kable(anova(mod.l2),
+#       digits = 4,
+#       booktabs = T,
+#       format.args = list(decimal.mark = ',')) %>% 
+#   kable_styling(position = "center") %>% 
+#   row_spec(which(rownames(anova(mod.l2)) == "Trat"), 
+#            bold = T, 
+#            color = "black", 
+#            background = "green")
+```
+
+Ao nível de 5\% de significância, não há evidências para rejeitarmos $H_0$. Logo, não há efeito significativo de progênie quando avaliado em Bento Quirino.
+
+
+
+## ANOVA Local 3: Mogi-Guaçu
+
+$H_0: \mu_{T1} = \mu_{T2} = \ldots = \mu_{T6}$ *vs* $H_1$: pelo menos duas médias diferem entre si
+
+
+```{r, echo=FALSE}
+mod.l3<- aov(altura ~ Bloco + Trat, 
+             data=dados, 
+             subset=c(Local=="L3"))
+# shapiro.test(rstandard(mod.l3))
+# bptest(mod.l3)
+# kable(anova(mod.l3),
+#       digits = 4,
+#       booktabs = T,
+#       format.args = list(decimal.mark = ',')) %>% 
+#   kable_styling(position = "center") %>% 
+#   row_spec(which(rownames(anova(mod.l3)) == "Trat"), 
+#            bold = T, 
+#            color = "black", 
+#            background = "green")
+```
+
+Ao nível de 5\% de significância, há evidências para rejeitarmos $H_0$. Logo,  há efeito significativo de progênie quando avaliado em Mogi-Guaçu.
+
+
+
+## Mais análise exploratória
+
+```{r, echo = F, fig.height=6}
+ggplot(dados,
+       aes(x = Trat,
+           y = altura,
+           color = Local,
+           group = Local)) + 
+  geom_point(stat = "summary",
+             fun = "mean") +
+  geom_line(stat = "summary",
+            fun = "mean") +
+  xlab("Tratamentos") +
+  ylab("altura (m)") +
+  theme_bw() +
+  theme(legend.position = "bottom",
+        legend.direction = "horizontal",
+        legend.title = element_blank())
+```
+
+
+## Análise conjunta: quadro auxiliar com o total por combinação Local:Tratamento
+
+- Total
+
+```{r}
+Total <- rbind(
+  cbind(with(dados,
+             tapply(altura, list(Local, Trat), 
+                    sum)),
+        with(dados,
+             tapply(altura, Local, 
+                    sum))),
+  c(with(dados,
+         tapply(altura, Trat, 
+                sum)), sum(dados$altura)))
+colnames(Total)[7] <- rownames(Total)[4] <- "Total"
+# kable(Total,
+#       booktabs = T,
+#       format.args = list(decimal.mark = ',')) %>% 
+#   kable_styling(position = "center") %>% 
+#   row_spec(3, hline_after = T)
+
+```
+
+
+
+## Razão entre os quadrados médios dos resíduos
+
+$$\frac{max\{\text{QM Resíduo} L_k\}}{min\{\text{QM Resíduo} L_k\}}, k=1,\ldots,3.$$
+
+```{r} 
+QMResiduo1<- anova(mod.l1)$"Mean Sq"[3]
+QMResiduo2<- anova(mod.l2)$"Mean Sq"[3]
+QMResiduo3<- anova(mod.l3)$"Mean Sq"[3]
+QMResiduo<- c(QMResiduo1, QMResiduo2, QMResiduo3)
+Razao <- max(QMResiduo)/min(QMResiduo)
+QMResiduo <- matrix(c(QMResiduo, Razao), nrow = 1)
+colnames(QMResiduo) <- c("QMResiduo L1",
+                         "QMResiduo L2",
+                         "QMResiduo L3",
+                         "Razão")
+
+# kable(QMResiduo,
+#       booktabs = T,
+#       format.args = list(decimal.mark = ',')) %>% 
+#   kable_styling(position = "center")
+
+```
+
+## ANOVA
+
+$H_0:$Não há efeito da interação Local\#Tratamento *vs* $H_1$: Há efeito da interação Local\#Tratamento
+
+$H_0: \mu_{T1} = \mu_{T2} = \ldots = \mu_{T6}$ *vs* $H_1$: pelo menos duas médias diferem entre si
+
+$H_0: \mu_{L1} = \mu_{L2} = \mu_{L3}$ *vs* $H_1$: pelo menos duas médias diferem entre si
+
+
+
+## ANOVA
+
+
+```{r}
+mod.conj <- aov(altura ~ Local+Local:Bloco+Trat+ Local:Trat, 
+                data=dados)
+# kable(anova(mod.conj),
+#       digits = 4,
+#       booktabs = T,
+#       format.args = list(decimal.mark = ',')) %>% 
+#   kable_styling(position = "center") %>% 
+#   row_spec(which(rownames(anova(mod.conj)) == "Local:Trat"), 
+#            bold = T, 
+#            color = "black", 
+#            background = "green")
+```
+
+Como o efeito da interação entre Locais e Tratamentos foi significativo ($\alpha = 0,05$), 
+vamos avaliar o efeito de Tratamentos dentro de cada um dos Locais.
+
+
+## Efeito de Tratamentos dentro de cada Local
+
+$H_0: \mu_{L1T1} = \mu_{L1T2} = \ldots = \mu_{L1T6}$ *vs* $H_1$: pelo menos duas médias diferem entre si
+
+$H_0: \mu_{L2T1} = \mu_{L2T2} = \ldots = \mu_{L2T6}$ *vs* $H_1$: pelo menos duas médias diferem entre si
+
+$H_0: \mu_{L3T1} = \mu_{L3T2} = \ldots = \mu_{L3T6}$ *vs* $H_1$: pelo menos duas médias diferem entre si
+
+## Efeito de Tratamentos dentro de cada Local
+
+```{r}
+Local.m <- model.matrix( ~ Local - 1, 
+                         dados)
+
+
+mod.Tratd.Local<- aov(altura ~ Local + Local:Bloco + 
+                        Local.m[, "LocalL1"]:Trat + # efeito de Tratamento dentro do Local L1
+                        Local.m[, "LocalL2"]:Trat + # efeito de Tratamento dentro do Local L2
+                        Local.m[, "LocalL3"]:Trat,  # efeito de Tratamento dentro do Local L3
+                      data=dados)
+# kable(anova(mod.Tratd.Local),
+#       digits = 4,
+#       booktabs = T,
+#       format.args = list(decimal.mark = ',')) %>% 
+#   kable_styling(position = "center") %>% 
+#   row_spec(which(rownames(anova(mod.Tratd.Local)) %in% c('Local.m[, "LocalL1"]:Trat',
+#                                                          'Trat:Local.m[, "LocalL2"]',
+#                                                          'Trat:Local.m[, "LocalL3"]')), 
+#            bold = T, 
+#            color = "black", 
+#            background = "green")
+
+```
+
+
+
+Há evidências para rejeitarmos as três hipóteses $H_0$. Assim, pelo menos duas médias de tratamentos diferem entre si em cada um dos três locais (há efeito significativo de tratamentos dentro de cada um dos locais).
+
+
+## Comparações múltiplas 
+
+
+- Médias de Tratamentos dentro do Local 1 (Araraquara)
+
+```{r}
+Tukey.Tratd.L1 <- with(subset(dados, Local == "L1"),
+                       HSD.test(altura, 
+                                Trat,
+                                45,
+                                3.0))
+# kable(Tukey.Tratd.L1$groups,
+#       booktabs = T,
+#       format.args = list(decimal.mark = ',')) %>% 
+#   kable_styling(position = "center")
+```
+
+
+## Comparações múltiplas
+
+- Médias de Tratamentos dentro do Local 2 (Bento Quirino)
+
+```{r}
+Tukey.Tratd.L2 <- with(subset(dados, Local == "L2"),
+                       HSD.test(altura, 
+                                Trat,
+                                45,
+                                3.0))
+# kable(Tukey.Tratd.L2$groups,
+#       booktabs = T,
+#       format.args = list(decimal.mark = ',')) %>% 
+#   kable_styling(position = "center")
+```
+
+
+
+## Comparações múltiplas
+
+- Médias de Tratamentos dentro do Local 3 (Mogi-Guaçu)
+
+```{r}
+Tukey.Tratd.L3 <- with(subset(dados, Local == "L3"),
+                       HSD.test(altura, 
+                                Trat,
+                                45,
+                                3.0))
+# kable(Tukey.Tratd.L3$groups,
+#       booktabs = T,
+#       format.args = list(decimal.mark = ','))%>% 
+#   kable_styling(position = "center")
+```
+
+
+
+## Gráficamente
+
+```{r, results='hide'}
+Tukey.Tratd.L1$groups$Trat <- 
+  rownames(Tukey.Tratd.L1$groups)
+Tukey.Tratd.L1$groups$Local <- "L1"
+Tukey.Tratd.L2$groups$Trat <- 
+  rownames(Tukey.Tratd.L2$groups)
+Tukey.Tratd.L2$groups$Local <- "L2"
+Tukey.Tratd.L3$groups$Trat <- 
+  rownames(Tukey.Tratd.L3$groups)
+Tukey.Tratd.L3$groups$Local <- "L3"
+
+Tukey.Trat <- data.frame(rbind(
+  Tukey.Tratd.L1$groups,
+  Tukey.Tratd.L2$groups,
+  Tukey.Tratd.L3$groups
+))
+```
+
+
+
+```{r, echo = FALSE}
+ggplot(Tukey.Trat,
+       aes(x = Trat,
+           y = altura,
+           label = groups,
+           fill = Trat)) +
+  geom_bar(stat = "identity") +
+  geom_errorbar(aes(x = Trat,
+                    ymin = altura - Tukey.Tratd.L1$statistics$MSD/2,
+                    ymax = altura + Tukey.Tratd.L1$statistics$MSD/2)) +
+  facet_grid(~ Local) +
+  geom_text(aes(x = Trat,
+                y = altura + Tukey.Tratd.L1$statistics$MSD/2 + 1)) +
+  xlab("Tratamentos") +
+  ylab("altura (m)")
+```
+
