@@ -58,7 +58,6 @@ ggplot(dadosfeijao,
   theme_classic()
 
 
-
 {r, echo=FALSE}
 #' # 1. Ajuste do modelo (dose como variável qualitativa)
 #' 

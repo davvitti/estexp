@@ -2,10 +2,7 @@
 title: "Delinemento em blocos casualizados"
 ---
 
-# Delineamento em blocos casualizados 
-
-O delineamento casualizado em blocos (dbc) leva em consideração os três
-princípios básicos da experimentação: repetição, casualização e controle local. 
+O delineamento casualizado em blocos (dbc) leva em consideração os três princípios básicos da experimentação: repetição, casualização e controle local. 
 Para realizar o dcb deve-se repartir a área experimental heterogênea e sub áreas homogêneas.
 
 Se cada bloco receber todos os tratamentos chama-se de blocos completos, caso algum bloco não receba todos os tratamentos chama-se de blocos imcompletos. 
@@ -17,9 +14,33 @@ Um experimento sobre a produtividade de variedades de Coffea arabica será reali
 
 __Croqui e anova: comparação entre DIC e DBC__
 
+```{r , echo = FALSE , warning = FALSE}
+library(gridExtra)
+library(agricolae)
+(tratdbc <- paste("T", 1:9, sep =""))
+Casualizando <- design.rcbd(trt = tratdbc,
+                            r = 3)
+
+library(agricolaeplotr)
+grafico2 <- plot_rcdb(Casualizando,
+          factor_name = "tratdbc")
+
+trt = LETTERS[1:4]
+delineamento <- design.crd(trt,
+                           r = 5,
+                           serie = 0)
+grafico1 <- plot_design_crd(delineamento,
+                ncols = 4,
+                nrows = 5)
+
+grid.arrange(
+          grafico1,
+          grafico2,
+          ncol = 2,
+          nrow = 1)
+```
 
 
-![](figs\fig2.PNG)
 
 __Modelo estatístico__
 

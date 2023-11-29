@@ -1,8 +1,5 @@
 ---
 title: "Delineamento Inteiramente Casualizado"
-output:
-  html_document:
-    df_print: paged
 ---
 
 ```{r, echo=FALSE , warning=FALSE}
@@ -14,9 +11,84 @@ options(OutDec = ",")
 ```
 
 
-# Delineamento inteiramente casualizado
-
 ## Fundamentos
+
+```{r}
+par(mfrow = c(1, 3), mar = c(2, 0, 2, 0))
+
+x <- seq(-3.5, 3.5, length.out = 500)
+fx <- dnorm(x)
+plot(fx ~ x,
+     type = "l",
+     lwd = 1.5,
+     xaxt = "n",
+     yaxt = "n",
+     bty = "n",
+     main = "Unilateral (à esquerda)")
+axis(side = 1,
+     at = c(-1.5),
+     labels = expression(z[tab]))
+axis(side = 1,
+     at = c(-3.5, 3.5),
+     labels = rep("", 2))
+ind <- x < -1.5
+polygon(x = c(x[ind], rev(x[ind])),
+        y = c(fx[ind], rep(0, sum(ind))),
+        col = rgb(.8, .8, .8, 1),
+        density = NULL,
+        angle = 45)
+
+plot(fx ~ x,
+     type = "l",
+     lwd = 1.5,
+     xaxt = "n",
+     yaxt = "n",
+     bty = "n",
+     main = "Unilateral (à direita)")
+axis(side = 1,
+     at = c(1.5),
+     labels = expression(z[tab]))
+axis(side = 1,
+     at = c(-3.5, 3.5),
+     labels = rep("", 2))
+ind <- x > 1.5
+polygon(x = c(x[ind], rev(x[ind])),
+        y = c(fx[ind], rep(0, sum(ind))),
+        col = rgb(.8, .8, .8, 1),
+        density = NULL,
+        angle = 45)
+
+plot(fx ~ x,
+     type = "l",
+     lwd = 1.5,
+     xaxt = "n",
+     yaxt = "n",
+     bty = "n",
+     main = "Bilateral")
+axis(side = 1,
+     at = c(-1.5, 1.5),
+     labels = expression(-z[tab], z[tab]))
+axis(side = 1,
+     at = c(-3.5, 3.5),
+     labels = rep("", 2))
+ind <- x > 1.5
+polygon(x = c(x[ind], rev(x[ind])),
+        y = c(fx[ind], rep(0, sum(ind))),
+        col = rgb(.8, .8, .8, 1),
+        density = NULL,
+        angle = 45)
+ind <- x < -1.5
+polygon(x = c(x[ind], rev(x[ind])),
+        y = c(fx[ind], rep(0, sum(ind))),
+        col = rgb(.8, .8, .8, 1),
+        density = NULL,
+        angle = 45)
+
+
+```
+
+
+
 
 O delineamento inteiramente casualizado (DIC) é o mais simples dos delineamentos, pois considera apenas dois dos princípios básicos da experimentação: a repetição e a casualização. Neste, os tratamentos são aleatoriamente atribuídos ao material experimental, sem o esforço de se restringir os tratamentos a alguma porção de área, material ou espaço. Ainda como característica, como não há uso do controle local o número de repetições por tratamento pode variar.É geralmente utilizado quando a variação do material experimental é relativamente pequena, o que geralmente ocorre em laboratórios e casas de vegetação.
 
@@ -85,7 +157,7 @@ $H_0 : \tau_{1} = \tau_{2} = ... = \tau_{I} = 0$
 
 $H_1 = H_a$ : $\tau_{i} \neq 0$ para algum $i$.
 
-Havendo uma reparametrização do modelo apresentado na \@ref(eq:teste), tal que $\mu + \tau_i = \alpha_i$ em que $\alpha_i$ é a média do iésimo tratamento, é:{#eq3}
+Havendo uma reparametrização do modelo apresentado na \@href(eq:teste), tal que $\mu + \tau_i = \alpha_i$ em que $\alpha_i$ é a média do iésimo tratamento, é:{#eq3}
 
 $$y_{ij} = \alpha_i + e_{ij}  \text(3)$$
 

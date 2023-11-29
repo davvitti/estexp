@@ -16,7 +16,7 @@
 <script src="site_libs/header-attrs-2.24/header-attrs.js"></script>
 <script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<link href="site_libs/bootstrap-3.3.5/css/cosmo.min.css" rel="stylesheet" />
+<link href="site_libs/bootstrap-3.3.5/css/united.min.css" rel="stylesheet" />
 <script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
 <script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
 <script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
@@ -29,11 +29,10 @@
        h6 {font-size: 12px;}
        code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
        pre:not([class]) { background-color: white }</style>
+<script src="site_libs/jqueryui-1.13.2/jquery-ui.min.js"></script>
+<link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
+<script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
 <script src="site_libs/navigation-1.1/tabsets.js"></script>
-<link href="site_libs/highlightjs-9.12.0/textmate.css" rel="stylesheet" />
-<script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
-<link href="site_libs/pagedtable-1.1/css/pagedtable.css" rel="stylesheet" />
-<script src="site_libs/pagedtable-1.1/js/pagedtable.js"></script>
 
 <style type="text/css">
   code{white-space: pre-wrap;}
@@ -44,18 +43,113 @@
   ul.task-list{list-style: none;}
     </style>
 
-<style type="text/css">code{white-space: pre;}</style>
-<script type="text/javascript">
-if (window.hljs) {
-  hljs.configure({languages: []});
-  hljs.initHighlightingOnLoad();
-  if (document.readyState && document.readyState === "complete") {
-    window.setTimeout(function() { hljs.initHighlighting(); }, 0);
+
+
+<style type="text/css">
+  code {
+    white-space: pre;
   }
+  .sourceCode {
+    overflow: visible;
+  }
+</style>
+<style type="text/css" data-origin="pandoc">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
 }
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    background-color: #ffffff;
+    color: #a0a0a0;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #a0a0a0;  padding-left: 4px; }
+div.sourceCode
+  { color: #1f1c1b; background-color: #ffffff; }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span { color: #1f1c1b; } /* Normal */
+code span.al { color: #bf0303; background-color: #f7e6e6; font-weight: bold; } /* Alert */
+code span.an { color: #ca60ca; } /* Annotation */
+code span.at { color: #0057ae; } /* Attribute */
+code span.bn { color: #b08000; } /* BaseN */
+code span.bu { color: #644a9b; font-weight: bold; } /* BuiltIn */
+code span.cf { color: #1f1c1b; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #924c9d; } /* Char */
+code span.cn { color: #aa5500; } /* Constant */
+code span.co { color: #898887; } /* Comment */
+code span.cv { color: #0095ff; } /* CommentVar */
+code span.do { color: #607880; } /* Documentation */
+code span.dt { color: #0057ae; } /* DataType */
+code span.dv { color: #b08000; } /* DecVal */
+code span.er { color: #bf0303; text-decoration: underline; } /* Error */
+code span.ex { color: #0095ff; font-weight: bold; } /* Extension */
+code span.fl { color: #b08000; } /* Float */
+code span.fu { color: #644a9b; } /* Function */
+code span.im { color: #ff5500; } /* Import */
+code span.in { color: #b08000; } /* Information */
+code span.kw { color: #1f1c1b; font-weight: bold; } /* Keyword */
+code span.op { color: #1f1c1b; } /* Operator */
+code span.ot { color: #006e28; } /* Other */
+code span.pp { color: #006e28; } /* Preprocessor */
+code span.re { color: #0057ae; background-color: #e0e9f8; } /* RegionMarker */
+code span.sc { color: #3daee9; } /* SpecialChar */
+code span.ss { color: #ff5500; } /* SpecialString */
+code span.st { color: #bf0303; } /* String */
+code span.va { color: #0057ae; } /* Variable */
+code span.vs { color: #bf0303; } /* VerbatimString */
+code span.wa { color: #bf0303; } /* Warning */
+
+</style>
+<script>
+// apply pandoc div.sourceCode style to pre.sourceCode instead
+(function() {
+  var sheets = document.styleSheets;
+  for (var i = 0; i < sheets.length; i++) {
+    if (sheets[i].ownerNode.dataset["origin"] !== "pandoc") continue;
+    try { var rules = sheets[i].cssRules; } catch (e) { continue; }
+    var j = 0;
+    while (j < rules.length) {
+      var rule = rules[j];
+      // check if there is a div.sourceCode rule
+      if (rule.type !== rule.STYLE_RULE || rule.selectorText !== "div.sourceCode") {
+        j++;
+        continue;
+      }
+      var style = rule.style.cssText;
+      // check if color or background-color is set
+      if (rule.style.color === '' && rule.style.backgroundColor === '') {
+        j++;
+        continue;
+      }
+      // replace div.sourceCode by a pre.sourceCode rule
+      sheets[i].deleteRule(j);
+      sheets[i].insertRule('pre.sourceCode{' + style + '}', j);
+    }
+  }
+})();
 </script>
-
-
 
 
 
@@ -221,6 +315,69 @@ $(document).ready(function () {
 
 
 
+<style type="text/css">
+
+#TOC {
+  margin: 25px 0px 20px 0px;
+}
+@media (max-width: 768px) {
+#TOC {
+  position: relative;
+  width: 100%;
+}
+}
+
+@media print {
+.toc-content {
+  /* see https://github.com/w3c/csswg-drafts/issues/4434 */
+  float: right;
+}
+}
+
+.toc-content {
+  padding-left: 30px;
+  padding-right: 40px;
+}
+
+div.main-container {
+  max-width: 1200px;
+}
+
+div.tocify {
+  width: 20%;
+  max-width: 260px;
+  max-height: 85%;
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  div.tocify {
+    width: 25%;
+  }
+}
+
+@media (max-width: 767px) {
+  div.tocify {
+    width: 100%;
+    max-width: none;
+  }
+}
+
+.tocify ul, .tocify li {
+  line-height: 20px;
+}
+
+.tocify-subheader .tocify-item {
+  font-size: 0.90em;
+}
+
+.tocify .list-group-item {
+  border-radius: 0px;
+}
+
+
+</style>
+
+
 
 </head>
 
@@ -230,9 +387,19 @@ $(document).ready(function () {
 <div class="container-fluid main-container">
 
 
+<!-- setup 3col/9col grid for toc_float and main content  -->
+<div class="row">
+<div class="col-xs-12 col-sm-4 col-md-3">
+<div id="TOC" class="tocify">
+</div>
+</div>
+
+<div class="toc-content col-xs-12 col-sm-8 col-md-9">
 
 
-<div class="navbar navbar-inverse  navbar-fixed-top" role="navigation">
+
+
+<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
   <div class="container">
     <div class="navbar-header">
       <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-bs-toggle="collapse" data-target="#navbar" data-bs-target="#navbar">
@@ -240,36 +407,48 @@ $(document).ready(function () {
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="index.html">My Website</a>
+      <a class="navbar-brand" href="index.html">Extatística experimental</a>
     </div>
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
         <li>
-  <a href="index.html">Home</a>
+  <a href="index.html">Sobre</a>
 </li>
 <li>
-  <a href="about.html">About</a>
+  <a href="about.html">Estatística geral</a>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    Capítulos
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="dic.html">Delineamento inteiramente casualizado</a>
+    </li>
+    <li>
+      <a href="dbc.html">Delineamento blocos casualizados</a>
+    </li>
+    <li>
+      <a href="dql.html">Delineamento quadrado latino</a>
+    </li>
+    <li>
+      <a href="comparacao.html">Comparação de médias</a>
+    </li>
+    <li>
+      <a href="regressaopoli.html">Regressão polinomial</a>
+    </li>
+    <li>
+      <a href="fatorial.html">Esquema fatorial</a>
+    </li>
+    <li>
+      <a href="parcelas.html">Parcelas subdivididas</a>
+    </li>
+  </ul>
 </li>
 <li>
-  <a href="dic.html">Delineamento inteiramente casualizado</a>
-</li>
-<li>
-  <a href="dbc.html">Delineamento blocos casualizados</a>
-</li>
-<li>
-  <a href="dql.html">Delineamento quadrado latino</a>
-</li>
-<li>
-  <a href="comparacao.html">Comparação de médias</a>
-</li>
-<li>
-  <a href="regressaopoli.html">Regressão polinomial</a>
-</li>
-<li>
-  <a href="fatorial.html">Esquema fatorial</a>
-</li>
-<li>
-  <a href="parcelas.html">Parcelas subdivididas</a>
+  <a href="https://renataas.shinyapps.io/teste2/">Atividades</a>
 </li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
@@ -288,10 +467,78 @@ $(document).ready(function () {
 </div>
 
 
-<div id="delineamento-inteiramente-casualizado" class="section level1">
-<h1>Delineamento inteiramente casualizado</h1>
 <div id="fundamentos" class="section level2">
 <h2>Fundamentos</h2>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">par</span>(<span class="at">mfrow =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">3</span>), <span class="at">mar =</span> <span class="fu">c</span>(<span class="dv">2</span>, <span class="dv">0</span>, <span class="dv">2</span>, <span class="dv">0</span>))</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> </span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> x <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="sc">-</span><span class="fl">3.5</span>, <span class="fl">3.5</span>, <span class="at">length.out =</span> <span class="dv">500</span>)</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> fx <span class="ot">&lt;-</span> <span class="fu">dnorm</span>(x)</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">plot</span>(fx <span class="sc">~</span> x,</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="sc">+</span>      <span class="at">type =</span> <span class="st">&quot;l&quot;</span>,</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="sc">+</span>      <span class="at">lwd =</span> <span class="fl">1.5</span>,</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="sc">+</span>      <span class="at">xaxt =</span> <span class="st">&quot;n&quot;</span>,</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="sc">+</span>      <span class="at">yaxt =</span> <span class="st">&quot;n&quot;</span>,</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="sc">+</span>      <span class="at">bty =</span> <span class="st">&quot;n&quot;</span>,</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="sc">+</span>      <span class="at">main =</span> <span class="st">&quot;Unilateral (à esquerda)&quot;</span>)</span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">axis</span>(<span class="at">side =</span> <span class="dv">1</span>,</span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a><span class="sc">+</span>      <span class="at">at =</span> <span class="fu">c</span>(<span class="sc">-</span><span class="fl">1.5</span>),</span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a><span class="sc">+</span>      <span class="at">labels =</span> <span class="fu">expression</span>(z[tab]))</span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">axis</span>(<span class="at">side =</span> <span class="dv">1</span>,</span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a><span class="sc">+</span>      <span class="at">at =</span> <span class="fu">c</span>(<span class="sc">-</span><span class="fl">3.5</span>, <span class="fl">3.5</span>),</span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a><span class="sc">+</span>      <span class="at">labels =</span> <span class="fu">rep</span>(<span class="st">&quot;&quot;</span>, <span class="dv">2</span>))</span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> ind <span class="ot">&lt;-</span> x <span class="sc">&lt;</span> <span class="sc">-</span><span class="fl">1.5</span></span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">polygon</span>(<span class="at">x =</span> <span class="fu">c</span>(x[ind], <span class="fu">rev</span>(x[ind])),</span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a><span class="sc">+</span>         <span class="at">y =</span> <span class="fu">c</span>(fx[ind], <span class="fu">rep</span>(<span class="dv">0</span>, <span class="fu">sum</span>(ind))),</span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a><span class="sc">+</span>         <span class="at">col =</span> <span class="fu">rgb</span>(.<span class="dv">8</span>, .<span class="dv">8</span>, .<span class="dv">8</span>, <span class="dv">1</span>),</span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a><span class="sc">+</span>         <span class="at">density =</span> <span class="cn">NULL</span>,</span>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a><span class="sc">+</span>         <span class="at">angle =</span> <span class="dv">45</span>)</span>
+<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> </span>
+<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> <span class="fu">plot</span>(fx <span class="sc">~</span> x,</span>
+<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a><span class="sc">+</span>      <span class="at">type =</span> <span class="st">&quot;l&quot;</span>,</span>
+<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a><span class="sc">+</span>      <span class="at">lwd =</span> <span class="fl">1.5</span>,</span>
+<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a><span class="sc">+</span>      <span class="at">xaxt =</span> <span class="st">&quot;n&quot;</span>,</span>
+<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a><span class="sc">+</span>      <span class="at">yaxt =</span> <span class="st">&quot;n&quot;</span>,</span>
+<span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a><span class="sc">+</span>      <span class="at">bty =</span> <span class="st">&quot;n&quot;</span>,</span>
+<span id="cb1-31"><a href="#cb1-31" aria-hidden="true" tabindex="-1"></a><span class="sc">+</span>      <span class="at">main =</span> <span class="st">&quot;Unilateral (à direita)&quot;</span>)</span>
+<span id="cb1-32"><a href="#cb1-32" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">axis</span>(<span class="at">side =</span> <span class="dv">1</span>,</span>
+<span id="cb1-33"><a href="#cb1-33" aria-hidden="true" tabindex="-1"></a><span class="sc">+</span>      <span class="at">at =</span> <span class="fu">c</span>(<span class="fl">1.5</span>),</span>
+<span id="cb1-34"><a href="#cb1-34" aria-hidden="true" tabindex="-1"></a><span class="sc">+</span>      <span class="at">labels =</span> <span class="fu">expression</span>(z[tab]))</span>
+<span id="cb1-35"><a href="#cb1-35" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">axis</span>(<span class="at">side =</span> <span class="dv">1</span>,</span>
+<span id="cb1-36"><a href="#cb1-36" aria-hidden="true" tabindex="-1"></a><span class="sc">+</span>      <span class="at">at =</span> <span class="fu">c</span>(<span class="sc">-</span><span class="fl">3.5</span>, <span class="fl">3.5</span>),</span>
+<span id="cb1-37"><a href="#cb1-37" aria-hidden="true" tabindex="-1"></a><span class="sc">+</span>      <span class="at">labels =</span> <span class="fu">rep</span>(<span class="st">&quot;&quot;</span>, <span class="dv">2</span>))</span>
+<span id="cb1-38"><a href="#cb1-38" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> ind <span class="ot">&lt;-</span> x <span class="sc">&gt;</span> <span class="fl">1.5</span></span>
+<span id="cb1-39"><a href="#cb1-39" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">polygon</span>(<span class="at">x =</span> <span class="fu">c</span>(x[ind], <span class="fu">rev</span>(x[ind])),</span>
+<span id="cb1-40"><a href="#cb1-40" aria-hidden="true" tabindex="-1"></a><span class="sc">+</span>         <span class="at">y =</span> <span class="fu">c</span>(fx[ind], <span class="fu">rep</span>(<span class="dv">0</span>, <span class="fu">sum</span>(ind))),</span>
+<span id="cb1-41"><a href="#cb1-41" aria-hidden="true" tabindex="-1"></a><span class="sc">+</span>         <span class="at">col =</span> <span class="fu">rgb</span>(.<span class="dv">8</span>, .<span class="dv">8</span>, .<span class="dv">8</span>, <span class="dv">1</span>),</span>
+<span id="cb1-42"><a href="#cb1-42" aria-hidden="true" tabindex="-1"></a><span class="sc">+</span>         <span class="at">density =</span> <span class="cn">NULL</span>,</span>
+<span id="cb1-43"><a href="#cb1-43" aria-hidden="true" tabindex="-1"></a><span class="sc">+</span>         <span class="at">angle =</span> <span class="dv">45</span>)</span>
+<span id="cb1-44"><a href="#cb1-44" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> </span>
+<span id="cb1-45"><a href="#cb1-45" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> <span class="fu">plot</span>(fx <span class="sc">~</span> x,</span>
+<span id="cb1-46"><a href="#cb1-46" aria-hidden="true" tabindex="-1"></a><span class="sc">+</span>      <span class="at">type =</span> <span class="st">&quot;l&quot;</span>,</span>
+<span id="cb1-47"><a href="#cb1-47" aria-hidden="true" tabindex="-1"></a><span class="sc">+</span>      <span class="at">lwd =</span> <span class="fl">1.5</span>,</span>
+<span id="cb1-48"><a href="#cb1-48" aria-hidden="true" tabindex="-1"></a><span class="sc">+</span>      <span class="at">xaxt =</span> <span class="st">&quot;n&quot;</span>,</span>
+<span id="cb1-49"><a href="#cb1-49" aria-hidden="true" tabindex="-1"></a><span class="sc">+</span>      <span class="at">yaxt =</span> <span class="st">&quot;n&quot;</span>,</span>
+<span id="cb1-50"><a href="#cb1-50" aria-hidden="true" tabindex="-1"></a><span class="sc">+</span>      <span class="at">bty =</span> <span class="st">&quot;n&quot;</span>,</span>
+<span id="cb1-51"><a href="#cb1-51" aria-hidden="true" tabindex="-1"></a><span class="sc">+</span>      <span class="at">main =</span> <span class="st">&quot;Bilateral&quot;</span>)</span>
+<span id="cb1-52"><a href="#cb1-52" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">axis</span>(<span class="at">side =</span> <span class="dv">1</span>,</span>
+<span id="cb1-53"><a href="#cb1-53" aria-hidden="true" tabindex="-1"></a><span class="sc">+</span>      <span class="at">at =</span> <span class="fu">c</span>(<span class="sc">-</span><span class="fl">1.5</span>, <span class="fl">1.5</span>),</span>
+<span id="cb1-54"><a href="#cb1-54" aria-hidden="true" tabindex="-1"></a><span class="sc">+</span>      <span class="at">labels =</span> <span class="fu">expression</span>(<span class="sc">-</span>z[tab], z[tab]))</span>
+<span id="cb1-55"><a href="#cb1-55" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">axis</span>(<span class="at">side =</span> <span class="dv">1</span>,</span>
+<span id="cb1-56"><a href="#cb1-56" aria-hidden="true" tabindex="-1"></a><span class="sc">+</span>      <span class="at">at =</span> <span class="fu">c</span>(<span class="sc">-</span><span class="fl">3.5</span>, <span class="fl">3.5</span>),</span>
+<span id="cb1-57"><a href="#cb1-57" aria-hidden="true" tabindex="-1"></a><span class="sc">+</span>      <span class="at">labels =</span> <span class="fu">rep</span>(<span class="st">&quot;&quot;</span>, <span class="dv">2</span>))</span>
+<span id="cb1-58"><a href="#cb1-58" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> ind <span class="ot">&lt;-</span> x <span class="sc">&gt;</span> <span class="fl">1.5</span></span>
+<span id="cb1-59"><a href="#cb1-59" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">polygon</span>(<span class="at">x =</span> <span class="fu">c</span>(x[ind], <span class="fu">rev</span>(x[ind])),</span>
+<span id="cb1-60"><a href="#cb1-60" aria-hidden="true" tabindex="-1"></a><span class="sc">+</span>         <span class="at">y =</span> <span class="fu">c</span>(fx[ind], <span class="fu">rep</span>(<span class="dv">0</span>, <span class="fu">sum</span>(ind))),</span>
+<span id="cb1-61"><a href="#cb1-61" aria-hidden="true" tabindex="-1"></a><span class="sc">+</span>         <span class="at">col =</span> <span class="fu">rgb</span>(.<span class="dv">8</span>, .<span class="dv">8</span>, .<span class="dv">8</span>, <span class="dv">1</span>),</span>
+<span id="cb1-62"><a href="#cb1-62" aria-hidden="true" tabindex="-1"></a><span class="sc">+</span>         <span class="at">density =</span> <span class="cn">NULL</span>,</span>
+<span id="cb1-63"><a href="#cb1-63" aria-hidden="true" tabindex="-1"></a><span class="sc">+</span>         <span class="at">angle =</span> <span class="dv">45</span>)</span>
+<span id="cb1-64"><a href="#cb1-64" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> ind <span class="ot">&lt;-</span> x <span class="sc">&lt;</span> <span class="sc">-</span><span class="fl">1.5</span></span>
+<span id="cb1-65"><a href="#cb1-65" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">polygon</span>(<span class="at">x =</span> <span class="fu">c</span>(x[ind], <span class="fu">rev</span>(x[ind])),</span>
+<span id="cb1-66"><a href="#cb1-66" aria-hidden="true" tabindex="-1"></a><span class="sc">+</span>         <span class="at">y =</span> <span class="fu">c</span>(fx[ind], <span class="fu">rep</span>(<span class="dv">0</span>, <span class="fu">sum</span>(ind))),</span>
+<span id="cb1-67"><a href="#cb1-67" aria-hidden="true" tabindex="-1"></a><span class="sc">+</span>         <span class="at">col =</span> <span class="fu">rgb</span>(.<span class="dv">8</span>, .<span class="dv">8</span>, .<span class="dv">8</span>, <span class="dv">1</span>),</span>
+<span id="cb1-68"><a href="#cb1-68" aria-hidden="true" tabindex="-1"></a><span class="sc">+</span>         <span class="at">density =</span> <span class="cn">NULL</span>,</span>
+<span id="cb1-69"><a href="#cb1-69" aria-hidden="true" tabindex="-1"></a><span class="sc">+</span>         <span class="at">angle =</span> <span class="dv">45</span>)</span></code></pre></div>
+<p><img src="dic_files/figure-html/unnamed-chunk-3-1.png" width="672" /></p>
 <p>O delineamento inteiramente casualizado (DIC) é o mais simples dos
 delineamentos, pois considera apenas dois dos princípios básicos da
 experimentação: a repetição e a casualização. Neste, os tratamentos são
@@ -478,10 +725,10 @@ experimental, tal que <span class="math inline">\(e_{ij}
 <p><span class="math inline">\(H_1 = H_a\)</span> : <span
 class="math inline">\(\tau_{i} \neq 0\)</span> para algum <span
 class="math inline">\(i\)</span>.</p>
-<p>Havendo uma reparametrização do modelo apresentado na @ref(eq:teste),
-tal que <span class="math inline">\(\mu + \tau_i = \alpha_i\)</span> em
-que <span class="math inline">\(\alpha_i\)</span> é a média do iésimo
-tratamento, é:{#eq3}</p>
+<p>Havendo uma reparametrização do modelo apresentado na
+@href(eq:teste), tal que <span class="math inline">\(\mu + \tau_i =
+\alpha_i\)</span> em que <span class="math inline">\(\alpha_i\)</span> é
+a média do iésimo tratamento, é:{#eq3}</p>
 <p><span class="math display">\[y_{ij} = \alpha_i +
 e_{ij}  \text(3)\]</span></p>
 <p>As hipóteses de interesse passam a ser:</p>
@@ -838,18 +1085,18 @@ class="math display">\[= 275,75 - 163,75 = 112,00\]</span></p>
 </tbody>
 </table>
 <p>F tabelado:</p>
-<pre class="r"><code>&gt; # Defina o nível de significância desejado (por exemplo, 0.05 para um nível de 5%)
-&gt; nivel_de_significancia &lt;- 0.05
-&gt; 
-&gt; # Defina os graus de liberdade do numerador (df1) e do denominador (df2)
-&gt; df1 &lt;- 3  # Graus de liberdade do numerador
-&gt; df2 &lt;- 16 # Graus de liberdade do denominador
-&gt; 
-&gt; # Encontre o valor crítico da distribuição F para o nível de significância especificado
-&gt; valor_critico &lt;- qf(1 - nivel_de_significancia, df1, df2)
-&gt; 
-&gt; # Imprima o valor crítico
-&gt; cat(&quot;Valor crítico da distribuição F:&quot;, valor_critico, &quot;\n&quot;)</code></pre>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="co"># Defina o nível de significância desejado (por exemplo, 0.05 para um nível de 5%)</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> nivel_de_significancia <span class="ot">&lt;-</span> <span class="fl">0.05</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> </span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> <span class="co"># Defina os graus de liberdade do numerador (df1) e do denominador (df2)</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> df1 <span class="ot">&lt;-</span> <span class="dv">3</span>  <span class="co"># Graus de liberdade do numerador</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> df2 <span class="ot">&lt;-</span> <span class="dv">16</span> <span class="co"># Graus de liberdade do denominador</span></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> </span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> <span class="co"># Encontre o valor crítico da distribuição F para o nível de significância especificado</span></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> valor_critico <span class="ot">&lt;-</span> <span class="fu">qf</span>(<span class="dv">1</span> <span class="sc">-</span> nivel_de_significancia, df1, df2)</span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> </span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> <span class="co"># Imprima o valor crítico</span></span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> <span class="fu">cat</span>(<span class="st">&quot;Valor crítico da distribuição F:&quot;</span>, valor_critico, <span class="st">&quot;</span><span class="sc">\n</span><span class="st">&quot;</span>)</span></code></pre></div>
 <pre><code>Valor crítico da distribuição F: 3,238872 </code></pre>
 <p>Como <span class="math inline">\(\text{F} = 7. 80 &gt; 3. 24 =
 \text{FTab}\)</span> (<span class="math inline">\(\alpha = 0. 05, 3,
@@ -861,23 +1108,23 @@ Desse modo, não podemos afirmar que todas as médias são iguais.</p>
 <h2>Aplicação no R studio</h2>
 <div id="planejamento-e-croqui" class="section level3">
 <h3>Planejamento e Croqui</h3>
-<pre class="r"><code>&gt; #&#39; # Planejamento de um experimento
-&gt; set.seed(1234)
-&gt; sample(rep(c(&quot;A&quot;, &quot;B&quot;, &quot;C&quot;, &quot;D&quot;), 5))</code></pre>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="co">#&#39; # Planejamento de um experimento</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> <span class="fu">set.seed</span>(<span class="dv">1234</span>)</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">sample</span>(<span class="fu">rep</span>(<span class="fu">c</span>(<span class="st">&quot;A&quot;</span>, <span class="st">&quot;B&quot;</span>, <span class="st">&quot;C&quot;</span>, <span class="st">&quot;D&quot;</span>), <span class="dv">5</span>))</span></code></pre></div>
 <pre><code> [1] &quot;D&quot; &quot;C&quot; &quot;C&quot; &quot;C&quot; &quot;D&quot; &quot;D&quot; &quot;D&quot; &quot;D&quot; &quot;A&quot; &quot;C&quot; &quot;C&quot; &quot;B&quot; &quot;A&quot; &quot;B&quot; &quot;B&quot; &quot;B&quot; &quot;B&quot; &quot;A&quot; &quot;A&quot;
 [20] &quot;A&quot;</code></pre>
-<pre class="r"><code>&gt; #&#39; ## Usando a biblioteca agricolae
-&gt; 
-&gt; # Instalando
-&gt; # install.packages(&quot;agricolae&quot;, 
-&gt; #                  dependencies = TRUE)
-&gt; # Habilitando as funções
-&gt; library(agricolae)
-&gt; trt = LETTERS[1:4]
-&gt; delineamento &lt;- design.crd(trt,
-+                            r = 5,
-+                            serie = 0)
-&gt; delineamento</code></pre>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="co">#&#39; ## Usando a biblioteca agricolae</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> </span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> <span class="co"># Instalando</span></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> <span class="co"># install.packages(&quot;agricolae&quot;, </span></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> <span class="co">#                  dependencies = TRUE)</span></span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> <span class="co"># Habilitando as funções</span></span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> <span class="fu">library</span>(agricolae)</span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> trt <span class="ot">=</span> LETTERS[<span class="dv">1</span><span class="sc">:</span><span class="dv">4</span>]</span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> delineamento <span class="ot">&lt;-</span> <span class="fu">design.crd</span>(trt,</span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a><span class="sc">+</span>                            <span class="at">r =</span> <span class="dv">5</span>,</span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a><span class="sc">+</span>                            <span class="at">serie =</span> <span class="dv">0</span>)</span>
+<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> delineamento</span></code></pre></div>
 <pre><code>$parameters
 $parameters$design
 [1] &quot;crd&quot;
@@ -923,33 +1170,49 @@ $book
 18    18 5   C
 19    19 5   B
 20    20 5   D</code></pre>
-<pre class="r"><code>&gt; # Graficamente
-&gt; 
-&gt; # install.packages(&quot;agricolaeplotr&quot;, 
-&gt; #                  dependencies = TRUE)
-&gt; library(agricolaeplotr)
-&gt; plot_design_crd(delineamento,
-+                 ncols = 4,
-+                 nrows = 5)</code></pre>
-<p><img src="dic_files/figure-html/unnamed-chunk-4-1.png" width="672" /></p>
-<pre class="r"><code>&gt; # Para montar um croqui precisamos de um gride, definido por linhas e colunas
-&gt; delineamento$book$Linha &lt;- rep(1:5, each = 4)
-&gt; delineamento$book$Coluna &lt;- rep(1:4, times = 5)
-&gt; 
-&gt; delineamento$book</code></pre>
-<div data-pagedtable="false">
-<script data-pagedtable-source type="application/json">
-{"columns":[{"label":[""],"name":["_rn_"],"type":[""],"align":["left"]},{"label":["plots"],"name":[1],"type":["dbl"],"align":["right"]},{"label":["r"],"name":[2],"type":["int"],"align":["right"]},{"label":["trt"],"name":[3],"type":["chr"],"align":["left"]},{"label":["Linha"],"name":[4],"type":["int"],"align":["right"]},{"label":["Coluna"],"name":[5],"type":["int"],"align":["right"]}],"data":[{"1":"1","2":"1","3":"D","4":"1","5":"1","_rn_":"1"},{"1":"2","2":"1","3":"A","4":"1","5":"2","_rn_":"2"},{"1":"3","2":"2","3":"D","4":"1","5":"3","_rn_":"3"},{"1":"4","2":"1","3":"C","4":"1","5":"4","_rn_":"4"},{"1":"5","2":"2","3":"A","4":"2","5":"1","_rn_":"5"},{"1":"6","2":"3","3":"A","4":"2","5":"2","_rn_":"6"},{"1":"7","2":"2","3":"C","4":"2","5":"3","_rn_":"7"},{"1":"8","2":"3","3":"C","4":"2","5":"4","_rn_":"8"},{"1":"9","2":"1","3":"B","4":"3","5":"1","_rn_":"9"},{"1":"10","2":"4","3":"A","4":"3","5":"2","_rn_":"10"},{"1":"11","2":"3","3":"D","4":"3","5":"3","_rn_":"11"},{"1":"12","2":"5","3":"A","4":"3","5":"4","_rn_":"12"},{"1":"13","2":"4","3":"C","4":"4","5":"1","_rn_":"13"},{"1":"14","2":"2","3":"B","4":"4","5":"2","_rn_":"14"},{"1":"15","2":"4","3":"D","4":"4","5":"3","_rn_":"15"},{"1":"16","2":"3","3":"B","4":"4","5":"4","_rn_":"16"},{"1":"17","2":"4","3":"B","4":"5","5":"1","_rn_":"17"},{"1":"18","2":"5","3":"C","4":"5","5":"2","_rn_":"18"},{"1":"19","2":"5","3":"B","4":"5","5":"3","_rn_":"19"},{"1":"20","2":"5","3":"D","4":"5","5":"4","_rn_":"20"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
-  </script>
-</div>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="co"># Graficamente</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> </span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> <span class="co"># install.packages(&quot;agricolaeplotr&quot;, </span></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> <span class="co">#                  dependencies = TRUE)</span></span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> <span class="fu">library</span>(agricolaeplotr)</span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">plot_design_crd</span>(delineamento,</span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a><span class="sc">+</span>                 <span class="at">ncols =</span> <span class="dv">4</span>,</span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a><span class="sc">+</span>                 <span class="at">nrows =</span> <span class="dv">5</span>)</span></code></pre></div>
+<p><img src="dic_files/figure-html/unnamed-chunk-5-1.png" width="672" /></p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="co"># Para montar um croqui precisamos de um gride, definido por linhas e colunas</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> delineamento<span class="sc">$</span>book<span class="sc">$</span>Linha <span class="ot">&lt;-</span> <span class="fu">rep</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>, <span class="at">each =</span> <span class="dv">4</span>)</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> delineamento<span class="sc">$</span>book<span class="sc">$</span>Coluna <span class="ot">&lt;-</span> <span class="fu">rep</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">4</span>, <span class="at">times =</span> <span class="dv">5</span>)</span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> </span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> delineamento<span class="sc">$</span>book</span></code></pre></div>
+<pre><code>   plots r trt Linha Coluna
+1      1 1   D     1      1
+2      2 1   A     1      2
+3      3 2   D     1      3
+4      4 1   C     1      4
+5      5 2   A     2      1
+6      6 3   A     2      2
+7      7 2   C     2      3
+8      8 3   C     2      4
+9      9 1   B     3      1
+10    10 4   A     3      2
+11    11 3   D     3      3
+12    12 5   A     3      4
+13    13 4   C     4      1
+14    14 2   B     4      2
+15    15 4   D     4      3
+16    16 3   B     4      4
+17    17 4   B     5      1
+18    18 5   C     5      2
+19    19 5   B     5      3
+20    20 5   D     5      4</code></pre>
 </div>
 <div id="importando-dados-de-excel-.xlsx" class="section level3">
 <h3>Importando dados de excel .xlsx</h3>
-<pre class="r"><code>&gt; #Deve-se importar os arquivos .xlsx para o Rstudio
-&gt; library(readxl)
-&gt; dados1 &lt;- read_xlsx(&quot;dados/aula2.2.xlsx&quot;)
-&gt; 
-&gt; knitr::kable(dados1)</code></pre>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="co">#Deve-se importar os arquivos .xlsx para o Rstudio</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> <span class="fu">library</span>(readxl)</span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> dados1 <span class="ot">&lt;-</span> <span class="fu">read_xlsx</span>(<span class="st">&quot;dados/aula2.2.xlsx&quot;</span>)</span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> </span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> knitr<span class="sc">::</span><span class="fu">kable</span>(dados1)</span></code></pre></div>
 <table>
 <thead>
 <tr class="header">
@@ -1043,43 +1306,43 @@ $book
 </div>
 <div id="análise-descritiva-dos-dados" class="section level3">
 <h3>Análise descritiva dos dados</h3>
-<pre class="r"><code>&gt; library(ggplot2)
-&gt; ggplot(dados1, 
-+        aes(x = trat, 
-+            y = y)) +
-+   geom_point() +
-+   geom_point(stat = &quot;summary&quot;,
-+              fun = mean,
-+              col = &quot;red&quot;) +
-+   annotate(&quot;point&quot;, 
-+            x = dados1$trat, 
-+            y = 26.75, 
-+            colour = &quot;blue&quot;) +
-+   xlab(&quot;tratamentos&quot;) +
-+   ylab(&quot;produtividade&quot;)</code></pre>
-<p><img src="dic_files/figure-html/unnamed-chunk-6-1.png" width="672" /></p>
-<pre class="r"><code>&gt; ggplot(dados1,
-+        aes(x = trat,
-+            y = y)) +
-+   geom_boxplot()</code></pre>
-<p><img src="dic_files/figure-html/unnamed-chunk-6-2.png" width="672" /></p>
-<pre class="r"><code>&gt; #&#39; ## Estatísticas descritivas
-&gt; n &lt;- with(dados1, tapply(y,trat, length))
-&gt; soma &lt;- with(dados1, tapply(y,trat,sum))
-&gt; media &lt;- with(dados1, tapply(y,trat,mean))
-&gt; variancia &lt;- with(dados1, tapply(y,trat,var))
-&gt; desv.padr &lt;- with(dados1, tapply(y,trat,sd))
-&gt; dist.int &lt;- with(dados1, tapply(y,trat,IQR))</code></pre>
-<pre class="r"><code>&gt; #&#39; Criando uma função que calcula a amplitude
-&gt; f1 &lt;- function(x) max(x)-min(x)
-&gt; amplitude &lt;- with(dados1, tapply(y,trat,f1))
-&gt; 
-&gt; resumo &lt;- rbind(n, soma, media, variancia,
-+                 desv.padr, amplitude,dist.int)
-&gt; rownames(resumo) &lt;- c(&quot;n&quot;, &quot;Soma&quot;, &quot;Média&quot;, 
-+                       &quot;Variância&quot;, &quot;Desvio-padrão&quot;, 
-+                       &quot;Amplitude&quot;, &quot;Amplitude Interquartílica&quot;)
-&gt; round(resumo,3)</code></pre>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">library</span>(ggplot2)</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">ggplot</span>(dados1, </span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a><span class="sc">+</span>        <span class="fu">aes</span>(<span class="at">x =</span> trat, </span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a><span class="sc">+</span>            <span class="at">y =</span> y)) <span class="sc">+</span></span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a><span class="sc">+</span>   <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a><span class="sc">+</span>   <span class="fu">geom_point</span>(<span class="at">stat =</span> <span class="st">&quot;summary&quot;</span>,</span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a><span class="sc">+</span>              <span class="at">fun =</span> mean,</span>
+<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a><span class="sc">+</span>              <span class="at">col =</span> <span class="st">&quot;red&quot;</span>) <span class="sc">+</span></span>
+<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a><span class="sc">+</span>   <span class="fu">annotate</span>(<span class="st">&quot;point&quot;</span>, </span>
+<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a><span class="sc">+</span>            <span class="at">x =</span> dados1<span class="sc">$</span>trat, </span>
+<span id="cb12-11"><a href="#cb12-11" aria-hidden="true" tabindex="-1"></a><span class="sc">+</span>            <span class="at">y =</span> <span class="fl">26.75</span>, </span>
+<span id="cb12-12"><a href="#cb12-12" aria-hidden="true" tabindex="-1"></a><span class="sc">+</span>            <span class="at">colour =</span> <span class="st">&quot;blue&quot;</span>) <span class="sc">+</span></span>
+<span id="cb12-13"><a href="#cb12-13" aria-hidden="true" tabindex="-1"></a><span class="sc">+</span>   <span class="fu">xlab</span>(<span class="st">&quot;tratamentos&quot;</span>) <span class="sc">+</span></span>
+<span id="cb12-14"><a href="#cb12-14" aria-hidden="true" tabindex="-1"></a><span class="sc">+</span>   <span class="fu">ylab</span>(<span class="st">&quot;produtividade&quot;</span>)</span></code></pre></div>
+<p><img src="dic_files/figure-html/unnamed-chunk-7-1.png" width="672" /></p>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">ggplot</span>(dados1,</span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="sc">+</span>        <span class="fu">aes</span>(<span class="at">x =</span> trat,</span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a><span class="sc">+</span>            <span class="at">y =</span> y)) <span class="sc">+</span></span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a><span class="sc">+</span>   <span class="fu">geom_boxplot</span>()</span></code></pre></div>
+<p><img src="dic_files/figure-html/unnamed-chunk-7-2.png" width="672" /></p>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="co">#&#39; ## Estatísticas descritivas</span></span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> n <span class="ot">&lt;-</span> <span class="fu">with</span>(dados1, <span class="fu">tapply</span>(y,trat, length))</span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> soma <span class="ot">&lt;-</span> <span class="fu">with</span>(dados1, <span class="fu">tapply</span>(y,trat,sum))</span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> media <span class="ot">&lt;-</span> <span class="fu">with</span>(dados1, <span class="fu">tapply</span>(y,trat,mean))</span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> variancia <span class="ot">&lt;-</span> <span class="fu">with</span>(dados1, <span class="fu">tapply</span>(y,trat,var))</span>
+<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> desv.padr <span class="ot">&lt;-</span> <span class="fu">with</span>(dados1, <span class="fu">tapply</span>(y,trat,sd))</span>
+<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> dist.int <span class="ot">&lt;-</span> <span class="fu">with</span>(dados1, <span class="fu">tapply</span>(y,trat,IQR))</span></code></pre></div>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="co">#&#39; Criando uma função que calcula a amplitude</span></span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> f1 <span class="ot">&lt;-</span> <span class="cf">function</span>(x) <span class="fu">max</span>(x)<span class="sc">-</span><span class="fu">min</span>(x)</span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> amplitude <span class="ot">&lt;-</span> <span class="fu">with</span>(dados1, <span class="fu">tapply</span>(y,trat,f1))</span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> </span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> resumo <span class="ot">&lt;-</span> <span class="fu">rbind</span>(n, soma, media, variancia,</span>
+<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a><span class="sc">+</span>                 desv.padr, amplitude,dist.int)</span>
+<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">rownames</span>(resumo) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;n&quot;</span>, <span class="st">&quot;Soma&quot;</span>, <span class="st">&quot;Média&quot;</span>, </span>
+<span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a><span class="sc">+</span>                       <span class="st">&quot;Variância&quot;</span>, <span class="st">&quot;Desvio-padrão&quot;</span>, </span>
+<span id="cb15-9"><a href="#cb15-9" aria-hidden="true" tabindex="-1"></a><span class="sc">+</span>                       <span class="st">&quot;Amplitude&quot;</span>, <span class="st">&quot;Amplitude Interquartílica&quot;</span>)</span>
+<span id="cb15-10"><a href="#cb15-10" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">round</span>(resumo,<span class="dv">3</span>)</span></code></pre></div>
 <pre><code>                               A       B       C      D
 n                           5,00   5,000   5,000   5,00
 Soma                      115,00 135,000 130,000 155,00
@@ -1091,18 +1354,21 @@ Amplitude Interquartílica   4,00   3,000   3,000   4,00</code></pre>
 </div>
 <div id="análise-da-variância-anova" class="section level3">
 <h3>Análise da variância (ANOVA)</h3>
-<pre class="r"><code>&gt; #&#39; ## Análise de variância  
-&gt; #&#39; 
-&gt; #&#39; $H_0$: $\mu_1 = \mu_2 = \mu_3 = \mu_4$ *versus* 
-&gt; #&#39; $H_1:$ Pelo menos duas médias de tratamentos diferem entre si.
-&gt; #&#39; 
-&gt; modelo &lt;- aov(y ~ trat, dados1)
-&gt; anova(modelo)</code></pre>
-<div data-pagedtable="false">
-<script data-pagedtable-source type="application/json">
-{"columns":[{"label":[""],"name":["_rn_"],"type":[""],"align":["left"]},{"label":["Df"],"name":[1],"type":["int"],"align":["right"]},{"label":["Sum Sq"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["Mean Sq"],"name":[3],"type":["dbl"],"align":["right"]},{"label":["F value"],"name":[4],"type":["dbl"],"align":["right"]},{"label":["Pr(>F)"],"name":[5],"type":["dbl"],"align":["right"]}],"data":[{"1":"3","2":"163,75","3":"54,58333","4":"7,797619","5":"0,001975594","_rn_":"trat"},{"1":"16","2":"112,00","3":"7,00000","4":"NA","5":"NA","_rn_":"Residuals"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
-  </script>
-</div>
+<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="co">#&#39; ## Análise de variância  </span></span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> <span class="co">#&#39; </span></span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> <span class="co">#&#39; $H_0$: $\mu_1 = \mu_2 = \mu_3 = \mu_4$ *versus* </span></span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> <span class="co">#&#39; $H_1:$ Pelo menos duas médias de tratamentos diferem entre si.</span></span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> <span class="co">#&#39; </span></span>
+<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> modelo <span class="ot">&lt;-</span> <span class="fu">aov</span>(y <span class="sc">~</span> trat, dados1)</span>
+<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">anova</span>(modelo)</span></code></pre></div>
+<pre><code>Analysis of Variance Table
+
+Response: y
+          Df Sum Sq Mean Sq F value   Pr(&gt;F)   
+trat       3 163,75  54,583  7,7976 0,001976 **
+Residuals 16 112,00   7,000                    
+---
+Signif. codes:  0 &#39;***&#39; 0,001 &#39;**&#39; 0,01 &#39;*&#39; 0,05 &#39;.&#39; 0,1 &#39; &#39; 1</code></pre>
 </div>
 </div>
 <div id="exercicíos" class="section level2">
@@ -1310,12 +1576,12 @@ experimento?</p></li>
 <li></li>
 </ol></li>
 </ol>
-<pre class="r"><code>&gt; library(agricolae)
-&gt; trt = LETTERS[1:5]
-&gt; delineamento1 &lt;- design.crd(trt,
-+                             r = 4,
-+                             serie = 0)
-&gt; delineamento1</code></pre>
+<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">library</span>(agricolae)</span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> trt <span class="ot">=</span> LETTERS[<span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>]</span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> delineamento1 <span class="ot">&lt;-</span> <span class="fu">design.crd</span>(trt,</span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a><span class="sc">+</span>                             <span class="at">r =</span> <span class="dv">4</span>,</span>
+<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a><span class="sc">+</span>                             <span class="at">serie =</span> <span class="dv">0</span>)</span>
+<span id="cb19-6"><a href="#cb19-6" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> delineamento1</span></code></pre></div>
 <pre><code>$parameters
 $parameters$design
 [1] &quot;crd&quot;
@@ -1361,49 +1627,65 @@ $book
 18    18 3   E
 19    19 4   A
 20    20 4   E</code></pre>
-<pre class="r"><code>&gt; library(agricolaeplotr)
-&gt; plot_design_crd(delineamento1,
-+                 ncols = 5,
-+                 nrows = 4)</code></pre>
-<p><img src="dic_files/figure-html/unnamed-chunk-10-1.png" width="672" /></p>
-<pre class="r"><code>&gt; # Para montar um croqui precisamos de um gride, definido por linhas e colunas
-&gt; delineamento1$book$Linha &lt;- rep(1:4, each = 5)
-&gt; delineamento1$book$Coluna &lt;- rep(1:5, times = 4)
-&gt; 
-&gt; delineamento1$book</code></pre>
-<div data-pagedtable="false">
-<script data-pagedtable-source type="application/json">
-{"columns":[{"label":[""],"name":["_rn_"],"type":[""],"align":["left"]},{"label":["plots"],"name":[1],"type":["dbl"],"align":["right"]},{"label":["r"],"name":[2],"type":["int"],"align":["right"]},{"label":["trt"],"name":[3],"type":["chr"],"align":["left"]},{"label":["Linha"],"name":[4],"type":["int"],"align":["right"]},{"label":["Coluna"],"name":[5],"type":["int"],"align":["right"]}],"data":[{"1":"1","2":"1","3":"C","4":"1","5":"1","_rn_":"1"},{"1":"2","2":"1","3":"A","4":"1","5":"2","_rn_":"2"},{"1":"3","2":"2","3":"A","4":"1","5":"3","_rn_":"3"},{"1":"4","2":"1","3":"D","4":"1","5":"4","_rn_":"4"},{"1":"5","2":"1","3":"E","4":"1","5":"5","_rn_":"5"},{"1":"6","2":"2","3":"C","4":"2","5":"1","_rn_":"6"},{"1":"7","2":"3","3":"C","4":"2","5":"2","_rn_":"7"},{"1":"8","2":"2","3":"D","4":"2","5":"3","_rn_":"8"},{"1":"9","2":"3","3":"A","4":"2","5":"4","_rn_":"9"},{"1":"10","2":"1","3":"B","4":"2","5":"5","_rn_":"10"},{"1":"11","2":"2","3":"B","4":"3","5":"1","_rn_":"11"},{"1":"12","2":"3","3":"D","4":"3","5":"2","_rn_":"12"},{"1":"13","2":"3","3":"B","4":"3","5":"3","_rn_":"13"},{"1":"14","2":"4","3":"D","4":"3","5":"4","_rn_":"14"},{"1":"15","2":"2","3":"E","4":"3","5":"5","_rn_":"15"},{"1":"16","2":"4","3":"B","4":"4","5":"1","_rn_":"16"},{"1":"17","2":"4","3":"C","4":"4","5":"2","_rn_":"17"},{"1":"18","2":"3","3":"E","4":"4","5":"3","_rn_":"18"},{"1":"19","2":"4","3":"A","4":"4","5":"4","_rn_":"19"},{"1":"20","2":"4","3":"E","4":"4","5":"5","_rn_":"20"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
-  </script>
-</div>
+<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">library</span>(agricolaeplotr)</span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">plot_design_crd</span>(delineamento1,</span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a><span class="sc">+</span>                 <span class="at">ncols =</span> <span class="dv">5</span>,</span>
+<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a><span class="sc">+</span>                 <span class="at">nrows =</span> <span class="dv">4</span>)</span></code></pre></div>
+<p><img src="dic_files/figure-html/unnamed-chunk-11-1.png" width="672" /></p>
+<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="co"># Para montar um croqui precisamos de um gride, definido por linhas e colunas</span></span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> delineamento1<span class="sc">$</span>book<span class="sc">$</span>Linha <span class="ot">&lt;-</span> <span class="fu">rep</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">4</span>, <span class="at">each =</span> <span class="dv">5</span>)</span>
+<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> delineamento1<span class="sc">$</span>book<span class="sc">$</span>Coluna <span class="ot">&lt;-</span> <span class="fu">rep</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>, <span class="at">times =</span> <span class="dv">4</span>)</span>
+<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> </span>
+<span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> delineamento1<span class="sc">$</span>book</span></code></pre></div>
+<pre><code>   plots r trt Linha Coluna
+1      1 1   C     1      1
+2      2 1   A     1      2
+3      3 2   A     1      3
+4      4 1   D     1      4
+5      5 1   E     1      5
+6      6 2   C     2      1
+7      7 3   C     2      2
+8      8 2   D     2      3
+9      9 3   A     2      4
+10    10 1   B     2      5
+11    11 2   B     3      1
+12    12 3   D     3      2
+13    13 3   B     3      3
+14    14 4   D     3      4
+15    15 2   E     3      5
+16    16 4   B     4      1
+17    17 4   C     4      2
+18    18 3   E     4      3
+19    19 4   A     4      4
+20    20 4   E     4      5</code></pre>
 <ol start="2" style="list-style-type: lower-alpha">
 <li></li>
 </ol>
-<pre class="r"><code>&gt;  dadosmilho &lt;- data.frame(
-+  Genotipo = factor(rep(1:5,
-+  each = 4)),
-+  prodmilho = c(5.95, 6.21, 5.40, 5.18,
-+                5.07, 6.71, 5.46, 4.98,
-+                4.82, 5.11, 4.68, 4.52,
-+                3.87, 4.16, 4.11, 4.84,
-+                5.53, 5.82, 4.29, 4.70))</code></pre>
-<pre class="r"><code>&gt; #&#39; ## Estatísticas descritivas
-&gt; n1 &lt;- with(dadosmilho, tapply(prodmilho, Genotipo, length))
-&gt; soma1 &lt;- with(dadosmilho, tapply(prodmilho, Genotipo, sum))
-&gt; media1 &lt;- with(dadosmilho, tapply(prodmilho, Genotipo, mean))
-&gt; variancia1 &lt;- with(dadosmilho, tapply(prodmilho, Genotipo, var))
-&gt; desv.padr1 &lt;- with(dadosmilho, tapply(prodmilho, Genotipo, sd))
-&gt; dist.int1 &lt;- with(dadosmilho, tapply(prodmilho, Genotipo, IQR))</code></pre>
-<pre class="r"><code>&gt; #&#39; Criando uma função que calcula a amplitude
-&gt; f2 &lt;- function(x) max(x)-min(x)
-&gt; amplitude1 &lt;- with(dadosmilho, tapply(prodmilho,Genotipo, f2))
-&gt; 
-&gt; resumo1 &lt;- rbind(n1, soma1, media1, variancia1,
-+                 desv.padr1, amplitude1,dist.int1)
-&gt; rownames(resumo1) &lt;- c(&quot;n&quot;, &quot;Soma&quot;, &quot;Média&quot;, 
-+                       &quot;Variância&quot;, &quot;Desvio-padrão&quot;, 
-+                       &quot;Amplitude&quot;, &quot;Amplitude Interquartílica&quot;)
-&gt; round(resumo1,3)</code></pre>
+<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span>  dadosmilho <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a><span class="sc">+</span>  <span class="at">Genotipo =</span> <span class="fu">factor</span>(<span class="fu">rep</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>,</span>
+<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a><span class="sc">+</span>  <span class="at">each =</span> <span class="dv">4</span>)),</span>
+<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a><span class="sc">+</span>  <span class="at">prodmilho =</span> <span class="fu">c</span>(<span class="fl">5.95</span>, <span class="fl">6.21</span>, <span class="fl">5.40</span>, <span class="fl">5.18</span>,</span>
+<span id="cb24-5"><a href="#cb24-5" aria-hidden="true" tabindex="-1"></a><span class="sc">+</span>                <span class="fl">5.07</span>, <span class="fl">6.71</span>, <span class="fl">5.46</span>, <span class="fl">4.98</span>,</span>
+<span id="cb24-6"><a href="#cb24-6" aria-hidden="true" tabindex="-1"></a><span class="sc">+</span>                <span class="fl">4.82</span>, <span class="fl">5.11</span>, <span class="fl">4.68</span>, <span class="fl">4.52</span>,</span>
+<span id="cb24-7"><a href="#cb24-7" aria-hidden="true" tabindex="-1"></a><span class="sc">+</span>                <span class="fl">3.87</span>, <span class="fl">4.16</span>, <span class="fl">4.11</span>, <span class="fl">4.84</span>,</span>
+<span id="cb24-8"><a href="#cb24-8" aria-hidden="true" tabindex="-1"></a><span class="sc">+</span>                <span class="fl">5.53</span>, <span class="fl">5.82</span>, <span class="fl">4.29</span>, <span class="fl">4.70</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="co">#&#39; ## Estatísticas descritivas</span></span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> n1 <span class="ot">&lt;-</span> <span class="fu">with</span>(dadosmilho, <span class="fu">tapply</span>(prodmilho, Genotipo, length))</span>
+<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> soma1 <span class="ot">&lt;-</span> <span class="fu">with</span>(dadosmilho, <span class="fu">tapply</span>(prodmilho, Genotipo, sum))</span>
+<span id="cb25-4"><a href="#cb25-4" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> media1 <span class="ot">&lt;-</span> <span class="fu">with</span>(dadosmilho, <span class="fu">tapply</span>(prodmilho, Genotipo, mean))</span>
+<span id="cb25-5"><a href="#cb25-5" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> variancia1 <span class="ot">&lt;-</span> <span class="fu">with</span>(dadosmilho, <span class="fu">tapply</span>(prodmilho, Genotipo, var))</span>
+<span id="cb25-6"><a href="#cb25-6" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> desv.padr1 <span class="ot">&lt;-</span> <span class="fu">with</span>(dadosmilho, <span class="fu">tapply</span>(prodmilho, Genotipo, sd))</span>
+<span id="cb25-7"><a href="#cb25-7" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> dist.int1 <span class="ot">&lt;-</span> <span class="fu">with</span>(dadosmilho, <span class="fu">tapply</span>(prodmilho, Genotipo, IQR))</span></code></pre></div>
+<div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="co">#&#39; Criando uma função que calcula a amplitude</span></span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> f2 <span class="ot">&lt;-</span> <span class="cf">function</span>(x) <span class="fu">max</span>(x)<span class="sc">-</span><span class="fu">min</span>(x)</span>
+<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> amplitude1 <span class="ot">&lt;-</span> <span class="fu">with</span>(dadosmilho, <span class="fu">tapply</span>(prodmilho,Genotipo, f2))</span>
+<span id="cb26-4"><a href="#cb26-4" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> </span>
+<span id="cb26-5"><a href="#cb26-5" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> resumo1 <span class="ot">&lt;-</span> <span class="fu">rbind</span>(n1, soma1, media1, variancia1,</span>
+<span id="cb26-6"><a href="#cb26-6" aria-hidden="true" tabindex="-1"></a><span class="sc">+</span>                 desv.padr1, amplitude1,dist.int1)</span>
+<span id="cb26-7"><a href="#cb26-7" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">rownames</span>(resumo1) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;n&quot;</span>, <span class="st">&quot;Soma&quot;</span>, <span class="st">&quot;Média&quot;</span>, </span>
+<span id="cb26-8"><a href="#cb26-8" aria-hidden="true" tabindex="-1"></a><span class="sc">+</span>                       <span class="st">&quot;Variância&quot;</span>, <span class="st">&quot;Desvio-padrão&quot;</span>, </span>
+<span id="cb26-9"><a href="#cb26-9" aria-hidden="true" tabindex="-1"></a><span class="sc">+</span>                       <span class="st">&quot;Amplitude&quot;</span>, <span class="st">&quot;Amplitude Interquartílica&quot;</span>)</span>
+<span id="cb26-10"><a href="#cb26-10" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">round</span>(resumo1,<span class="dv">3</span>)</span></code></pre></div>
 <pre><code>                               1      2      3      4      5
 n                          4,000  4,000  4,000  4,000  4,000
 Soma                      22,740 22,220 19,130 16,980 20,340
@@ -1415,13 +1697,16 @@ Amplitude Interquartílica  0,670  0,725  0,253  0,280  1,005</code></pre>
 <ol start="3" style="list-style-type: lower-alpha">
 <li></li>
 </ol>
-<pre class="r"><code>&gt; modelo1 &lt;- aov(prodmilho ~ Genotipo, dadosmilho)
-&gt; anova(modelo1)</code></pre>
-<div data-pagedtable="false">
-<script data-pagedtable-source type="application/json">
-{"columns":[{"label":[""],"name":["_rn_"],"type":[""],"align":["left"]},{"label":["Df"],"name":[1],"type":["int"],"align":["right"]},{"label":["Sum Sq"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["Mean Sq"],"name":[3],"type":["dbl"],"align":["right"]},{"label":["F value"],"name":[4],"type":["dbl"],"align":["right"]},{"label":["Pr(>F)"],"name":[5],"type":["dbl"],"align":["right"]}],"data":[{"1":"4","2":"5,507820","3":"1,3769550","4":"4,287198","5":"0,0164428","_rn_":"Genotipo"},{"1":"15","2":"4,817675","3":"0,3211783","4":"NA","5":"NA","_rn_":"Residuals"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
-  </script>
-</div>
+<div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> modelo1 <span class="ot">&lt;-</span> <span class="fu">aov</span>(prodmilho <span class="sc">~</span> Genotipo, dadosmilho)</span>
+<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">anova</span>(modelo1)</span></code></pre></div>
+<pre><code>Analysis of Variance Table
+
+Response: prodmilho
+          Df Sum Sq Mean Sq F value  Pr(&gt;F)  
+Genotipo   4 5,5078 1,37695  4,2872 0,01644 *
+Residuals 15 4,8177 0,32118                  
+---
+Signif. codes:  0 &#39;***&#39; 0,001 &#39;**&#39; 0,01 &#39;*&#39; 0,05 &#39;.&#39; 0,1 &#39; &#39; 1</code></pre>
 <p>Como o P valor= 0,0164 é menor que 0.05, há evidências para
 rejeitarmos <span class="math inline">\(H_0\)</span> ao nível de 5% de
 significância. Desse modo, não podemos afirmar que todas as médias são
@@ -1528,32 +1813,32 @@ Desse modo, não podemos afirmar que todas as médias são iguais.</li>
 <li></li>
 </ol></li>
 </ol>
-<pre class="r"><code>&gt;  dadosbovinos &lt;- data.frame(
-+  racas = factor(rep(1:5, 
-+  each = 8)),
-+  sangue = c(124, 111, 117, 110, 142, 116, 121, 142,
-+             101,  98, 121, 117, 106, 118, 108, 123, 
-+             118, 127, 121, 121, 127, 120, 129, 138, 
-+             125, 129, 148, 119, 139, 110, 122, 141,
-+             101, 103, 112, 107, 119, 106, 122, 118
-+ ))</code></pre>
-<pre class="r"><code>&gt; #&#39; ## Estatísticas descritivas
-&gt; n2 &lt;- with(dadosbovinos, tapply(sangue, racas, length))
-&gt; soma2 &lt;- with(dadosbovinos, tapply(sangue, racas, sum))
-&gt; media2 &lt;- with(dadosbovinos, tapply(sangue, racas, mean))
-&gt; variancia2 &lt;- with(dadosbovinos, tapply(sangue, racas, var))
-&gt; desv.padr2 &lt;- with(dadosbovinos, tapply(sangue, racas, sd))
-&gt; dist.int2 &lt;- with(dadosbovinos, tapply(sangue, racas, IQR))</code></pre>
-<pre class="r"><code>&gt; #&#39; Criando uma função que calcula a amplitude
-&gt; f3 &lt;- function(x) max(x)-min(x)
-&gt; amplitude2 &lt;- with(dadosbovinos, tapply(sangue, racas, f3))
-&gt; 
-&gt; resumo2 &lt;- rbind(n2, soma2, media2, variancia2,
-+                 desv.padr2, amplitude2,dist.int2)
-&gt; rownames(resumo2) &lt;- c(&quot;n&quot;, &quot;Soma&quot;, &quot;Média&quot;, 
-+                       &quot;Variância&quot;, &quot;Desvio-padrão&quot;, 
-+                       &quot;Amplitude&quot;, &quot;Amplitude Interquartílica&quot;)
-&gt; round(resumo2,3)</code></pre>
+<div class="sourceCode" id="cb30"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span>  dadosbovinos <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a><span class="sc">+</span>  <span class="at">racas =</span> <span class="fu">factor</span>(<span class="fu">rep</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>, </span>
+<span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a><span class="sc">+</span>  <span class="at">each =</span> <span class="dv">8</span>)),</span>
+<span id="cb30-4"><a href="#cb30-4" aria-hidden="true" tabindex="-1"></a><span class="sc">+</span>  <span class="at">sangue =</span> <span class="fu">c</span>(<span class="dv">124</span>, <span class="dv">111</span>, <span class="dv">117</span>, <span class="dv">110</span>, <span class="dv">142</span>, <span class="dv">116</span>, <span class="dv">121</span>, <span class="dv">142</span>,</span>
+<span id="cb30-5"><a href="#cb30-5" aria-hidden="true" tabindex="-1"></a><span class="sc">+</span>             <span class="dv">101</span>,  <span class="dv">98</span>, <span class="dv">121</span>, <span class="dv">117</span>, <span class="dv">106</span>, <span class="dv">118</span>, <span class="dv">108</span>, <span class="dv">123</span>, </span>
+<span id="cb30-6"><a href="#cb30-6" aria-hidden="true" tabindex="-1"></a><span class="sc">+</span>             <span class="dv">118</span>, <span class="dv">127</span>, <span class="dv">121</span>, <span class="dv">121</span>, <span class="dv">127</span>, <span class="dv">120</span>, <span class="dv">129</span>, <span class="dv">138</span>, </span>
+<span id="cb30-7"><a href="#cb30-7" aria-hidden="true" tabindex="-1"></a><span class="sc">+</span>             <span class="dv">125</span>, <span class="dv">129</span>, <span class="dv">148</span>, <span class="dv">119</span>, <span class="dv">139</span>, <span class="dv">110</span>, <span class="dv">122</span>, <span class="dv">141</span>,</span>
+<span id="cb30-8"><a href="#cb30-8" aria-hidden="true" tabindex="-1"></a><span class="sc">+</span>             <span class="dv">101</span>, <span class="dv">103</span>, <span class="dv">112</span>, <span class="dv">107</span>, <span class="dv">119</span>, <span class="dv">106</span>, <span class="dv">122</span>, <span class="dv">118</span></span>
+<span id="cb30-9"><a href="#cb30-9" aria-hidden="true" tabindex="-1"></a><span class="sc">+</span> ))</span></code></pre></div>
+<div class="sourceCode" id="cb31"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="co">#&#39; ## Estatísticas descritivas</span></span>
+<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> n2 <span class="ot">&lt;-</span> <span class="fu">with</span>(dadosbovinos, <span class="fu">tapply</span>(sangue, racas, length))</span>
+<span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> soma2 <span class="ot">&lt;-</span> <span class="fu">with</span>(dadosbovinos, <span class="fu">tapply</span>(sangue, racas, sum))</span>
+<span id="cb31-4"><a href="#cb31-4" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> media2 <span class="ot">&lt;-</span> <span class="fu">with</span>(dadosbovinos, <span class="fu">tapply</span>(sangue, racas, mean))</span>
+<span id="cb31-5"><a href="#cb31-5" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> variancia2 <span class="ot">&lt;-</span> <span class="fu">with</span>(dadosbovinos, <span class="fu">tapply</span>(sangue, racas, var))</span>
+<span id="cb31-6"><a href="#cb31-6" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> desv.padr2 <span class="ot">&lt;-</span> <span class="fu">with</span>(dadosbovinos, <span class="fu">tapply</span>(sangue, racas, sd))</span>
+<span id="cb31-7"><a href="#cb31-7" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> dist.int2 <span class="ot">&lt;-</span> <span class="fu">with</span>(dadosbovinos, <span class="fu">tapply</span>(sangue, racas, IQR))</span></code></pre></div>
+<div class="sourceCode" id="cb32"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="co">#&#39; Criando uma função que calcula a amplitude</span></span>
+<span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> f3 <span class="ot">&lt;-</span> <span class="cf">function</span>(x) <span class="fu">max</span>(x)<span class="sc">-</span><span class="fu">min</span>(x)</span>
+<span id="cb32-3"><a href="#cb32-3" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> amplitude2 <span class="ot">&lt;-</span> <span class="fu">with</span>(dadosbovinos, <span class="fu">tapply</span>(sangue, racas, f3))</span>
+<span id="cb32-4"><a href="#cb32-4" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> </span>
+<span id="cb32-5"><a href="#cb32-5" aria-hidden="true" tabindex="-1"></a><span class="er">&gt;</span> resumo2 <span class="ot">&lt;-</span> <span class="fu">rbind</span>(n2, soma2, media2, variancia2,</span>
+<span id="cb32-6"><a href="#cb32-6" aria-hidden="true" tabindex="-1"></a><span class="sc">+</span>                 desv.padr2, amplitude2,dist.int2)</span>
+<span id="cb32-7"><a href="#cb32-7" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">rownames</span>(resumo2) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;n&quot;</span>, <span class="st">&quot;Soma&quot;</span>, <span class="st">&quot;Média&quot;</span>, </span>
+<span id="cb32-8"><a href="#cb32-8" aria-hidden="true" tabindex="-1"></a><span class="sc">+</span>                       <span class="st">&quot;Variância&quot;</span>, <span class="st">&quot;Desvio-padrão&quot;</span>, </span>
+<span id="cb32-9"><a href="#cb32-9" aria-hidden="true" tabindex="-1"></a><span class="sc">+</span>                       <span class="st">&quot;Amplitude&quot;</span>, <span class="st">&quot;Amplitude Interquartílica&quot;</span>)</span>
+<span id="cb32-10"><a href="#cb32-10" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">round</span>(resumo2,<span class="dv">3</span>)</span></code></pre></div>
 <pre><code>                                1       2        3        4       5
 n                           8,000   8,000    8,000    8,000   8,000
 Soma                      983,000 892,000 1001,000 1033,000 888,000
@@ -1565,13 +1850,16 @@ Amplitude Interquartílica  13,750  14,000    6,750   18,250  13,000</code></pre
 <ol start="2" style="list-style-type: lower-alpha">
 <li></li>
 </ol>
-<pre class="r"><code>&gt; modelo2 &lt;- aov(sangue ~ racas, dadosbovinos)
-&gt; anova(modelo2)</code></pre>
-<div data-pagedtable="false">
-<script data-pagedtable-source type="application/json">
-{"columns":[{"label":[""],"name":["_rn_"],"type":[""],"align":["left"]},{"label":["Df"],"name":[1],"type":["int"],"align":["right"]},{"label":["Sum Sq"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["Mean Sq"],"name":[3],"type":["dbl"],"align":["right"]},{"label":["F value"],"name":[4],"type":["dbl"],"align":["right"]},{"label":["Pr(>F)"],"name":[5],"type":["dbl"],"align":["right"]}],"data":[{"1":"4","2":"2168,150","3":"542,0375","4":"5,234007","5":"0,002063164","_rn_":"racas"},{"1":"35","2":"3624,625","3":"103,5607","4":"NA","5":"NA","_rn_":"Residuals"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
-  </script>
-</div>
+<div class="sourceCode" id="cb34"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> modelo2 <span class="ot">&lt;-</span> <span class="fu">aov</span>(sangue <span class="sc">~</span> racas, dadosbovinos)</span>
+<span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a><span class="sc">&gt;</span> <span class="fu">anova</span>(modelo2)</span></code></pre></div>
+<pre><code>Analysis of Variance Table
+
+Response: sangue
+          Df Sum Sq Mean Sq F value   Pr(&gt;F)   
+racas      4 2168,1  542,04   5,234 0,002063 **
+Residuals 35 3624,6  103,56                    
+---
+Signif. codes:  0 &#39;***&#39; 0,001 &#39;**&#39; 0,01 &#39;*&#39; 0,05 &#39;.&#39; 0,1 &#39; &#39; 1</code></pre>
 <p>Como o p valor0,0021 é menor que 0.05, há evidências para rejeitarmos
 <span class="math inline">\(H_0\)</span> ao nível de 5% de
 significância. Desse modo, não podemos afirmar que todas as médias são
@@ -1581,10 +1869,11 @@ iguais.</p>
 </ol>
 </div>
 </div>
+
+
+
 </div>
-
-
-
+</div>
 
 </div>
 
@@ -1617,6 +1906,35 @@ $(document).ready(function () {
 
 <!-- code folding -->
 
+<script>
+$(document).ready(function ()  {
+
+    // temporarily add toc-ignore selector to headers for the consistency with Pandoc
+    $('.unlisted.unnumbered').addClass('toc-ignore')
+
+    // move toc-ignore selectors from section div to header
+    $('div.section.toc-ignore')
+        .removeClass('toc-ignore')
+        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
+
+    // establish options
+    var options = {
+      selectors: "h1,h2,h3",
+      theme: "bootstrap3",
+      context: '.toc-content',
+      hashGenerator: function (text) {
+        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_');
+      },
+      ignoreSelector: ".toc-ignore",
+      scrollTo: 0
+    };
+    options.showAndHide = true;
+    options.smoothScroll = true;
+
+    // tocify
+    var toc = $("#TOC").tocify(options).data("toc-tocify");
+});
+</script>
 
 <!-- dynamically load mathjax for compatibility with self-contained -->
 <script>

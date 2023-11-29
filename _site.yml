@@ -1,30 +1,39 @@
 output_dir: "docs"
-name: "my-website"
+name: "Extatística experimental"
 navbar:
-  title: "My Website"
-  type: inverse
+  title: "Extatística experimental"
+  type:
+  toc: true 
   left:
-    - text: "Home"
+    - text: "Sobre"
       href: index.html
-    - text: "About"
+    - text: "Estatística geral"
       href: about.html
-    - text: "Delineamento inteiramente casualizado"
-      href: dic.html
-    - text: "Delineamento blocos casualizados"
-      href: dbc.html
-    - text: "Delineamento quadrado latino"
-      href: dql.html
-    - text: "Comparação de médias"
-      href: comparacao.html
-    - text: "Regressão polinomial"
-      href: regressaopoli.html
-    - text: "Esquema fatorial"
-      href: fatorial.html
-    - text: "Parcelas subdivididas"
-      href: parcelas.html   
-      
+    - text: "Capítulos" 
+      menu: 
+       - text: "Delineamento inteiramente casualizado"
+         href: dic.html
+       - text: "Delineamento blocos casualizados"
+         href: dbc.html
+       - text: "Delineamento quadrado latino"
+         href: dql.html
+       - text: "Comparação de médias"
+         href: comparacao.html
+       - text: "Regressão polinomial"
+         href: regressaopoli.html
+       - text: "Esquema fatorial"
+         href: fatorial.html
+       - text: "Parcelas subdivididas"
+         href: parcelas.html   
+    - text: "Atividades"
+      href: https://renataas.shinyapps.io/teste2/       
       
 output:
-  html_document:
-    theme: cosmo
-    highlight: textmate
+   html_document:
+    toc: true
+    toc_float: true
+    theme: united
+    highlight: kate
+    paper-grey-200: "#616161"
+    
+  
