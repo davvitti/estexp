@@ -579,10 +579,7 @@ gesso, em kg/ha</p>
 <span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a>               <span class="fu">tapply</span>(pesof, dosef, mean)))</span>
 <span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a><span class="do">##       0      50     100     150     200     250     300 </span></span>
 <span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a><span class="do">## 138,600 153,600 164,525 164,925 158,725 159,975 154,425</span></span></code></pre></div>
-<p>{r, echo=FALSE} library(ggplot2) ggplot(dadosfeijao, aes(x = dosef, y
-= pesof)) + geom_point() + geom_point(stat = “summary”, fun = mean,
-color = 2) + xlab(“dose de gesso (kg/ha)”) + ylab(“peso de 1000 sementes
-de feijão (g)”) + theme_classic()</p>
+<p><img src="regressaopoli_files/figure-html/unnamed-chunk-3-1.png" width="672" /></p>
 <p>{r, echo=FALSE} # 1. Ajuste do modelo (dose como variável
 qualitativa)</p>
 <p>#<span class="math inline">\(H_0: \mu_{0} = \mu_{50} = \ldots =

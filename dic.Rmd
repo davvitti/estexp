@@ -149,6 +149,7 @@ Rejeita-se $H_0$ se $F_{cal} \geq F_{tab_{(\alpha, I-1, I(J-1))}}$, em que $\alp
 
 ![F](imgf.jpg)
 
+![](distf.png)
  
 
 ### Coeficiente de variação

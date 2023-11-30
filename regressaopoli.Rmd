@@ -42,7 +42,7 @@ str(dadosfeijao)
 
 
 ```
-{r, echo=FALSE}
+```{r, echo=FALSE}
 library(ggplot2)
 ggplot(dadosfeijao,
        aes(x = dosef,
@@ -55,6 +55,7 @@ ggplot(dadosfeijao,
   ylab("peso de 1000 sementes de feijão (g)") +
   theme_classic()
 
+```
 
 {r, echo=FALSE}
  # 1. Ajuste do modelo (dose como variável qualitativa)

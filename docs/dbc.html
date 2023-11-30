@@ -486,6 +486,14 @@ ambiente não se confunda com a variação do acaso deve-se dividir essa
 determinar com maior precisão o efeito das variedades de café.</p>
 <p><strong>Croqui e anova: comparação entre DIC e DBC</strong></p>
 <pre><code>## [1] &quot;T1&quot; &quot;T2&quot; &quot;T3&quot; &quot;T4&quot; &quot;T5&quot; &quot;T6&quot; &quot;T7&quot; &quot;T8&quot; &quot;T9&quot;</code></pre>
+<pre><code>## The legacy packages maptools, rgdal, and rgeos, underpinning the sp package,
+## which was just loaded, will retire in October 2023.
+## Please refer to R-spatial evolution reports for details, especially
+## https://r-spatial.org/r/2023/05/15/evolution4.html.
+## It may be desirable to make the sf package available;
+## package maintainers should consider adding sf to Suggests:.
+## The sp package is now running under evolution status 2
+##      (status 2 uses the sf package in place of rgdal)</code></pre>
 <pre><code>## 
 ## Attaching package: &#39;agricolaeplotr&#39;</code></pre>
 <pre><code>## The following object is masked from &#39;package:base&#39;:
@@ -936,41 +944,41 @@ porta-enxerto 6 é menor que as outras duas. As demais médias não
 apresentaram diferenças significativas.</p>
 <div id="aplicação-no-r-studio" class="section level2">
 <h2>Aplicação no R studio</h2>
-<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co">#&#39; # Planejamento de um experimento </span></span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&#39; ## Utilizando a biblioteca agricolae</span></span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(agricolae)</span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>(tratdbc <span class="ot">&lt;-</span> <span class="fu">paste</span>(<span class="st">&quot;T&quot;</span>, <span class="dv">1</span><span class="sc">:</span><span class="dv">9</span>, <span class="at">sep =</span><span class="st">&quot;&quot;</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co">#&#39; # Planejamento de um experimento </span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&#39; ## Utilizando a biblioteca agricolae</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(agricolae)</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>(tratdbc <span class="ot">&lt;-</span> <span class="fu">paste</span>(<span class="st">&quot;T&quot;</span>, <span class="dv">1</span><span class="sc">:</span><span class="dv">9</span>, <span class="at">sep =</span><span class="st">&quot;&quot;</span>))</span></code></pre></div>
 <pre><code>## [1] &quot;T1&quot; &quot;T2&quot; &quot;T3&quot; &quot;T4&quot; &quot;T5&quot; &quot;T6&quot; &quot;T7&quot; &quot;T8&quot; &quot;T9&quot;</code></pre>
-<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>Casualizando <span class="ot">&lt;-</span> <span class="fu">design.rcbd</span>(<span class="at">trt =</span> tratdbc,</span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>                            <span class="at">r =</span> <span class="dv">3</span>)</span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(agricolaeplotr)</span>
-<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a><span class="fu">plot_rcdb</span>(Casualizando,</span>
-<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>          <span class="at">factor_name =</span> <span class="st">&quot;tratdbc&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>Casualizando <span class="ot">&lt;-</span> <span class="fu">design.rcbd</span>(<span class="at">trt =</span> tratdbc,</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>                            <span class="at">r =</span> <span class="dv">3</span>)</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(agricolaeplotr)</span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a><span class="fu">plot_rcdb</span>(Casualizando,</span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>          <span class="at">factor_name =</span> <span class="st">&quot;tratdbc&quot;</span>)</span></code></pre></div>
 <p><img src="dbc_files/figure-html/unnamed-chunk-2-1.png" width="672" /></p>
-<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co">#rm(list=ls(all=TRUE)) </span></span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="co">#dadoslaranja &lt;- read.csv2(file.choose())</span></span></code></pre></div>
-<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co">#str(dadoslaranja) </span></span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="co">#dadosl &lt;- transform(dadoslaranja,</span></span>
-<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>                   <span class="co">#bloco = factor(bloco),</span></span>
-<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>                   <span class="co">#trat = factor(trat))</span></span>
-<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a><span class="co">#summary(dadosl) </span></span></code></pre></div>
-<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co">#library(ggplot2)</span></span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&#39; ## Análise descritiva</span></span>
-<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&#39; </span></span>
-<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a><span class="co">#ggplot(dados,</span></span>
-<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a> <span class="co">#      aes(x = trat,</span></span>
-<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>  <span class="co">#         y = prod,</span></span>
-<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a>   <span class="co">#        color = trat)) +</span></span>
-<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a><span class="co">#  geom_point() +</span></span>
-<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a><span class="co">#  xlab(&quot;porta-enxertos&quot;) +</span></span>
-<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a><span class="co">#  ylab(&quot;produção&quot;)</span></span></code></pre></div>
-<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co">#modelo &lt;- lm(prod ~ bloco + trat, </span></span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a> <span class="co">#            dados,</span></span>
-<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>  <span class="co">#           contrasts = list(&quot;bloco&quot; = contr.sum,</span></span>
-<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>   <span class="co">#                           &quot;trat&quot; = contr.sum)) </span></span>
-<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a><span class="co">#dummy.coef(modelo)</span></span></code></pre></div>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co">#rm(list=ls(all=TRUE)) </span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="co">#dadoslaranja &lt;- read.csv2(file.choose())</span></span></code></pre></div>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co">#str(dadoslaranja) </span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="co">#dadosl &lt;- transform(dadoslaranja,</span></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>                   <span class="co">#bloco = factor(bloco),</span></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>                   <span class="co">#trat = factor(trat))</span></span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a><span class="co">#summary(dadosl) </span></span></code></pre></div>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co">#library(ggplot2)</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&#39; ## Análise descritiva</span></span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&#39; </span></span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a><span class="co">#ggplot(dados,</span></span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a> <span class="co">#      aes(x = trat,</span></span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>  <span class="co">#         y = prod,</span></span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a>   <span class="co">#        color = trat)) +</span></span>
+<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a><span class="co">#  geom_point() +</span></span>
+<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a><span class="co">#  xlab(&quot;porta-enxertos&quot;) +</span></span>
+<span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a><span class="co">#  ylab(&quot;produção&quot;)</span></span></code></pre></div>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co">#modelo &lt;- lm(prod ~ bloco + trat, </span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a> <span class="co">#            dados,</span></span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>  <span class="co">#           contrasts = list(&quot;bloco&quot; = contr.sum,</span></span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>   <span class="co">#                           &quot;trat&quot; = contr.sum)) </span></span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a><span class="co">#dummy.coef(modelo)</span></span></code></pre></div>
 </div>
 <div id="exercícios" class="section level2">
 <h2>Exercícios</h2>
@@ -980,14 +988,14 @@ grandis com sete anos (médias de 25 plantas por parcela) com relação a
 altura, em m, um pesquisador instalou um experimento em blocos com
 quatro repetições. Os dados são apresentados a seguir.</li>
 </ol>
-<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>dadose1 <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">Bloco =</span> <span class="fu">as.factor</span>(<span class="fu">rep</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">4</span>, <span class="at">each =</span> <span class="dv">6</span>)),</span>
-<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>                      <span class="at">Progenie =</span> <span class="fu">as.factor</span>(<span class="fu">rep</span>(<span class="fu">c</span>(<span class="st">&quot;Pretoria&quot;</span>, <span class="dv">637</span>, <span class="dv">2093</span>,<span class="dv">2094</span>,                                                    <span class="dv">9559</span>, <span class="dv">9575</span>), <span class="at">times =</span> <span class="dv">4</span>)),</span>
-<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>                      </span>
-<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a><span class="at">altura =</span> <span class="fu">c</span>(<span class="fl">20.3</span>,<span class="fl">21.7</span>,<span class="fl">22.0</span>,<span class="fl">20.8</span>,<span class="fl">21.5</span>,<span class="fl">19.6</span>,</span>
-<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>           <span class="fl">19.6</span>,<span class="fl">19.3</span>,<span class="fl">24.9</span>,<span class="fl">23.0</span>,<span class="fl">22.3</span>,<span class="fl">17.7</span>,</span>
-<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>           <span class="fl">23.5</span>,<span class="fl">16.7</span>,<span class="fl">24.4</span>,<span class="fl">21.3</span>,<span class="fl">22.1</span>,<span class="fl">18.7</span>,</span>
-<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a>           <span class="fl">19.1</span>,<span class="fl">18.5</span>,<span class="fl">20.8</span>,<span class="fl">24.9</span>,<span class="fl">21.9</span>,<span class="fl">22.0</span>)</span>
-<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>dadose1 <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">Bloco =</span> <span class="fu">as.factor</span>(<span class="fu">rep</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">4</span>, <span class="at">each =</span> <span class="dv">6</span>)),</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>                      <span class="at">Progenie =</span> <span class="fu">as.factor</span>(<span class="fu">rep</span>(<span class="fu">c</span>(<span class="st">&quot;Pretoria&quot;</span>, <span class="dv">637</span>, <span class="dv">2093</span>,<span class="dv">2094</span>,                                                    <span class="dv">9559</span>, <span class="dv">9575</span>), <span class="at">times =</span> <span class="dv">4</span>)),</span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>                      </span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a><span class="at">altura =</span> <span class="fu">c</span>(<span class="fl">20.3</span>,<span class="fl">21.7</span>,<span class="fl">22.0</span>,<span class="fl">20.8</span>,<span class="fl">21.5</span>,<span class="fl">19.6</span>,</span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>           <span class="fl">19.6</span>,<span class="fl">19.3</span>,<span class="fl">24.9</span>,<span class="fl">23.0</span>,<span class="fl">22.3</span>,<span class="fl">17.7</span>,</span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>           <span class="fl">23.5</span>,<span class="fl">16.7</span>,<span class="fl">24.4</span>,<span class="fl">21.3</span>,<span class="fl">22.1</span>,<span class="fl">18.7</span>,</span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a>           <span class="fl">19.1</span>,<span class="fl">18.5</span>,<span class="fl">20.8</span>,<span class="fl">24.9</span>,<span class="fl">21.9</span>,<span class="fl">22.0</span>)</span>
+<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div>
 <p>Pede-se: (a) Faça a análise descrita dos dados apresentando
 comentários (b) Testar a hipótese de igualdade das médias das progênies
 ao nível de 5% de significância. Apresentar as hipóteses e conclusões.
