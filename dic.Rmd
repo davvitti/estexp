@@ -13,83 +13,6 @@ options(OutDec = ",")
 
 ## Fundamentos
 
-```{r}
-par(mfrow = c(1, 3), mar = c(2, 0, 2, 0))
-
-x <- seq(-3.5, 3.5, length.out = 500)
-fx <- dnorm(x)
-plot(fx ~ x,
-     type = "l",
-     lwd = 1.5,
-     xaxt = "n",
-     yaxt = "n",
-     bty = "n",
-     main = "Unilateral (à esquerda)")
-axis(side = 1,
-     at = c(-1.5),
-     labels = expression(z[tab]))
-axis(side = 1,
-     at = c(-3.5, 3.5),
-     labels = rep("", 2))
-ind <- x < -1.5
-polygon(x = c(x[ind], rev(x[ind])),
-        y = c(fx[ind], rep(0, sum(ind))),
-        col = rgb(.8, .8, .8, 1),
-        density = NULL,
-        angle = 45)
-
-plot(fx ~ x,
-     type = "l",
-     lwd = 1.5,
-     xaxt = "n",
-     yaxt = "n",
-     bty = "n",
-     main = "Unilateral (à direita)")
-axis(side = 1,
-     at = c(1.5),
-     labels = expression(z[tab]))
-axis(side = 1,
-     at = c(-3.5, 3.5),
-     labels = rep("", 2))
-ind <- x > 1.5
-polygon(x = c(x[ind], rev(x[ind])),
-        y = c(fx[ind], rep(0, sum(ind))),
-        col = rgb(.8, .8, .8, 1),
-        density = NULL,
-        angle = 45)
-
-plot(fx ~ x,
-     type = "l",
-     lwd = 1.5,
-     xaxt = "n",
-     yaxt = "n",
-     bty = "n",
-     main = "Bilateral")
-axis(side = 1,
-     at = c(-1.5, 1.5),
-     labels = expression(-z[tab], z[tab]))
-axis(side = 1,
-     at = c(-3.5, 3.5),
-     labels = rep("", 2))
-ind <- x > 1.5
-polygon(x = c(x[ind], rev(x[ind])),
-        y = c(fx[ind], rep(0, sum(ind))),
-        col = rgb(.8, .8, .8, 1),
-        density = NULL,
-        angle = 45)
-ind <- x < -1.5
-polygon(x = c(x[ind], rev(x[ind])),
-        y = c(fx[ind], rep(0, sum(ind))),
-        col = rgb(.8, .8, .8, 1),
-        density = NULL,
-        angle = 45)
-
-
-```
-
-
-
-
 O delineamento inteiramente casualizado (DIC) é o mais simples dos delineamentos, pois considera apenas dois dos princípios básicos da experimentação: a repetição e a casualização. Neste, os tratamentos são aleatoriamente atribuídos ao material experimental, sem o esforço de se restringir os tratamentos a alguma porção de área, material ou espaço. Ainda como característica, como não há uso do controle local o número de repetições por tratamento pode variar.É geralmente utilizado quando a variação do material experimental é relativamente pequena, o que geralmente ocorre em laboratórios e casas de vegetação.
 
 Como vantagens de sua utilização temos que é um experimento de fácil planejamento e que permite o número máximo de graus de liberdade do Resíduo. Em termos de análise é a mais simples quando comparado aos demais delineamentos experimentais e não apresentará confundimento caso os tratamentos tenham números diferentes de repetições. Entretanto, como desvantagens temos que o delineamento inteiramente casualizado é adequado aos experimentos com baixo número de tratamentos e material experimental homogêneo, o que nem sempre se consegue. Quando um grande número de tratamentos é utilizado, há um crescimento no material experimental, que pode inflacionar a variação experimental. Nesses casos o Delineamento Inteiramente Casualizado não é indicado.
@@ -135,7 +58,6 @@ O modelo estatístico para a análise dos dados oriundos de um DIC com um único
 
 \begin{equation}
 y_{ij} = \mu + \tau_i + e_{ij} = \mu_i + e_{ij}  
-(\#eq:teste)
 
 \end{equation}
 
@@ -149,7 +71,7 @@ em que:
 
 - $\tau_i$ é o efeito do iésimo tratamento,
 
-- \[e_{ij}\] é o erro experimental, tal que $e_{ij} \overset{iid}{\sim}  N(0,\sigma^2)$.
+- $e_{ij}$ é o erro experimental, tal que $e_{ij} \overset{iid}{\sim}  N(0,\sigma^2)$.
 
 Realizando-se a ANOVA, testamos as hipóteses:
 
@@ -157,7 +79,7 @@ $H_0 : \tau_{1} = \tau_{2} = ... = \tau_{I} = 0$
 
 $H_1 = H_a$ : $\tau_{i} \neq 0$ para algum $i$.
 
-Havendo uma reparametrização do modelo apresentado na \@href(eq:teste), tal que $\mu + \tau_i = \alpha_i$ em que $\alpha_i$ é a média do iésimo tratamento, é:{#eq3}
+Havendo uma reparametrização do modelo apresentado na equação 1, tal que $\mu + \tau_i = \alpha_i$ em que $\alpha_i$ é a média do iésimo tratamento, é:
 
 $$y_{ij} = \alpha_i + e_{ij}  \text(3)$$
 
@@ -167,7 +89,7 @@ $H_0 : \alpha_1 = \alpha_2 = ... = \alpha_I = \mu$
 
 $H_1 = Ha$: pelo um contraste de médias difere de zero.
 
-Neste momento assumiremos que as pressuposições de normalidade e independência dos erros, bem a homogeneidade de suas variâncias garantidas. Assim, assumimos que eij corresponde a uma realização da variável $E_{ij}$ , tal que $e_{ij} \overset{iid}{\sim}  N(0,\sigma^2)$ e os demais termos no [modelo 1](#eq3) são fixos. Cabe sailentar que o modelo citado é o modelo maximal, ou seja, aquele modelo mais complicado a ser considerado na análise.
+Neste momento assumiremos que as pressuposições de normalidade e independência dos erros, bem a homogeneidade de suas variâncias garantidas. Assim, assumimos que eij corresponde a uma realização da variável $E_{ij}$ , tal que $e_{ij} \overset{iid}{\sim}  N(0,\sigma^2)$ e os demais termos no modelo 1 são fixos. Cabe sailentar que o modelo citado é o modelo maximal, ou seja, aquele modelo mais complicado a ser considerado na análise.
 Desse modo, a esperança da variável aleatória $Y_{ij}$ será
 
 $$E(Y_{ij}) = E(\mu + \tau_i + E_{ij} ) = \mu + \tau_i + 0 = \mu + \tau_i (4)$$
@@ -175,8 +97,6 @@ $$E(Y_{ij}) = E(\mu + \tau_i + E_{ij} ) = \mu + \tau_i + 0 = \mu + \tau_i (4)$$
 ### Análise de variância
 
 A proposta da ANOVA consiste em decompor a variância total dos dados em parte atribuída aos efeitos de tratamentos e parte ao acaso.
-
-Tabela 1 {#tab1}: Esquema da análise de variância considerando-se um delineamento inteiramente casualizado, com $I$ tratamentos, sendo cada um repetido $n_i$ vezes e $n = \sum_i n_i$
 
 Tabela 1: Demonstração sobre fontes de variação e graus de liberdade
 
@@ -225,6 +145,11 @@ $$\text{QM}_{\text{Trat}} = \displaystyle{\frac{\text{SQ}_\text{Trat}}{\text{gl}
 Rejeita-se $H_0$ se $F_{cal} \geq F_{tab_{(\alpha, I-1, I(J-1))}}$, em que $\alpha$ é o nível de significância, $I-1$ é o número de graus de liberdade do numerador e $I(J-1)$ é o número de graus de liberdade do denominador.		
 
 [Tabela F](https://docs.ufpr.br/~vayego/pedeefes/tab_sned.pdf)
+
+
+![F](imgf.jpg)
+
+ 
 
 ### Coeficiente de variação
 

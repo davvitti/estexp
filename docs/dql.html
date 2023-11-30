@@ -511,7 +511,67 @@ Fisher. (The Forestry Commission)</p>
 href="https://academic.oup.com/forestscience/article/60/6/1194/4583920">KERR,
 2014</a></p>
 <p><strong>Croqui e anova: comparação entre DIC, DBC e DQL</strong></p>
-<p><img src="figs\fig1.png" /></p>
+<pre><code>## [1] &quot;T1&quot; &quot;T2&quot; &quot;T3&quot; &quot;T4&quot; &quot;T5&quot; &quot;T6&quot; &quot;T7&quot; &quot;T8&quot; &quot;T9&quot;</code></pre>
+<pre><code>## [1] &quot;A&quot; &quot;B&quot; &quot;C&quot; &quot;D&quot; &quot;E&quot;</code></pre>
+<pre><code>## $parameters
+## $parameters$design
+## [1] &quot;lsd&quot;
+## 
+## $parameters$trt
+## [1] &quot;A&quot; &quot;B&quot; &quot;C&quot; &quot;D&quot; &quot;E&quot;
+## 
+## $parameters$r
+## [1] 5
+## 
+## $parameters$serie
+## [1] 2
+## 
+## $parameters$seed
+## [1] 1485884203
+## 
+## $parameters$kinds
+## [1] &quot;Super-Duper&quot;
+## 
+## $parameters[[7]]
+## [1] TRUE
+## 
+## 
+## $sketch
+##      [,1] [,2] [,3] [,4] [,5]
+## [1,] &quot;C&quot;  &quot;B&quot;  &quot;A&quot;  &quot;E&quot;  &quot;D&quot; 
+## [2,] &quot;B&quot;  &quot;A&quot;  &quot;E&quot;  &quot;D&quot;  &quot;C&quot; 
+## [3,] &quot;D&quot;  &quot;C&quot;  &quot;B&quot;  &quot;A&quot;  &quot;E&quot; 
+## [4,] &quot;A&quot;  &quot;E&quot;  &quot;D&quot;  &quot;C&quot;  &quot;B&quot; 
+## [5,] &quot;E&quot;  &quot;D&quot;  &quot;C&quot;  &quot;B&quot;  &quot;A&quot; 
+## 
+## $book
+##    plots row col Variedades
+## 1    101   1   1          C
+## 2    102   1   2          B
+## 3    103   1   3          A
+## 4    104   1   4          E
+## 5    105   1   5          D
+## 6    201   2   1          B
+## 7    202   2   2          A
+## 8    203   2   3          E
+## 9    204   2   4          D
+## 10   205   2   5          C
+## 11   301   3   1          D
+## 12   302   3   2          C
+## 13   303   3   3          B
+## 14   304   3   4          A
+## 15   305   3   5          E
+## 16   401   4   1          A
+## 17   402   4   2          E
+## 18   403   4   3          D
+## 19   404   4   4          C
+## 20   405   4   5          B
+## 21   501   5   1          E
+## 22   502   5   2          D
+## 23   503   5   3          C
+## 24   504   5   4          B
+## 25   505   5   5          A</code></pre>
+<p><img src="dql_files/figure-html/unnamed-chunk-1-1.png" width="672" /></p>
 <p><strong>Modelo estatístico</strong></p>
 <p><span class="math display">\[y_{ij(k)} = \mu + l_i + c_j +
 \tau_{k(ij)} + e_{ij(k)}, \quad i=1, \ldots, I; j=1, \ldots, I, k=1,
@@ -840,11 +900,11 @@ produções médias não apresentam diferença significativa.</p>
 </table>
 <div id="aplicação-no-r-studio" class="section level2">
 <h2>Aplicação no R studio</h2>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(agricolae)</span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>(Variedades <span class="ot">&lt;-</span> LETTERS[<span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>])</span></code></pre></div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(agricolae)</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>(Variedades <span class="ot">&lt;-</span> LETTERS[<span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>])</span></code></pre></div>
 <pre><code>## [1] &quot;A&quot; &quot;B&quot; &quot;C&quot; &quot;D&quot; &quot;E&quot;</code></pre>
-<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>(Planejamento <span class="ot">&lt;-</span> <span class="fu">design.lsd</span>(Variedades,</span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>                            <span class="at">serie=</span><span class="dv">2</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>(Planejamento <span class="ot">&lt;-</span> <span class="fu">design.lsd</span>(Variedades,</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>                            <span class="at">serie=</span><span class="dv">2</span>))</span></code></pre></div>
 <pre><code>## $parameters
 ## $parameters$design
 ## [1] &quot;lsd&quot;
@@ -859,7 +919,7 @@ produções médias não apresentam diferença significativa.</p>
 ## [1] 2
 ## 
 ## $parameters$seed
-## [1] 915962595
+## [1] 1438871395
 ## 
 ## $parameters$kinds
 ## [1] &quot;Super-Duper&quot;
@@ -870,89 +930,89 @@ produções médias não apresentam diferença significativa.</p>
 ## 
 ## $sketch
 ##      [,1] [,2] [,3] [,4] [,5]
-## [1,] &quot;A&quot;  &quot;B&quot;  &quot;E&quot;  &quot;C&quot;  &quot;D&quot; 
-## [2,] &quot;B&quot;  &quot;C&quot;  &quot;A&quot;  &quot;D&quot;  &quot;E&quot; 
-## [3,] &quot;D&quot;  &quot;E&quot;  &quot;C&quot;  &quot;A&quot;  &quot;B&quot; 
-## [4,] &quot;E&quot;  &quot;A&quot;  &quot;D&quot;  &quot;B&quot;  &quot;C&quot; 
-## [5,] &quot;C&quot;  &quot;D&quot;  &quot;B&quot;  &quot;E&quot;  &quot;A&quot; 
+## [1,] &quot;A&quot;  &quot;D&quot;  &quot;B&quot;  &quot;C&quot;  &quot;E&quot; 
+## [2,] &quot;C&quot;  &quot;A&quot;  &quot;D&quot;  &quot;E&quot;  &quot;B&quot; 
+## [3,] &quot;D&quot;  &quot;B&quot;  &quot;E&quot;  &quot;A&quot;  &quot;C&quot; 
+## [4,] &quot;E&quot;  &quot;C&quot;  &quot;A&quot;  &quot;B&quot;  &quot;D&quot; 
+## [5,] &quot;B&quot;  &quot;E&quot;  &quot;C&quot;  &quot;D&quot;  &quot;A&quot; 
 ## 
 ## $book
 ##    plots row col Variedades
 ## 1    101   1   1          A
-## 2    102   1   2          B
-## 3    103   1   3          E
+## 2    102   1   2          D
+## 3    103   1   3          B
 ## 4    104   1   4          C
-## 5    105   1   5          D
-## 6    201   2   1          B
-## 7    202   2   2          C
-## 8    203   2   3          A
-## 9    204   2   4          D
-## 10   205   2   5          E
+## 5    105   1   5          E
+## 6    201   2   1          C
+## 7    202   2   2          A
+## 8    203   2   3          D
+## 9    204   2   4          E
+## 10   205   2   5          B
 ## 11   301   3   1          D
-## 12   302   3   2          E
-## 13   303   3   3          C
+## 12   302   3   2          B
+## 13   303   3   3          E
 ## 14   304   3   4          A
-## 15   305   3   5          B
+## 15   305   3   5          C
 ## 16   401   4   1          E
-## 17   402   4   2          A
-## 18   403   4   3          D
+## 17   402   4   2          C
+## 18   403   4   3          A
 ## 19   404   4   4          B
-## 20   405   4   5          C
-## 21   501   5   1          C
-## 22   502   5   2          D
-## 23   503   5   3          B
-## 24   504   5   4          E
+## 20   405   4   5          D
+## 21   501   5   1          B
+## 22   502   5   2          E
+## 23   503   5   3          C
+## 24   504   5   4          D
 ## 25   505   5   5          A</code></pre>
-<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(agricolaeplotr)</span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="fu">plot_latin_square</span>(Planejamento,</span>
-<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>                  <span class="at">factor_name =</span> <span class="st">&quot;Variedades&quot;</span>,</span>
-<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>                  <span class="at">labels =</span> <span class="st">&quot;Variedades&quot;</span>)</span></code></pre></div>
-<p><img src="dql_files/figure-html/unnamed-chunk-1-1.png" width="672" /></p>
-<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co">#&#39; ## Importando os dados</span></span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(readxl)</span>
-<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="co">#dadoscana &lt;- read_xlsx(&quot;dados/cana1.1.xlsx&quot;)</span></span>
-<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="co">#knitr::kable(dadoscana)</span></span>
-<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a><span class="co">#str(dadoscana)</span></span>
-<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a><span class="co">#dadoscana &lt;- transform(dadoscana,</span></span>
-<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a> <span class="co">#                  linha = factor(linha),</span></span>
-<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>  <span class="co">#                 coluna = factor(coluna))</span></span></code></pre></div>
-<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co">#library(ggplot2)</span></span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="co">#ggplot(dadoscana, aes(x = coluna, </span></span>
-<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="co">#                  y = linha, </span></span>
-<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a> <span class="co">#                 label = trat)) +</span></span>
-<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>  <span class="co">#geom_tile(aes(fill = prod), </span></span>
-<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>  <span class="co">#          color=&quot;black&quot;) +</span></span>
-<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a><span class="co">#  scale_fill_gradient(low=&quot;white&quot;,</span></span>
-<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a> <span class="co">#                     high=&quot;red&quot;) +</span></span>
-<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a><span class="co">#  geom_text() +</span></span>
-<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a> <span class="co"># xlab(&quot;Colunas&quot;) +</span></span>
-<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a>  <span class="co">#ylab(&quot;Linhas&quot;)</span></span>
-<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-14"><a href="#cb8-14" aria-hidden="true" tabindex="-1"></a><span class="co">#ggplot(dadoscana, </span></span>
-<span id="cb8-15"><a href="#cb8-15" aria-hidden="true" tabindex="-1"></a> <span class="co">#      aes(x = trat, </span></span>
-<span id="cb8-16"><a href="#cb8-16" aria-hidden="true" tabindex="-1"></a>  <span class="co">#         y = prod)) +</span></span>
-<span id="cb8-17"><a href="#cb8-17" aria-hidden="true" tabindex="-1"></a><span class="co">#  geom_point()</span></span></code></pre></div>
-<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co">#modelocana &lt;- aov(prod ~ linha + coluna + trat,</span></span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a> <span class="co">#             dadoscana) </span></span></code></pre></div>
-<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co">#&#39; Resíduos Studentizados </span></span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="co">#(res_stud &lt;- rstandard(modelocana))</span></span>
-<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="co">#ggplot(NULL, </span></span>
-<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a> <span class="co">#      aes(x=res_stud)) +</span></span>
-<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a><span class="co">#  geom_boxplot() +</span></span>
-<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a> <span class="co"># labs(y = &quot;Resíduos Studentizados&quot;)</span></span></code></pre></div>
-<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co">#anova(modelocana)</span></span></code></pre></div>
-<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co">#library(ExpDes.pt) </span></span>
-<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="co">#with(dadoscana, </span></span>
-<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a> <span class="co">#    dql(trat, </span></span>
-<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>  <span class="co">#       linha, </span></span>
-<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>   <span class="co">#      coluna, </span></span>
-<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>    <span class="co">#     prod, </span></span>
-<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a>     <span class="co">#    quali = TRUE, </span></span>
-<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a>      <span class="co">#   mcomp = &quot;tukey&quot;, </span></span>
-<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a>       <span class="co">#  sigT = 0.05, </span></span>
-<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a>        <span class="co"># sigF = 0.05))</span></span></code></pre></div>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(agricolaeplotr)</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="fu">plot_latin_square</span>(Planejamento,</span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>                  <span class="at">factor_name =</span> <span class="st">&quot;Variedades&quot;</span>,</span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>                  <span class="at">labels =</span> <span class="st">&quot;Variedades&quot;</span>)</span></code></pre></div>
+<p><img src="dql_files/figure-html/unnamed-chunk-2-1.png" width="672" /></p>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co">#&#39; ## Importando os dados</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(readxl)</span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="co">#dadoscana &lt;- read_xlsx(&quot;dados/cana1.1.xlsx&quot;)</span></span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a><span class="co">#knitr::kable(dadoscana)</span></span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a><span class="co">#str(dadoscana)</span></span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a><span class="co">#dadoscana &lt;- transform(dadoscana,</span></span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a> <span class="co">#                  linha = factor(linha),</span></span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a>  <span class="co">#                 coluna = factor(coluna))</span></span></code></pre></div>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co">#library(ggplot2)</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="co">#ggplot(dadoscana, aes(x = coluna, </span></span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="co">#                  y = linha, </span></span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a> <span class="co">#                 label = trat)) +</span></span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>  <span class="co">#geom_tile(aes(fill = prod), </span></span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>  <span class="co">#          color=&quot;black&quot;) +</span></span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a><span class="co">#  scale_fill_gradient(low=&quot;white&quot;,</span></span>
+<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a> <span class="co">#                     high=&quot;red&quot;) +</span></span>
+<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a><span class="co">#  geom_text() +</span></span>
+<span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a> <span class="co"># xlab(&quot;Colunas&quot;) +</span></span>
+<span id="cb11-11"><a href="#cb11-11" aria-hidden="true" tabindex="-1"></a>  <span class="co">#ylab(&quot;Linhas&quot;)</span></span>
+<span id="cb11-12"><a href="#cb11-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-13"><a href="#cb11-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-14"><a href="#cb11-14" aria-hidden="true" tabindex="-1"></a><span class="co">#ggplot(dadoscana, </span></span>
+<span id="cb11-15"><a href="#cb11-15" aria-hidden="true" tabindex="-1"></a> <span class="co">#      aes(x = trat, </span></span>
+<span id="cb11-16"><a href="#cb11-16" aria-hidden="true" tabindex="-1"></a>  <span class="co">#         y = prod)) +</span></span>
+<span id="cb11-17"><a href="#cb11-17" aria-hidden="true" tabindex="-1"></a><span class="co">#  geom_point()</span></span></code></pre></div>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co">#modelocana &lt;- aov(prod ~ linha + coluna + trat,</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a> <span class="co">#             dadoscana) </span></span></code></pre></div>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co">#&#39; Resíduos Studentizados </span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="co">#(res_stud &lt;- rstandard(modelocana))</span></span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a><span class="co">#ggplot(NULL, </span></span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a> <span class="co">#      aes(x=res_stud)) +</span></span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a><span class="co">#  geom_boxplot() +</span></span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a> <span class="co"># labs(y = &quot;Resíduos Studentizados&quot;)</span></span></code></pre></div>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co">#anova(modelocana)</span></span></code></pre></div>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="co">#library(ExpDes.pt) </span></span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="co">#with(dadoscana, </span></span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a> <span class="co">#    dql(trat, </span></span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>  <span class="co">#       linha, </span></span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>   <span class="co">#      coluna, </span></span>
+<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a>    <span class="co">#     prod, </span></span>
+<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a>     <span class="co">#    quali = TRUE, </span></span>
+<span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a>      <span class="co">#   mcomp = &quot;tukey&quot;, </span></span>
+<span id="cb15-9"><a href="#cb15-9" aria-hidden="true" tabindex="-1"></a>       <span class="co">#  sigT = 0.05, </span></span>
+<span id="cb15-10"><a href="#cb15-10" aria-hidden="true" tabindex="-1"></a>        <span class="co"># sigF = 0.05))</span></span></code></pre></div>
 </div>
 <div id="exercícios" class="section level2">
 <h2>Exercícios</h2>

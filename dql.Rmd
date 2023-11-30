@@ -33,7 +33,41 @@ O primeiro experimento de campo no mundo a usar um delineamento experimental ale
 __Croqui e anova: comparação entre DIC, DBC e DQL__
 
 
-![](figs\fig1.png)
+```{r , echo = FALSE , warning = FALSE}
+library(gridExtra)
+library(agricolae)
+(tratdbc <- paste("T", 1:9, sep =""))
+Casualizando <- design.rcbd(trt = tratdbc,
+                            r = 3)
+
+library(agricolaeplotr)
+grafico2 <- plot_rcdb(Casualizando,
+          factor_name = "tratdbc")
+
+trt = LETTERS[1:4]
+delineamento <- design.crd(trt,
+                           r = 5,
+                           serie = 0)
+grafico1 <- plot_design_crd(delineamento,
+                ncols = 4,
+                nrows = 5)
+
+(Variedades <- LETTERS[1:5])
+(Planejamento <- design.lsd(Variedades,
+                            serie=2))
+
+
+grafico3 <- plot_latin_square(Planejamento,
+                  factor_name = "Variedades",
+                  labels = "Variedades")
+
+grid.arrange(
+          grafico1,
+          grafico2,
+          grafico3,
+          ncol = 3,
+          nrow = 1)
+```
 
 
 
